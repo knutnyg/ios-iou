@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709841AAE2BC3002FC91A /* GroupCell.swift */; };
+		728709871AAE2E14002FC91A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709861AAE2E14002FC91A /* HeaderView.swift */; };
+		728709891AAE49DE002FC91A /* GroupPanelParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709881AAE49DE002FC91A /* GroupPanelParent.swift */; };
 		72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07E931AA8EE570016C61B /* AppDelegate.swift */; };
 		72A07E991AA8EE570016C61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E971AA8EE570016C61B /* Main.storyboard */; };
 		72A07E9B1AA8EE570016C61B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E9A1AA8EE570016C61B /* Images.xcassets */; };
@@ -16,6 +19,7 @@
 		72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB71AA8EEE20016C61B /* BannerViewController.swift */; };
 		72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */; };
 		72A07EBC1AA8EF1D0016C61B /* GroupPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EBB1AA8EF1D0016C61B /* GroupPanelViewController.swift */; };
+		72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		728709841AAE2BC3002FC91A /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		728709861AAE2E14002FC91A /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		728709881AAE49DE002FC91A /* GroupPanelParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelParent.swift; sourceTree = "<group>"; };
 		72A07E8E1AA8EE570016C61B /* iou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A07E921AA8EE570016C61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A07E931AA8EE570016C61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +49,7 @@
 		72A07EB71AA8EEE20016C61B /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		72A07EBB1AA8EF1D0016C61B /* GroupPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelViewController.swift; sourceTree = "<group>"; };
+		72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewConstraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		728709811AAE2AB2002FC91A /* Grouppanels */ = {
+			isa = PBXGroup;
+			children = (
+				72A07EBB1AA8EF1D0016C61B /* GroupPanelViewController.swift */,
+				728709861AAE2E14002FC91A /* HeaderView.swift */,
+				728709841AAE2BC3002FC91A /* GroupCell.swift */,
+				728709881AAE49DE002FC91A /* GroupPanelParent.swift */,
+			);
+			name = Grouppanels;
+			sourceTree = "<group>";
+		};
 		72A07E851AA8EE570016C61B = {
 			isa = PBXGroup;
 			children = (
@@ -83,9 +102,10 @@
 		72A07E901AA8EE570016C61B /* iou */ = {
 			isa = PBXGroup;
 			children = (
+				728709811AAE2AB2002FC91A /* Grouppanels */,
+				72B7B9661AACD726007E4AC9 /* models */,
 				72A07E931AA8EE570016C61B /* AppDelegate.swift */,
 				72A07EB51AA8EED60016C61B /* ParentViewController.swift */,
-				72A07EBB1AA8EF1D0016C61B /* GroupPanelViewController.swift */,
 				72A07E971AA8EE570016C61B /* Main.storyboard */,
 				72A07EB71AA8EEE20016C61B /* BannerViewController.swift */,
 				72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */,
@@ -119,6 +139,14 @@
 				72A07EA81AA8EE570016C61B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72B7B9661AACD726007E4AC9 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */,
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,10 +250,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A07EB61AA8EED60016C61B /* ParentViewController.swift in Sources */,
+				728709871AAE2E14002FC91A /* HeaderView.swift in Sources */,
 				72A07EBC1AA8EF1D0016C61B /* GroupPanelViewController.swift in Sources */,
 				72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */,
+				72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */,
+				728709891AAE49DE002FC91A /* GroupPanelParent.swift in Sources */,
 				72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */,
 				72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */,
+				728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +451,7 @@
 				72A07EAF1AA8EE570016C61B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72A07EB01AA8EE570016C61B /* Build configuration list for PBXNativeTarget "iouTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +460,7 @@
 				72A07EB21AA8EE570016C61B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

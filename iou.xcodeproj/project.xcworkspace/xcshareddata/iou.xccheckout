@@ -6,31 +6,35 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>0833EFD4-5C41-4497-AEFD-AF1B958478CD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iou</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2E1486CF8CECC2B0B836F7AA8B1C7A2BBAD6193F</key>
-		<string>https://github.com/knudix/picnic</string>
+		<key>A50EC7AB037B7002A1F242175444919F3547AF56</key>
+		<string>github.com:knudix/ios-iou.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iou.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2E1486CF8CECC2B0B836F7AA8B1C7A2BBAD6193F</key>
-		<string>picnic/</string>
+		<key>A50EC7AB037B7002A1F242175444919F3547AF56</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/knudix/picnic</string>
+	<string>github.com:knudix/ios-iou.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2E1486CF8CECC2B0B836F7AA8B1C7A2BBAD6193F</string>
+	<string>A50EC7AB037B7002A1F242175444919F3547AF56</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2E1486CF8CECC2B0B836F7AA8B1C7A2BBAD6193F</string>
+			<string>A50EC7AB037B7002A1F242175444919F3547AF56</string>
 			<key>IDESourceControlWCCName</key>
-			<string>picnic</string>
+			<string>iou</string>
 		</dict>
 	</array>
 </dict>

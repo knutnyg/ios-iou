@@ -10,5 +10,8 @@ import Foundation
 import UIKit
 
 class BannerViewController : UIViewController {
-    
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor.redColor()
+        println("setting red color")
+    }
 }

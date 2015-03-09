@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
-class ProfileViewController : UIViewController {
-    
+class ProfileViewController : UIViewController, UITableViewDelegate{
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor.greenColor()
+    }
 }
