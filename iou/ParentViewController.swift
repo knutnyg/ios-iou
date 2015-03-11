@@ -13,7 +13,7 @@ class ParentViewController : UIViewController {
     
     var bannerView:BannerViewController!
     var profileView:ProfileViewController!
-    var groupPanelView:GroupPanelParent!
+    var groupPanelView:GroupListPanel!
     var label:UILabel!
     
     override func viewDidLoad(){
@@ -23,7 +23,7 @@ class ParentViewController : UIViewController {
         profileView = ProfileViewController()
         profileView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        groupPanelView = GroupPanelParent()
+        groupPanelView = GroupListPanel()
         groupPanelView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         

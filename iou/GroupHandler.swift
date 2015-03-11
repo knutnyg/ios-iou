@@ -15,7 +15,7 @@ class GroupHandler {
         let list = [("Casa del Sinsen", 3), ("Spania 2013", 13), ("Famile", 4), ("Div", 2)]
         let promise = Promise<[(String,Int)]>()
 
-        delay(3){
+        delay(1){
             promise.success(list)
         }
         

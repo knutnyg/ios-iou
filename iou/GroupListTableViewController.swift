@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GroupPanelViewController : UITableViewController {
+class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     
     var group:[(String, Int)] = []
     var maxGroupItems = 0
@@ -34,6 +34,10 @@ class GroupPanelViewController : UITableViewController {
         
     }
     
+    func didFinishGroup(controller: GroupListPanel) {
+        controller.navigationController?.popViewControllerAnimated(true)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cellIdentifier:String = "groupCell"
@@ -45,7 +49,11 @@ class GroupPanelViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //Handle press on group
+        let vc = GroupViewParent()
+        vc.delegate = self
+        vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        presentViewController(vc, animated: true, completion: nil)
+        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {

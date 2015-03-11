@@ -9,19 +9,18 @@
 import Foundation
 import UIKit
 
-class GroupPanelParent : UIViewController {
+class GroupListPanel : UIViewController {
     
     var headerView:HeaderView!
-    var groupPanel:GroupPanelViewController!
+    var groupPanel:GroupListTableViewController!
     var views:[NSObject : AnyObject]!
-    var userModel:User!
     
     override func viewDidLoad(){
         headerView = HeaderView()
         headerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         headerView.view.backgroundColor = UIColor.orangeColor()
         
-        groupPanel = GroupPanelViewController()
+        groupPanel = GroupListTableViewController()
         groupPanel.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         groupPanel.view.backgroundColor = UIColor.purpleColor()
         
