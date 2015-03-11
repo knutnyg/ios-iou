@@ -14,6 +14,7 @@ class GroupPanelParent : UIViewController {
     var headerView:HeaderView!
     var groupPanel:GroupPanelViewController!
     var views:[NSObject : AnyObject]!
+    var userModel:User!
     
     override func viewDidLoad(){
         headerView = HeaderView()
@@ -36,7 +37,7 @@ class GroupPanelParent : UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[group]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         
     }
-    
+
     override func viewDidLayoutSubviews() {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(30)]-[group(\(view.bounds.height-30))]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
     }

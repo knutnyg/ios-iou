@@ -14,6 +14,7 @@ class ParentViewController : UIViewController {
     var bannerView:BannerViewController!
     var profileView:ProfileViewController!
     var groupPanelView:GroupPanelParent!
+    var label:UILabel!
     
     override func viewDidLoad(){
         bannerView = BannerViewController()
@@ -25,6 +26,12 @@ class ParentViewController : UIViewController {
         groupPanelView = GroupPanelParent()
         groupPanelView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
+        
+        label = UILabel()
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.text = "tonaowda"
+        label.backgroundColor = UIColor.blueColor()
+        
         self.addChildViewController(bannerView)
         self.addChildViewController(profileView)
         self.addChildViewController(groupPanelView)
@@ -32,14 +39,11 @@ class ParentViewController : UIViewController {
         view.addSubview(bannerView.view)
         view.addSubview(profileView.view)
         view.addSubview(groupPanelView.view)
+        view.addSubview(label)
         
-        let views:[NSObject : AnyObject] = ["topBanner":bannerView.view,"profile":profileView.view,"groupPanel":groupPanelView.view]
+        let views:[NSObject : AnyObject] = ["topBanner":bannerView.view,"profile":profileView.view,"groupPanel":groupPanelView.view, "label":label]
         
         setChildviewConstraints(views)
-        
-        
-        
-        
     }
     
     func setChildviewConstraints(views:[NSObject:AnyObject]){
@@ -61,18 +65,23 @@ class ParentViewController : UIViewController {
         let constraintModel = ParentViewConstraints(
             bannerHeight: 80,
             profileViewHeight: 150,
-            groupViewHeight: 300)
+            groupViewHeight: 300,
+            cellHeight: 30
+        )
         
         setConstraints(views, constraintsModel: constraintModel)
         
     }
     
     func setConstraints(views:[NSObject:AnyObject], constraintsModel:ParentViewConstraints){
-        var visualFormat = String(format: "V:|-0-[topBanner(%d)]-0-[profile(%d)]-0-[groupPanel(%d)]",
+        
+        var visualFormat = String(format: "V:|-0-[topBanner(%d)]-0-[profile(%d)]-0-[groupPanel(%d)]-[label]",
             constraintsModel.bannerHeight,
             constraintsModel.profileViewHeight,
             constraintsModel.groupViewHeight
         )
+        
+        
         
         let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
         
@@ -85,11 +94,16 @@ class ParentViewController : UIViewController {
         visualFormat = "H:|-0-[groupPanel]-0-|"
         let groupPanelWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
         
+        visualFormat = "H:|-0-[label]-0-|"
+        let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        
         view.addConstraints(verticalLayout)
         view.addConstraints(bannerWidth)
         view.addConstraints(profileWidth)
         view.addConstraints(groupPanelWidth)
+        view.addConstraints(buttonWidth)
     }
+
     
     
     

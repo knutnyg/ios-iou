@@ -17,10 +17,12 @@ class HeaderView : UIViewController {
     override func viewDidLoad() {
         groupName = UILabel()
         groupName.setTranslatesAutoresizingMaskIntoConstraints(false)
-        groupName.text = "Group title:"
+        groupName.text = "Group title"
+        groupName.font = UIFont(name: "Helvetica-Bold", size: 15)
         members = UILabel()
         members.setTranslatesAutoresizingMaskIntoConstraints(false)
-        members.text = "Members:"
+        members.text = "Members"
+        members.font = UIFont(name: "Helvetica-Bold", size: 15)
         
         view.backgroundColor = UIColor.whiteColor()
         
@@ -33,7 +35,7 @@ class HeaderView : UIViewController {
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[memberCount]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[groupName]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[memberCount]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[groupName]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[memberCount]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
     }
 }

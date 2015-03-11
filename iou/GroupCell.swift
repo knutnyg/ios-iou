@@ -15,7 +15,7 @@ class GroupCell : UITableViewCell {
     var memberCount:UILabel
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        
+    
         groupName = UILabel()
         groupName.setTranslatesAutoresizingMaskIntoConstraints(false)
         groupName.text = "gruppe1"
