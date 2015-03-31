@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7210F1AB1AB0D0B000C2A797 /* GroupViewParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AA1AB0D0B000C2A797 /* GroupViewParent.swift */; };
+		7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */; };
 		7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */; };
 		7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */; };
 		7210F1B41AB0D22400C2A797 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B31AB0D22400C2A797 /* SummaryViewController.swift */; };
@@ -16,8 +16,8 @@
 		724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 724ACD1A1AB0AA6100DFA724 /* Podfile */; };
 		726CA7B61AAF828C00EC7DFA /* GroupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */; };
 		728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709841AAE2BC3002FC91A /* GroupCell.swift */; };
-		728709871AAE2E14002FC91A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709861AAE2E14002FC91A /* HeaderView.swift */; };
-		728709891AAE49DE002FC91A /* GroupPanelParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709881AAE49DE002FC91A /* GroupPanelParent.swift */; };
+		728709871AAE2E14002FC91A /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709861AAE2E14002FC91A /* HeaderViewController.swift */; };
+		728709891AAE49DE002FC91A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709881AAE49DE002FC91A /* MainViewController.swift */; };
 		72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07E931AA8EE570016C61B /* AppDelegate.swift */; };
 		72A07E991AA8EE570016C61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E971AA8EE570016C61B /* Main.storyboard */; };
 		72A07E9B1AA8EE570016C61B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E9A1AA8EE570016C61B /* Images.xcassets */; };
@@ -27,6 +27,12 @@
 		72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB71AA8EEE20016C61B /* BannerViewController.swift */; };
 		72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */; };
 		72A07EBC1AA8EF1D0016C61B /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */; };
+		72A6228E1ACAA8CD007D1F93 /* ExpensesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */; };
+		72A622901ACAA936007D1F93 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228F1ACAA936007D1F93 /* Group.swift */; };
+		72A622921ACAA9BD007D1F93 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622911ACAA9BD007D1F93 /* User.swift */; };
+		72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622931ACAAD3F007D1F93 /* Expense.swift */; };
+		72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622951ACB1521007D1F93 /* ExpenseCell.swift */; };
+		72A622981ACB1EA7007D1F93 /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622971ACB1EA7007D1F93 /* JSONHelpers.swift */; };
 		72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */; };
 		E8A1779BA4BFA18E2D1EA7A8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CDB8D3053FAB98FE86BDBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -43,7 +49,7 @@
 
 /* Begin PBXFileReference section */
 		108EFFAC047710158FD90D5B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		7210F1AA1AB0D0B000C2A797 /* GroupViewParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewParent.swift; sourceTree = "<group>"; };
+		7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewController.swift; sourceTree = "<group>"; };
 		7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		7210F1B31AB0D22400C2A797 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -52,8 +58,8 @@
 		724ACD1A1AB0AA6100DFA724 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHandler.swift; sourceTree = "<group>"; };
 		728709841AAE2BC3002FC91A /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
-		728709861AAE2E14002FC91A /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		728709881AAE49DE002FC91A /* GroupPanelParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelParent.swift; sourceTree = "<group>"; };
+		728709861AAE2E14002FC91A /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
+		728709881AAE49DE002FC91A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		72A07E8E1AA8EE570016C61B /* iou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A07E921AA8EE570016C61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A07E931AA8EE570016C61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +73,12 @@
 		72A07EB71AA8EEE20016C61B /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListTableViewController.swift; sourceTree = "<group>"; };
+		72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesHandler.swift; sourceTree = "<group>"; };
+		72A6228F1ACAA936007D1F93 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		72A622911ACAA9BD007D1F93 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		72A622931ACAAD3F007D1F93 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		72A622951ACB1521007D1F93 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		72A622971ACB1EA7007D1F93 /* JSONHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelpers.swift; sourceTree = "<group>"; };
 		72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewConstraints.swift; sourceTree = "<group>"; };
 		92CDB8D3053FAB98FE86BDBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2B058942AEB75EDD9D3A13E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,35 +103,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7210F1B21AB0D1B100C2A797 /* Grouppanel */ = {
+		7210F1B21AB0D1B100C2A797 /* GroupView */ = {
 			isa = PBXGroup;
 			children = (
-				7210F1AA1AB0D0B000C2A797 /* GroupViewParent.swift */,
+				7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */,
 				7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */,
 				7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */,
 				7210F1B31AB0D22400C2A797 /* SummaryViewController.swift */,
 				723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */,
+				72A622951ACB1521007D1F93 /* ExpenseCell.swift */,
 			);
-			name = Grouppanel;
+			name = GroupView;
 			sourceTree = "<group>";
 		};
 		726CA7B41AAF827B00EC7DFA /* BackendStuffs */ = {
 			isa = PBXGroup;
 			children = (
 				726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */,
+				72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */,
+				72A622971ACB1EA7007D1F93 /* JSONHelpers.swift */,
 			);
 			name = BackendStuffs;
 			sourceTree = "<group>";
 		};
-		728709811AAE2AB2002FC91A /* GroupOverview */ = {
+		728709811AAE2AB2002FC91A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				728709861AAE2E14002FC91A /* HeaderView.swift */,
+				728709861AAE2E14002FC91A /* HeaderViewController.swift */,
 				72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */,
 				728709841AAE2BC3002FC91A /* GroupCell.swift */,
-				728709881AAE49DE002FC91A /* GroupPanelParent.swift */,
+				728709881AAE49DE002FC91A /* MainViewController.swift */,
 			);
-			name = GroupOverview;
+			name = MainView;
 			sourceTree = "<group>";
 		};
 		72A07E851AA8EE570016C61B = {
@@ -145,9 +160,9 @@
 		72A07E901AA8EE570016C61B /* iou */ = {
 			isa = PBXGroup;
 			children = (
-				7210F1B21AB0D1B100C2A797 /* Grouppanel */,
+				7210F1B21AB0D1B100C2A797 /* GroupView */,
 				726CA7B41AAF827B00EC7DFA /* BackendStuffs */,
-				728709811AAE2AB2002FC91A /* GroupOverview */,
+				728709811AAE2AB2002FC91A /* MainView */,
 				72B7B9661AACD726007E4AC9 /* models */,
 				72A07E931AA8EE570016C61B /* AppDelegate.swift */,
 				72A07EB51AA8EED60016C61B /* ParentViewController.swift */,
@@ -192,6 +207,9 @@
 			children = (
 				72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */,
 				723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */,
+				72A6228F1ACAA936007D1F93 /* Group.swift */,
+				72A622911ACAA9BD007D1F93 /* User.swift */,
+				72A622931ACAAD3F007D1F93 /* Expense.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -368,20 +386,26 @@
 			files = (
 				72A07EB61AA8EED60016C61B /* ParentViewController.swift in Sources */,
 				7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */,
-				728709871AAE2E14002FC91A /* HeaderView.swift in Sources */,
+				728709871AAE2E14002FC91A /* HeaderViewController.swift in Sources */,
 				72A07EBC1AA8EF1D0016C61B /* GroupListTableViewController.swift in Sources */,
+				72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */,
+				72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */,
 				72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */,
 				7210F1B41AB0D22400C2A797 /* SummaryViewController.swift in Sources */,
 				72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */,
-				728709891AAE49DE002FC91A /* GroupPanelParent.swift in Sources */,
+				728709891AAE49DE002FC91A /* MainViewController.swift in Sources */,
 				72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */,
+				72A622981ACB1EA7007D1F93 /* JSONHelpers.swift in Sources */,
+				72A622901ACAA936007D1F93 /* Group.swift in Sources */,
 				723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */,
 				72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */,
+				72A6228E1ACAA8CD007D1F93 /* ExpensesHandler.swift in Sources */,
 				726CA7B61AAF828C00EC7DFA /* GroupHandler.swift in Sources */,
 				723836AF1AB0EF4B007EC1FC /* GroupViewDelegate.swift in Sources */,
-				7210F1AB1AB0D0B000C2A797 /* GroupViewParent.swift in Sources */,
+				7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */,
 				7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */,
 				728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */,
+				72A622921ACAA9BD007D1F93 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,13 +19,19 @@ import UIKit
 
 
 
-class GroupViewParent : UIViewController {
+class GroupView : UIViewController {
     
     var bannerView:BannerViewController!
     var summaryView:SummaryViewController!
     var datepickerView:DatePickerViewController!
     var expensesTableView:ExpensesTableViewController!
     var delegate:GroupListTableViewController!=nil
+    var groupId:Int!
+    
+    init(groupId:Int){
+        super.init()
+        self.groupId = groupId
+    }
     
     override func viewDidLoad(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "backButtonPressed:", name: "backPressed", object: nil)
@@ -39,7 +45,7 @@ class GroupViewParent : UIViewController {
         datepickerView = DatePickerViewController()
         datepickerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        expensesTableView = ExpensesTableViewController()
+        expensesTableView = ExpensesTableViewController(groupId: self.groupId)
         expensesTableView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         self.addChildViewController(bannerView)
@@ -117,6 +123,16 @@ class GroupViewParent : UIViewController {
         delegate.dismissViewControllerAnimated(true, completion: nil)
         
         
+    }
+    
+    //----- Required initializers -----//
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     

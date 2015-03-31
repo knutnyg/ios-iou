@@ -13,6 +13,9 @@ class GroupCell : UITableViewCell {
     
     var groupName:UILabel
     var memberCount:UILabel
+    var group:Group!
+    
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     

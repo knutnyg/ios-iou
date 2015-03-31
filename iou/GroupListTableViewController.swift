@@ -11,7 +11,7 @@ import UIKit
 
 class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     
-    var group:[(String, Int)] = []
+    var groups:[Group] = []
     var maxGroupItems = 0
     var activity:UIActivityIndicatorView!
     
@@ -25,8 +25,8 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         activity.bringSubviewToFront(view)
         
         //fetch group.
-        GroupHandler.getGroups4Reals().onSuccess { group in
-            self.group = group
+        GroupHandler().getGroupsForUser().onSuccess { groupList in
+            self.groups = groupList
             self.tableView.reloadData()
             self.activity.stopAnimating()
         }
@@ -43,13 +43,15 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         var cellIdentifier:String = "groupCell"
         
         var cell:GroupCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as GroupCell
-        cell.groupName.text = group[indexPath.item].0
-        cell.memberCount.text = String(group[indexPath.item].1)
+        cell.group = self.groups[indexPath.item]
+        cell.groupName.text = groups[indexPath.item].description
+        cell.memberCount.text = String(groups[indexPath.item].members.count)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = GroupViewParent()
+        var cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as GroupCell
+        let vc = GroupView(groupId: cell.group.id)
         vc.delegate = self
         vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         presentViewController(vc, animated: true, completion: nil)
@@ -62,7 +64,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Find max size
-        return self.group.count
+        return self.groups.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
