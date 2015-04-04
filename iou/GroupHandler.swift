@@ -14,18 +14,32 @@ class GroupHandler: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
     
     var data:NSMutableData!
     var promise:Promise<[Group]>!
+    var mockData:Bool = true
     
     override init(){
         super.init()
         data = NSMutableData()
-
+    }
+    
+    func readResponseFromFile() -> JSON{
+        let path = NSBundle.mainBundle().pathForResource("groupResponse", ofType: "txt")
+        var data = NSData(contentsOfFile: path!)!
+//        var text = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
+        return JSON(data: data)
     }
     
     func getGroupsForUser() -> Future<[Group]> {
         
         promise = Promise<[Group]>()
         
-        var accessToken:String = "eyJpZCI6MywiZW1haWwiOiJrbnV0bnlnQGdtYWlsLmNvbSIsIm5hbWUiOiJLbnV0IE55Z2FhcmQiLCJzaG9ydG5hbWUiOiJLbnV0IiwicGhvdG91cmwiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWYtaXBlRmVUY09vL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUV3L0NfcW9wRGxKb200L3Bob3RvLmpwZz9zej01MCIsInNlY3JldCI6IjRjY2U3NGY0YmNhZjMwZDY2ZGRjMzVmMDUxZjM4MjI2MzExNDY0NWQyOTJiOGM3NGQxNWI3OTlhNGYxYzdmNmIiLCJjcmVhdGVkX2F0IjoiMjAxNS0wMy0zMVQxMDo1NjoyNy4yNjM2NDM0MTdaIn0="
+        if mockData {
+            var groups = createGroupsFromJSON(self.readResponseFromFile())
+            promise.success(groups)
+            return promise.future
+        }
+        
+        
+        var accessToken:String = "eyJpZCI6MywiZW1haWwiOiJrbnV0bnlnQGdtYWlsLmNvbSIsIm5hbWUiOiJLbnV0IE55Z2FhcmQiLCJzaG9ydG5hbWUiOiJLbnV0IiwicGhvdG91cmwiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWYtaXBlRmVUY09vL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUV3L0NfcW9wRGxKb200L3Bob3RvLmpwZz9zej01MCIsInNlY3JldCI6IjJhN2U2ZGUzOGFiMDBiYmVmNTNhYzQxOGY3MmFiNGVjNDM1MzVkZmI0NDYyZTZiNjRkOWI0MWI4YWI4OGFmMGIiLCJjcmVhdGVkX2F0IjoiMjAxNS0wNC0wMlQwNTozMTowMy4zNTc0MjMxNFoifQ=="
         
         let urlString = "https://ioubeta.logisk.org/api/spreadsheets"
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
@@ -40,15 +54,23 @@ class GroupHandler: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
         self.data.appendData(data)
     }
     
+    
+    func createGroupsFromJSON(json:JSON)-> [Group]{
+        var groups:[Group] = []
+        
+        for (index,j:JSON) in json {
+            groups += [createGroup(j)]
+        }
+        
+        return groups
+
+    }
+    
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         var err: NSError
         let json = JSON(data: data)
         
-        var groups:[Group] = []
-
-        for (index,j:JSON) in json {
-            groups += [createGroup(j)]
-        }
+        var groups = createGroupsFromJSON(json)
         promise.success(groups)
     }
     

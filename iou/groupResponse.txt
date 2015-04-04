@@ -1,0 +1,158 @@
+[
+  {
+    "archived" : true,
+    "id" : 2,
+    "created_at" : "2014-06-19T17:24:43Z",
+    "members" : [
+      {
+        "id" : 1,
+        "name" : "Eivind Siqveland Larsen",
+        "photourl" : "http:\/\/graph.facebook.com\/10152424427376357\/picture",
+        "shortname" : "Eivinds"
+      },
+      {
+        "id" : 3,
+        "name" : "Knut Nygaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-f-ipeFeTcOo\/AAAAAAAAAAI\/AAAAAAAAAEw\/C_qopDlJom4\/photo.jpg?sz=50",
+        "shortname" : "Knut"
+      },
+      {
+        "id" : 6,
+        "name" : "Nicklas Utgaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-XdUIqdMkCWA\/AAAAAAAAAAI\/AAAAAAAAAAA\/4252rscbv5M\/photo.jpg?sz=50",
+        "shortname" : "Nicklas"
+      },
+      {
+        "id" : 8,
+        "name" : "Tormod haugene",
+        "photourl" : "https:\/\/lh4.googleusercontent.com\/-zclxx23C8oI\/AAAAAAAAAAI\/AAAAAAAAAeM\/UMd4gKpWqJs\/photo.jpg?sz=50",
+        "shortname" : "Tormod"
+      }
+    ],
+    "description" : "The Dream - utstyr\/møbler",
+    "creator" : {
+      "id" : 3
+    },
+    "updated_at" : "2015-03-20T18:39:26Z"
+  },
+  {
+    "archived" : false,
+    "id" : 4,
+    "created_at" : "2014-06-27T15:17:43Z",
+    "members" : [
+      {
+        "id" : 1,
+        "name" : "Eivind Siqveland Larsen",
+        "photourl" : "http:\/\/graph.facebook.com\/10152424427376357\/picture",
+        "shortname" : "Eivinds"
+      },
+      {
+        "id" : 3,
+        "name" : "Knut Nygaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-f-ipeFeTcOo\/AAAAAAAAAAI\/AAAAAAAAAEw\/C_qopDlJom4\/photo.jpg?sz=50",
+        "shortname" : "Knut"
+      },
+      {
+        "id" : 6,
+        "name" : "Nicklas Utgaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-XdUIqdMkCWA\/AAAAAAAAAAI\/AAAAAAAAAAA\/4252rscbv5M\/photo.jpg?sz=50",
+        "shortname" : "Nicklas"
+      },
+      {
+        "id" : 8,
+        "name" : "Tormod haugene",
+        "photourl" : "https:\/\/lh4.googleusercontent.com\/-zclxx23C8oI\/AAAAAAAAAAI\/AAAAAAAAAeM\/UMd4gKpWqJs\/photo.jpg?sz=50",
+        "shortname" : "Tormod"
+      }
+    ],
+    "description" : "Eivind Mansion 2.0",
+    "creator" : {
+      "id" : 1
+    },
+    "updated_at" : "2014-07-01T21:54:09Z"
+  },
+  {
+    "archived" : true,
+    "id" : 5,
+    "created_at" : "2014-06-29T11:32:04Z",
+    "members" : [
+      {
+        "id" : 3,
+        "name" : "Knut Nygaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-f-ipeFeTcOo\/AAAAAAAAAAI\/AAAAAAAAAEw\/C_qopDlJom4\/photo.jpg?sz=50",
+        "shortname" : "Knut"
+      }
+    ],
+    "description" : "Test",
+    "creator" : {
+      "id" : 3
+    },
+    "updated_at" : "2015-03-20T18:39:37Z"
+  },
+  {
+    "archived" : true,
+    "id" : 6,
+    "created_at" : "2014-06-29T11:34:14Z",
+    "members" : [
+      {
+        "id" : 3,
+        "name" : "Knut Nygaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-f-ipeFeTcOo\/AAAAAAAAAAI\/AAAAAAAAAEw\/C_qopDlJom4\/photo.jpg?sz=50",
+        "shortname" : "Knut"
+      }
+    ],
+    "description" : "Buff",
+    "creator" : {
+      "id" : 3
+    },
+    "updated_at" : "2014-07-25T17:33:49Z"
+  },
+  {
+    "archived" : true,
+    "id" : 8,
+    "created_at" : "2014-07-17T18:39:31Z",
+    "members" : [
+      {
+        "id" : 3,
+        "name" : "Knut Nygaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-f-ipeFeTcOo\/AAAAAAAAAAI\/AAAAAAAAAEw\/C_qopDlJom4\/photo.jpg?sz=50",
+        "shortname" : "Knut"
+      }
+    ],
+    "description" : "Farsund",
+    "creator" : {
+      "id" : 3
+    },
+    "updated_at" : "2015-03-20T18:39:38Z"
+  },
+  {
+    "archived" : false,
+    "id" : 24,
+    "created_at" : "2015-03-12T18:01:55Z",
+    "members" : [
+      {
+        "id" : 1,
+        "name" : "Eivind Siqveland Larsen",
+        "photourl" : "http:\/\/graph.facebook.com\/10152424427376357\/picture",
+        "shortname" : "Eivinds"
+      },
+      {
+        "id" : 3,
+        "name" : "Knut Nygaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-f-ipeFeTcOo\/AAAAAAAAAAI\/AAAAAAAAAEw\/C_qopDlJom4\/photo.jpg?sz=50",
+        "shortname" : "Knut"
+      },
+      {
+        "id" : 6,
+        "name" : "Nicklas Utgaard",
+        "photourl" : "https:\/\/lh3.googleusercontent.com\/-XdUIqdMkCWA\/AAAAAAAAAAI\/AAAAAAAAAAA\/4252rscbv5M\/photo.jpg?sz=50",
+        "shortname" : "Nicklas"
+      }
+    ],
+    "description" : "Sinsen 3.0",
+    "creator" : {
+      "id" : 1
+    },
+    "updated_at" : "2015-03-12T18:01:55Z"
+  }
+]

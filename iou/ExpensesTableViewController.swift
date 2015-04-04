@@ -21,6 +21,8 @@ class ExpensesTableViewController:UITableViewController {
         self.activity = UIActivityIndicatorView()
         self.expenses = []
         
+        self.tableView.registerClass(ExpenseCell.self, forCellReuseIdentifier: "expenseCell")
+        
         ExpensesHandler().getExpensesForGroup(self.groupId).onSuccess{expenseList in
             self.expenses = expenseList
             self.tableView.reloadData()
@@ -31,8 +33,11 @@ class ExpensesTableViewController:UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        cell.textLabel?.text = "test: \(indexPath.item)"
+        var cellIdentifier = "expenseCell"
+        var cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as ExpenseCell
+        cell.expense = self.expenses[indexPath.item]
+        cell.updateLabels()
+
         return cell
     }
     

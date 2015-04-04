@@ -29,7 +29,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
             self.groups = groupList
             self.tableView.reloadData()
             self.activity.stopAnimating()
-        }
+            }
         self.activity.startAnimating()
         
     }

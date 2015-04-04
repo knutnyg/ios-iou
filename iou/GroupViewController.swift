@@ -25,6 +25,7 @@ class GroupView : UIViewController {
     var summaryView:SummaryViewController!
     var datepickerView:DatePickerViewController!
     var expensesTableView:ExpensesTableViewController!
+    var tableHeader:TableViewHeader!
     var delegate:GroupListTableViewController!=nil
     var groupId:Int!
     
@@ -45,20 +46,25 @@ class GroupView : UIViewController {
         datepickerView = DatePickerViewController()
         datepickerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
+        tableHeader = TableViewHeader()
+        tableHeader.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
         expensesTableView = ExpensesTableViewController(groupId: self.groupId)
         expensesTableView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         self.addChildViewController(bannerView)
         self.addChildViewController(summaryView)
         self.addChildViewController(datepickerView)
+        self.addChildViewController(tableHeader)
         self.addChildViewController(expensesTableView)
         
         view.addSubview(bannerView.view)
         view.addSubview(summaryView.view)
         view.addSubview(datepickerView.view)
+        view.addSubview(tableHeader.view)
         view.addSubview(expensesTableView.view)
         
-        let views:[NSObject : AnyObject] = ["topBanner":bannerView.view,"summary":summaryView.view,"datepicker":datepickerView.view, "expenses":expensesTableView.view]
+        let views:[NSObject : AnyObject] = ["topBanner":bannerView.view,"summary":summaryView.view,"datepicker":datepickerView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view]
         
         setChildviewConstraints(views)
     }
@@ -87,7 +93,7 @@ class GroupView : UIViewController {
     
     func setConstraints(views:[NSObject:AnyObject], constraintsModel:GroupPanelConstraints){
         
-        var visualFormat = String(format: "V:|-0-[topBanner(%d)]-0-[summary(%d)]-0-[datepicker(%d)]-0-[expenses(%d)]",
+        var visualFormat = String(format: "V:|-0-[topBanner(%d)]-0-[summary(%d)]-0-[datepicker(%d)]-[tableHeader(30)]-[expenses(%d)]",
             constraintsModel.bannerHeight,
             constraintsModel.summaryHeight,
             constraintsModel.datepickerHeight,
@@ -109,6 +115,8 @@ class GroupView : UIViewController {
         
         visualFormat = "H:|-0-[expenses]-0-|"
         let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[tableHeader]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         
         view.addConstraints(verticalLayout)
         view.addConstraints(bannerWidth)

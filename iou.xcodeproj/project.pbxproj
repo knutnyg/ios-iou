@@ -10,7 +10,8 @@
 		7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */; };
 		7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */; };
 		7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */; };
-		7210F1B41AB0D22400C2A797 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B31AB0D22400C2A797 /* SummaryViewController.swift */; };
+		7210F1B41AB0D22400C2A797 /* SummaryGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */; };
+		72289D1B1ACFD4DB0073C60C /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */; };
 		723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */; };
 		723836AF1AB0EF4B007EC1FC /* GroupViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */; };
 		724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 724ACD1A1AB0AA6100DFA724 /* Podfile */; };
@@ -33,8 +34,13 @@
 		72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622931ACAAD3F007D1F93 /* Expense.swift */; };
 		72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622951ACB1521007D1F93 /* ExpenseCell.swift */; };
 		72A622981ACB1EA7007D1F93 /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622971ACB1EA7007D1F93 /* JSONHelpers.swift */; };
+		72A6229C1ACC05EF007D1F93 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */; };
+		72A6229F1ACC3BD2007D1F93 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */; };
+		72A622A31ACD1540007D1F93 /* expenseResponse.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72A622A11ACD1540007D1F93 /* expenseResponse.txt */; };
+		72A622A41ACD1540007D1F93 /* groupResponse.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72A622A21ACD1540007D1F93 /* groupResponse.txt */; };
+		72A622A81ACD2B26007D1F93 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A622A71ACD2B26007D1F93 /* image.png */; };
 		72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */; };
-		E8A1779BA4BFA18E2D1EA7A8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CDB8D3053FAB98FE86BDBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DF66FBDA0A85055F9A3020C4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CDB8D3053FAB98FE86BDBD /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +58,13 @@
 		7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewController.swift; sourceTree = "<group>"; };
 		7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		7210F1B31AB0D22400C2A797 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryGraphViewController.swift; sourceTree = "<group>"; };
+		72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelConstraints.swift; sourceTree = "<group>"; };
 		723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewDelegate.swift; sourceTree = "<group>"; };
 		724ACD1A1AB0AA6100DFA724 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7266E30B1ACD5021006C54D0 /* Pods-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "Pods-frameworks.sh"; path = "Pods/Target Support Files/Pods/Pods-frameworks.sh"; sourceTree = "<group>"; };
+		7266E30D1ACD6146006C54D0 /* iou-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iou-Bridging-Header.h"; sourceTree = "<group>"; };
 		726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHandler.swift; sourceTree = "<group>"; };
 		728709841AAE2BC3002FC91A /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		728709861AAE2E14002FC91A /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
@@ -79,9 +88,15 @@
 		72A622931ACAAD3F007D1F93 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		72A622951ACB1521007D1F93 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		72A622971ACB1EA7007D1F93 /* JSONHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelpers.swift; sourceTree = "<group>"; };
+		72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
+		72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		72A622A11ACD1540007D1F93 /* expenseResponse.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = expenseResponse.txt; sourceTree = "<group>"; };
+		72A622A21ACD1540007D1F93 /* groupResponse.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = groupResponse.txt; sourceTree = "<group>"; };
+		72A622A71ACD2B26007D1F93 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		72B7B9671AACD734007E4AC9 /* ParentViewConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewConstraints.swift; sourceTree = "<group>"; };
 		92CDB8D3053FAB98FE86BDBD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2B058942AEB75EDD9D3A13E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E97500AD37526B522B944778 /* Pods_iou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8A1779BA4BFA18E2D1EA7A8 /* Pods.framework in Frameworks */,
+				DF66FBDA0A85055F9A3020C4 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,9 +124,11 @@
 				7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */,
 				7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */,
 				7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */,
-				7210F1B31AB0D22400C2A797 /* SummaryViewController.swift */,
+				7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */,
+				72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */,
 				723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */,
 				72A622951ACB1521007D1F93 /* ExpenseCell.swift */,
+				72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */,
 			);
 			name = GroupView;
 			sourceTree = "<group>";
@@ -119,6 +136,7 @@
 		726CA7B41AAF827B00EC7DFA /* BackendStuffs */ = {
 			isa = PBXGroup;
 			children = (
+				72A622A01ACD1507007D1F93 /* MockResponse */,
 				726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */,
 				72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */,
 				72A622971ACB1EA7007D1F93 /* JSONHelpers.swift */,
@@ -140,6 +158,7 @@
 		72A07E851AA8EE570016C61B = {
 			isa = PBXGroup;
 			children = (
+				7266E30D1ACD6146006C54D0 /* iou-Bridging-Header.h */,
 				72A07E901AA8EE570016C61B /* iou */,
 				72A07EA61AA8EE570016C61B /* iouTests */,
 				72A07E8F1AA8EE570016C61B /* Products */,
@@ -160,6 +179,7 @@
 		72A07E901AA8EE570016C61B /* iou */ = {
 			isa = PBXGroup;
 			children = (
+				72A6229D1ACC3BC6007D1F93 /* Util */,
 				7210F1B21AB0D1B100C2A797 /* GroupView */,
 				726CA7B41AAF827B00EC7DFA /* BackendStuffs */,
 				728709811AAE2AB2002FC91A /* MainView */,
@@ -180,6 +200,7 @@
 		72A07E911AA8EE570016C61B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				72A622A71ACD2B26007D1F93 /* image.png */,
 				72A07E921AA8EE570016C61B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -202,6 +223,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		72A6229D1ACC3BC6007D1F93 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		72A622A01ACD1507007D1F93 /* MockResponse */ = {
+			isa = PBXGroup;
+			children = (
+				72A622A11ACD1540007D1F93 /* expenseResponse.txt */,
+				72A622A21ACD1540007D1F93 /* groupResponse.txt */,
+			);
+			name = MockResponse;
+			sourceTree = "<group>";
+		};
 		72B7B9661AACD726007E4AC9 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,7 +255,9 @@
 		ED47D28500EC19252C3E1252 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7266E30B1ACD5021006C54D0 /* Pods-frameworks.sh */,
 				92CDB8D3053FAB98FE86BDBD /* Pods.framework */,
+				E97500AD37526B522B944778 /* Pods_iou.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -316,7 +356,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A07E991AA8EE570016C61B /* Main.storyboard in Resources */,
+				72A622A41ACD1540007D1F93 /* groupResponse.txt in Resources */,
+				72A622A31ACD1540007D1F93 /* expenseResponse.txt in Resources */,
 				72A07E9E1AA8EE570016C61B /* LaunchScreen.xib in Resources */,
+				72A622A81ACD2B26007D1F93 /* image.png in Resources */,
 				724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */,
 				72A07E9B1AA8EE570016C61B /* Images.xcassets in Resources */,
 			);
@@ -385,17 +428,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A07EB61AA8EED60016C61B /* ParentViewController.swift in Sources */,
+				72A6229F1ACC3BD2007D1F93 /* DateUtils.swift in Sources */,
 				7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */,
+				72A6229C1ACC05EF007D1F93 /* TableViewHeader.swift in Sources */,
 				728709871AAE2E14002FC91A /* HeaderViewController.swift in Sources */,
 				72A07EBC1AA8EF1D0016C61B /* GroupListTableViewController.swift in Sources */,
 				72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */,
 				72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */,
 				72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */,
-				7210F1B41AB0D22400C2A797 /* SummaryViewController.swift in Sources */,
+				7210F1B41AB0D22400C2A797 /* SummaryGraphViewController.swift in Sources */,
 				72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */,
 				728709891AAE49DE002FC91A /* MainViewController.swift in Sources */,
 				72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */,
 				72A622981ACB1EA7007D1F93 /* JSONHelpers.swift in Sources */,
+				72289D1B1ACFD4DB0073C60C /* SummaryViewController.swift in Sources */,
 				72A622901ACAA936007D1F93 /* Group.swift in Sources */,
 				723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */,
 				72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */,
@@ -537,6 +583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "iou-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -551,6 +598,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "iou-Bridging-Header.h";
 			};
 			name = Release;
 		};
