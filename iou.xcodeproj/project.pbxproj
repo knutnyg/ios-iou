@@ -12,6 +12,7 @@
 		7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */; };
 		7210F1B41AB0D22400C2A797 /* SummaryGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */; };
 		72289D1B1ACFD4DB0073C60C /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */; };
+		7237DC401AD2CB9C00A29256 /* SummaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */; };
 		723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */; };
 		723836AF1AB0EF4B007EC1FC /* GroupViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */; };
 		724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 724ACD1A1AB0AA6100DFA724 /* Podfile */; };
@@ -60,6 +61,7 @@
 		7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryGraphViewController.swift; sourceTree = "<group>"; };
 		72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryItem.swift; sourceTree = "<group>"; };
 		723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelConstraints.swift; sourceTree = "<group>"; };
 		723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewDelegate.swift; sourceTree = "<group>"; };
 		724ACD1A1AB0AA6100DFA724 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -248,6 +250,7 @@
 				72A6228F1ACAA936007D1F93 /* Group.swift */,
 				72A622911ACAA9BD007D1F93 /* User.swift */,
 				72A622931ACAAD3F007D1F93 /* Expense.swift */,
+				7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				728709871AAE2E14002FC91A /* HeaderViewController.swift in Sources */,
 				72A07EBC1AA8EF1D0016C61B /* GroupListTableViewController.swift in Sources */,
 				72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */,
+				7237DC401AD2CB9C00A29256 /* SummaryItem.swift in Sources */,
 				72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */,
 				72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */,
 				7210F1B41AB0D22400C2A797 /* SummaryGraphViewController.swift in Sources */,

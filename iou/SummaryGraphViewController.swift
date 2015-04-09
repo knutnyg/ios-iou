@@ -78,20 +78,6 @@ class SummaryGraphViewController:UIViewController, CPTBarPlotDataSource, CPTBarP
         default:
             return 0
         }
-//        switch fieldEnum as CPTCoordinate {
-//        case CPTCoordinate.X:
-//            return idx
-//            break
-//            
-//        case CPTCoordinate.Y:
-//            return -20;
-//            break;
-//            
-//        default:
-//            break;
-//        }
-//        
-//        return nil;
     }
 
     

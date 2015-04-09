@@ -14,7 +14,7 @@ class GroupHandler: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
     
     var data:NSMutableData!
     var promise:Promise<[Group]>!
-    var mockData:Bool = true
+    var mockData:Bool = false
     
     override init(){
         super.init()

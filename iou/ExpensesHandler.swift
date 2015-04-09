@@ -14,7 +14,7 @@ class ExpensesHandler : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
 
     var data:NSMutableData!
     var promise:Promise<[Expense]>!
-    var mockData:Bool = true
+    var mockData:Bool = false
     
     override init(){
         super.init()
