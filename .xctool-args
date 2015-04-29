@@ -1,0 +1,6 @@
+[
+  "-workspace", "iou.xcworkspace",
+  "-scheme", "iou",
+  "-sdk", "iphonesimulator",
+  "test"
+]

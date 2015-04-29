@@ -10,23 +10,23 @@
 		7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */; };
 		7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */; };
 		7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */; };
-		7210F1B41AB0D22400C2A797 /* SummaryGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */; };
 		72289D1B1ACFD4DB0073C60C /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */; };
 		7237DC401AD2CB9C00A29256 /* SummaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */; };
 		723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */; };
 		723836AF1AB0EF4B007EC1FC /* GroupViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */; };
 		724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 724ACD1A1AB0AA6100DFA724 /* Podfile */; };
+		725707191AF14AA800180A45 /* FAHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725707181AF14AA800180A45 /* FAHelpers.swift */; };
+		7257071B1AF14EC000180A45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7257071A1AF14EC000180A45 /* Extensions.swift */; };
 		726CA7B61AAF828C00EC7DFA /* GroupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */; };
 		728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709841AAE2BC3002FC91A /* GroupCell.swift */; };
 		728709871AAE2E14002FC91A /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709861AAE2E14002FC91A /* HeaderViewController.swift */; };
-		728709891AAE49DE002FC91A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709881AAE49DE002FC91A /* MainViewController.swift */; };
+		728709891AAE49DE002FC91A /* GroupListPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709881AAE49DE002FC91A /* GroupListPanel.swift */; };
 		72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07E931AA8EE570016C61B /* AppDelegate.swift */; };
 		72A07E991AA8EE570016C61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E971AA8EE570016C61B /* Main.storyboard */; };
 		72A07E9B1AA8EE570016C61B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E9A1AA8EE570016C61B /* Images.xcassets */; };
 		72A07E9E1AA8EE570016C61B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E9C1AA8EE570016C61B /* LaunchScreen.xib */; };
 		72A07EAA1AA8EE570016C61B /* iouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EA91AA8EE570016C61B /* iouTests.swift */; };
 		72A07EB61AA8EED60016C61B /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB51AA8EED60016C61B /* ParentViewController.swift */; };
-		72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB71AA8EEE20016C61B /* BannerViewController.swift */; };
 		72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */; };
 		72A07EBC1AA8EF1D0016C61B /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */; };
 		72A6228E1ACAA8CD007D1F93 /* ExpensesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */; };
@@ -59,18 +59,19 @@
 		7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewController.swift; sourceTree = "<group>"; };
 		7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryGraphViewController.swift; sourceTree = "<group>"; };
 		72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryItem.swift; sourceTree = "<group>"; };
 		723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelConstraints.swift; sourceTree = "<group>"; };
 		723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewDelegate.swift; sourceTree = "<group>"; };
 		724ACD1A1AB0AA6100DFA724 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		725707181AF14AA800180A45 /* FAHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAHelpers.swift; sourceTree = "<group>"; };
+		7257071A1AF14EC000180A45 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7266E30B1ACD5021006C54D0 /* Pods-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "Pods-frameworks.sh"; path = "Pods/Target Support Files/Pods/Pods-frameworks.sh"; sourceTree = "<group>"; };
 		7266E30D1ACD6146006C54D0 /* iou-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iou-Bridging-Header.h"; sourceTree = "<group>"; };
 		726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHandler.swift; sourceTree = "<group>"; };
 		728709841AAE2BC3002FC91A /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		728709861AAE2E14002FC91A /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
-		728709881AAE49DE002FC91A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		728709881AAE49DE002FC91A /* GroupListPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListPanel.swift; sourceTree = "<group>"; };
 		72A07E8E1AA8EE570016C61B /* iou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A07E921AA8EE570016C61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A07E931AA8EE570016C61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		72A07EA81AA8EE570016C61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A07EA91AA8EE570016C61B /* iouTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iouTests.swift; sourceTree = "<group>"; };
 		72A07EB51AA8EED60016C61B /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
-		72A07EB71AA8EEE20016C61B /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListTableViewController.swift; sourceTree = "<group>"; };
 		72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesHandler.swift; sourceTree = "<group>"; };
@@ -126,7 +126,6 @@
 				7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */,
 				7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */,
 				7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */,
-				7210F1B31AB0D22400C2A797 /* SummaryGraphViewController.swift */,
 				72289D1A1ACFD4DB0073C60C /* SummaryViewController.swift */,
 				723836AE1AB0EF4B007EC1FC /* GroupViewDelegate.swift */,
 				72A622951ACB1521007D1F93 /* ExpenseCell.swift */,
@@ -146,15 +145,16 @@
 			name = BackendStuffs;
 			sourceTree = "<group>";
 		};
-		728709811AAE2AB2002FC91A /* MainView */ = {
+		728709811AAE2AB2002FC91A /* ParentViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */,
 				728709861AAE2E14002FC91A /* HeaderViewController.swift */,
 				72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */,
 				728709841AAE2BC3002FC91A /* GroupCell.swift */,
-				728709881AAE49DE002FC91A /* MainViewController.swift */,
+				728709881AAE49DE002FC91A /* GroupListPanel.swift */,
 			);
-			name = MainView;
+			name = ParentViewComponents;
 			sourceTree = "<group>";
 		};
 		72A07E851AA8EE570016C61B = {
@@ -184,13 +184,11 @@
 				72A6229D1ACC3BC6007D1F93 /* Util */,
 				7210F1B21AB0D1B100C2A797 /* GroupView */,
 				726CA7B41AAF827B00EC7DFA /* BackendStuffs */,
-				728709811AAE2AB2002FC91A /* MainView */,
+				728709811AAE2AB2002FC91A /* ParentViewComponents */,
 				72B7B9661AACD726007E4AC9 /* models */,
 				72A07E931AA8EE570016C61B /* AppDelegate.swift */,
 				72A07EB51AA8EED60016C61B /* ParentViewController.swift */,
 				72A07E971AA8EE570016C61B /* Main.storyboard */,
-				72A07EB71AA8EEE20016C61B /* BannerViewController.swift */,
-				72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */,
 				72A07E9A1AA8EE570016C61B /* Images.xcassets */,
 				72A07E9C1AA8EE570016C61B /* LaunchScreen.xib */,
 				724ACD1A1AB0AA6100DFA724 /* Podfile */,
@@ -229,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */,
+				725707181AF14AA800180A45 /* FAHelpers.swift */,
+				7257071A1AF14EC000180A45 /* Extensions.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -440,18 +440,18 @@
 				7237DC401AD2CB9C00A29256 /* SummaryItem.swift in Sources */,
 				72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */,
 				72A07E941AA8EE570016C61B /* AppDelegate.swift in Sources */,
-				7210F1B41AB0D22400C2A797 /* SummaryGraphViewController.swift in Sources */,
 				72B7B9681AACD734007E4AC9 /* ParentViewConstraints.swift in Sources */,
-				728709891AAE49DE002FC91A /* MainViewController.swift in Sources */,
+				728709891AAE49DE002FC91A /* GroupListPanel.swift in Sources */,
 				72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */,
 				72A622981ACB1EA7007D1F93 /* JSONHelpers.swift in Sources */,
+				725707191AF14AA800180A45 /* FAHelpers.swift in Sources */,
 				72289D1B1ACFD4DB0073C60C /* SummaryViewController.swift in Sources */,
 				72A622901ACAA936007D1F93 /* Group.swift in Sources */,
 				723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */,
-				72A07EB81AA8EEE20016C61B /* BannerViewController.swift in Sources */,
 				72A6228E1ACAA8CD007D1F93 /* ExpensesHandler.swift in Sources */,
 				726CA7B61AAF828C00EC7DFA /* GroupHandler.swift in Sources */,
 				723836AF1AB0EF4B007EC1FC /* GroupViewDelegate.swift in Sources */,
+				7257071B1AF14EC000180A45 /* Extensions.swift in Sources */,
 				7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */,
 				7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */,
 				728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */,
@@ -581,7 +581,7 @@
 			baseConfigurationReference = 108EFFAC047710158FD90D5B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Knut Nygaard (5GK5JYF47Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iou/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -597,7 +597,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Knut Nygaard (E9A359GGU4)";
 				INFOPLIST_FILE = iou/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

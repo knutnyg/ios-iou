@@ -9,9 +9,5 @@
 #ifndef iou_iou_Bridging_Header_h
 #define iou_iou_Bridging_Header_h
 
-#import "CorePlot/CorePlot-CocoaTouch.h"
 #import <UIKit/UIKit.h>
-#import "JBChartView/JBChartView.h"
-#import "JBChartView/JBBarChartView.h"
-#import "JBChartView/JBLineChartView.h" 
 #endif

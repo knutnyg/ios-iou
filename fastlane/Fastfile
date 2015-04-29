@@ -1,0 +1,62 @@
+fastlane_version "0.12.5"
+
+default_platform :ios
+
+platform :ios do
+
+  before_all do
+      cocoapods
+
+      xctest({
+        workspace: "iou.xcworkspace",
+        scheme: "iou",
+        sdk: "iphonesimulator",
+        destination: "platform=iOS Simulator,name=iPhone 6,OS=latest"
+    })
+  end
+
+  desc "test"
+  lane :test do
+    slack({
+      message: "Starting fastlane test"
+      })
+    
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :deploy do
+      slack({
+        message: "Starting deploy of IOU"
+      })
+      sh "../increment_build_number.sh"
+      ipa({
+        scheme: "iou"
+        })
+      deliver
+      sh "../commit_release.sh"
+      slack({
+        message: "Finished deploying to appstore"
+      })
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    
+    # slack({
+    #   message: "Successfully deployed new App Update."
+    # })
+  end
+
+
+  error do |lane, exception|
+    # slack({
+    #   message: exception.message
+    #   success: false
+    # })
+  end
+
+end
+
+
+# More information about multiple platforms in fastlane: 
+# https://github.com/KrauseFx/fastlane/blob/master/docs/Platforms.md

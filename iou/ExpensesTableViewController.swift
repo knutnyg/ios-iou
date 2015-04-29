@@ -34,7 +34,7 @@ class ExpensesTableViewController:UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cellIdentifier = "expenseCell"
-        var cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as ExpenseCell
+        var cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpenseCell
         cell.expense = self.expenses[indexPath.item]
         cell.updateLabels()
 
@@ -58,7 +58,7 @@ class ExpensesTableViewController:UITableViewController {
     //----- Required initializers -----//
     
     init(groupId:Int) {
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         self.groupId = groupId
     }
     

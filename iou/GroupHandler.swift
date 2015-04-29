@@ -50,7 +50,7 @@ class GroupHandler: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
         return promise.future
     }
     
-    func connection(connection: NSURLConnection, didReceiveData data: NSData!) {
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
         self.data.appendData(data)
     }
     
@@ -66,7 +66,7 @@ class GroupHandler: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
 
     }
     
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
+    func connectionDidFinishLoading(connection: NSURLConnection) {
         var err: NSError
         let json = JSON(data: data)
         
@@ -90,22 +90,22 @@ class GroupHandler: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
 
 
     
-    func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace?) -> Bool
+    func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace) -> Bool
     {
-        return protectionSpace?.authenticationMethod == NSURLAuthenticationMethodServerTrust
+        return protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust
     }
     
-    func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge?)
+    func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge)
     {
-        if challenge?.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust
         {
-            if challenge?.protectionSpace.host == "ioubeta.logisk.org"
+            if challenge.protectionSpace.host == "ioubeta.logisk.org"
             {
-                let credentials = NSURLCredential(forTrust: challenge!.protectionSpace.serverTrust)
-                challenge!.sender.useCredential(credentials, forAuthenticationChallenge: challenge!)
+                let credentials = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust)
+                challenge.sender.useCredential(credentials, forAuthenticationChallenge: challenge)
             }
         }
         
-        challenge!.sender.continueWithoutCredentialForAuthenticationChallenge(challenge!)
+        challenge.sender.continueWithoutCredentialForAuthenticationChallenge(challenge)
     }
 }

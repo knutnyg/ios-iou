@@ -42,7 +42,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         
         var cellIdentifier:String = "groupCell"
         
-        var cell:GroupCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as GroupCell
+        var cell:GroupCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroupCell
         cell.group = self.groups[indexPath.item]
         cell.groupName.text = groups[indexPath.item].description
         cell.memberCount.text = String(groups[indexPath.item].members.count)
@@ -50,12 +50,10 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as GroupCell
+        var cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as! GroupCell
         let vc = GroupView(groupId: cell.group.id)
         vc.delegate = self
-        vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        presentViewController(vc, animated: true, completion: nil)
-        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {

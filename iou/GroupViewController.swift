@@ -21,7 +21,6 @@ import UIKit
 
 class GroupView : UIViewController {
     
-    var bannerView:BannerViewController!
     var summaryView:SummaryViewController!
     var datepickerView:DatePickerViewController!
     var expensesTableView:ExpensesTableViewController!
@@ -29,17 +28,11 @@ class GroupView : UIViewController {
     var delegate:GroupListTableViewController!=nil
     var groupId:Int!
     
-    init(groupId:Int){
-        super.init()
-        self.groupId = groupId
-    }
+
     
     override func viewDidLoad(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "backButtonPressed:", name: "backPressed", object: nil)
 
-        bannerView = BannerViewController()
-        bannerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
         summaryView = SummaryViewController()
         summaryView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
@@ -52,19 +45,17 @@ class GroupView : UIViewController {
         expensesTableView = ExpensesTableViewController(groupId: self.groupId)
         expensesTableView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        self.addChildViewController(bannerView)
         self.addChildViewController(summaryView)
         self.addChildViewController(datepickerView)
         self.addChildViewController(tableHeader)
         self.addChildViewController(expensesTableView)
         
-        view.addSubview(bannerView.view)
         view.addSubview(summaryView.view)
         view.addSubview(datepickerView.view)
         view.addSubview(tableHeader.view)
         view.addSubview(expensesTableView.view)
         
-        let views:[NSObject : AnyObject] = ["topBanner":bannerView.view,"summary":summaryView.view,"datepicker":datepickerView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view]
+        let views:[NSObject : AnyObject] = ["summary":summaryView.view,"datepicker":datepickerView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view]
         
         setChildviewConstraints(views)
     }
@@ -93,8 +84,7 @@ class GroupView : UIViewController {
     
     func setConstraints(views:[NSObject:AnyObject], constraintsModel:GroupPanelConstraints){
         
-        var visualFormat = String(format: "V:|-0-[topBanner(%d)]-0-[summary(%d)]-0-[datepicker(%d)]-[tableHeader(30)]-[expenses(%d)]",
-            constraintsModel.bannerHeight,
+        var visualFormat = String(format: "V:|-72-[summary(%d)]-0-[datepicker(%d)]-[tableHeader(30)]-[expenses(%d)]",
             constraintsModel.summaryHeight,
             constraintsModel.datepickerHeight,
             constraintsModel.expensesHeight
@@ -103,10 +93,7 @@ class GroupView : UIViewController {
         
         
         let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
-        
-        visualFormat = "H:|-0-[topBanner]-0-|"
-        let bannerWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
-        
+      
         visualFormat = "H:|-0-[summary]-0-|"
         let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
         
@@ -119,7 +106,6 @@ class GroupView : UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[tableHeader]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         
         view.addConstraints(verticalLayout)
-        view.addConstraints(bannerWidth)
         view.addConstraints(profileWidth)
         view.addConstraints(groupPanelWidth)
         view.addConstraints(buttonWidth)
@@ -143,6 +129,10 @@ class GroupView : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(groupId:Int){
+        self.groupId = groupId
+        super.init(nibName: nil, bundle: nil)
+    }
     
     
 }
