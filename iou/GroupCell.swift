@@ -35,9 +35,13 @@ class GroupCell : UITableViewCell {
         
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[name]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[count]-10-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        
+        contentView.addConstraint(NSLayoutConstraint(item: groupName, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: contentView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: memberCount, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: contentView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+
 
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")

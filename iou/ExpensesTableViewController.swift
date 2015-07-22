@@ -13,7 +13,7 @@ class ExpensesTableViewController:UITableViewController {
     
     var expenses:[Expense]!
     var activity:UIActivityIndicatorView!
-    var groupId:Int!
+    var group:Group!
     var delegate:GroupListTableViewController!
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class ExpensesTableViewController:UITableViewController {
         
         self.tableView.registerClass(ExpenseCell.self, forCellReuseIdentifier: "expenseCell")
         
-        ExpensesHandler().getExpensesForGroup(self.groupId).onSuccess{expenseList in
+        ExpensesHandler().getExpensesForGroup(group).onSuccess{expenseList in
             self.expenses = expenseList
             self.tableView.reloadData()
             self.activity.stopAnimating()
@@ -39,6 +39,13 @@ class ExpensesTableViewController:UITableViewController {
         cell.updateLabels()
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var cell:ExpenseCell = tableView.cellForRowAtIndexPath(indexPath) as! ExpenseCell
+        let vc = EditReceiptViewController(group: group, receipt: cell.expense)
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,9 +64,9 @@ class ExpensesTableViewController:UITableViewController {
     
     //----- Required initializers -----//
     
-    init(groupId:Int) {
+    init(group:Group) {
         super.init(nibName: nil, bundle: nil)
-        self.groupId = groupId
+        self.group = group
     }
     
     override init(style: UITableViewStyle) {

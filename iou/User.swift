@@ -8,8 +8,9 @@
 
 import Foundation
 import SwiftyJSON
+import JSONJoy
 
-class User {
+class User :JSONJoy{
     var name:String!
     var shortName:String!
     var id:Int!
@@ -22,5 +23,15 @@ class User {
         self.photoURL = photoUrl
     }
     
+    func toDictionary() -> [String:AnyObject]{
+        return ["name":name, "shortname":shortName, "id":id, "photourl":photoURL]
+    }
+    
+    required init(_ decoder: JSONDecoder) {
+        name = decoder["name"].string
+        id = decoder["id"].integer
+        photoURL = decoder["photourl"].string
+        shortName = decoder["shortname"].string
+    }
     
 }

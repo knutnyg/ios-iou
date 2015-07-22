@@ -1,11 +1,8 @@
 import Foundation
 
-extension NSDate {
-    
-    func shortPrintable()-> String{
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM"
-        
-        return dateFormatter.stringFromDate(self)
-    }
+
+func dateFromUTCString(dateOnUTC:String) -> NSDate{
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    return dateFormatter.dateFromString(dateOnUTC)!
 }

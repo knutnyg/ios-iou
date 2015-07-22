@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import JSONJoy
 
-class Group {
+class Group : JSONJoy{
     var members:[User]!
     var id:Int!
     var archived:Bool!
     var created:NSDate!
     var description:String!
     var lastUpdated:NSDate!
-    var creator:Int!
+    var creator:User!
     
-    init(members:[User], id:Int, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:Int){
+    init(members:[User], id:Int, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:User){
         self.members = members
         self.id = id
         self.archived = archived
@@ -25,6 +26,25 @@ class Group {
         self.description = description
         self.lastUpdated = lastUpdated
         self.creator = creator
+    }
+    
+    required init(_ decoder: JSONDecoder) {
+        if let m = decoder["members"].array {
+            members = []
+            for memberDecoder in m {
+                members.append(User(memberDecoder))
+            }
+        }
+        
+        id = decoder["id"].integer
+        archived = decoder["archived"].bool
+        if let t = decoder["created_at"].string {
+            created = dateFromUTCString(t)
+        }
+
+        description = decoder["description"].string
+        lastUpdated = dateFromUTCString(decoder["updated_at"].string!)
+        creator = User(decoder["creator"])
     }
     
 }

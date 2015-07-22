@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import SwiftyJSON
+import JSONJoy
 
-class Expense {
+class Expense :JSONJoy {
     var participants:[User]!
     var amount:Double!
     var date:NSDate!
@@ -31,5 +33,40 @@ class Expense {
         self.updated = updated
         self.comment = comment
         self.creator = creator
+    }
+    
+    required init(_ decoder: JSONDecoder) {
+        if let p = decoder["participants"].array {
+            participants = []
+            for participantDecoder in p {
+                participants.append(User(participantDecoder))
+            }
+        }
+        
+        amount = decoder["amount"].double
+        comment = decoder["comment"].string
+        date = dateFromUTCString(decoder["date"].string!)
+        groupId = decoder["spreadsheet_id"].integer
+        id = decoder["id"].integer
+        created = dateFromUTCString(decoder["created_at"].string!)
+        updated = dateFromUTCString(decoder["updated_at"].string!)
+        creator = User(decoder["creator"])
+        
+    }
+
+    func toJSONparsableDicitonary() -> NSDictionary{
+        var participantIDs = participants.map { return ["id": $0.id] }
+        
+        return [
+            "participants":participantIDs,
+            "comment":comment,
+            "date":date.utcFormat(),
+            "id":id,
+            "creator":creator.toDictionary(),
+            "amount":amount,
+            "created_at":created.utcFormat(),
+            "spreadsheet_id":groupId,
+            "updated_at":NSDate().utcFormat()
+        ]
     }
 }

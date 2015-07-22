@@ -35,9 +35,6 @@ class GroupListPanel : UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[group]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
         
-    }
-
-    override func viewDidLayoutSubviews() {
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(30)]-[group(\(view.bounds.height-30))]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(30)]-[group]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
     }
 }

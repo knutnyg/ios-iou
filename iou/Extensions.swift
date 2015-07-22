@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -19,5 +20,40 @@ extension UIColor {
     
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+}
+
+extension NSDate {
+    
+    func shortPrintable()-> String{
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM"
+        
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func mediumPrintable() -> String {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd. MMMM YYYY"
+        
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func utcFormat() -> String {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        
+        return dateFormatter.stringFromDate(self)
+    }
+}
+
+extension Array {
+    func find(includedElement: T -> Bool) -> Int? {
+        for (idx, element) in enumerate(self) {
+            if includedElement(element) {
+                return idx
+            }
+        }
+        return nil
     }
 }

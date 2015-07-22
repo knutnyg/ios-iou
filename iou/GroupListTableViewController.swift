@@ -51,7 +51,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as! GroupCell
-        let vc = GroupView(groupId: cell.group.id)
+        let vc = GroupView(group: cell.group)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }

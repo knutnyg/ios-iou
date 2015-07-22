@@ -1,5 +1,14 @@
+default_language "en-US"
 ###################### App Metadata ######################
-# Update the app description and metadata in the ./metadata folder
+# 
+# title({
+#   "en-US" => "Your App Name"
+# })
+# 
+# changelog({
+#   "en-US" => "iPhone 6 (Plus) Support" 
+# })
+# More options: https://github.com/KrauseFx/deliver/blob/master/Deliverfile.md
 
 ###################### Screenshots ######################
 # Store all screenshots in the ./screenshots folder separated
@@ -9,13 +18,17 @@
 # This part is only relevant, if you want to submit a new binary
 # If you don't use fastlane (https://github.com/KrauseFx/fastlane)
 # you can set the path to your ipa file using:
-# ipa "./app.ipa"
+
+
+#ipa "../picnic.ipa"
+skip_pdf true
+
 
 # to provide an ipa file for TestFlight distribution, use beta_ipa 
-# beta_ipa "./app.ipa"
+beta_ipa "../iou.ipa"
 
 # The version of your app - remove this if you provide an ipa file
-version "1.0"
+#version "[[APP_VERSION]]"
 
 ###################### More Options ######################
 # If you want to have even more control, check out the documentation
@@ -25,6 +38,7 @@ version "1.0"
 ###################### Automatically generated ######################
 # Feel free to remove the following lines if you use fastlane
 
-app_identifier "com.apmsolutions.iou" # The bundle identifier of your app
-apple_id "990674521" # This is NOT your Apple login ID, but the App ID of your app
-email "knut.nygaard@me.com" # the login email address
+#app_identifier "[[APP_IDENTIFIER]]" # The bundle identifier of your app
+#apple_id "[[APPLE_ID]]" # This is NOT your Apple login ID, but the App ID of your app
+#email "" # the login email address
+screenshots_path "../screenshots"

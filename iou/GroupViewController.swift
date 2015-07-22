@@ -26,7 +26,8 @@ class GroupView : UIViewController {
     var expensesTableView:ExpensesTableViewController!
     var tableHeader:TableViewHeader!
     var delegate:GroupListTableViewController!=nil
-    var groupId:Int!
+    var group:Group!
+    var addExpenseButton:UIButton!
     
 
     
@@ -36,69 +37,40 @@ class GroupView : UIViewController {
         summaryView = SummaryViewController()
         summaryView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        datepickerView = DatePickerViewController()
-        datepickerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        datepickerView = DatePickerViewController()
+//        datepickerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        addExpenseButton = createNewButton()
+        addExpenseButton.addTarget(self, action: Selector("newButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         tableHeader = TableViewHeader()
         tableHeader.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        expensesTableView = ExpensesTableViewController(groupId: self.groupId)
+        expensesTableView = ExpensesTableViewController(group: self.group)
         expensesTableView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         self.addChildViewController(summaryView)
-        self.addChildViewController(datepickerView)
         self.addChildViewController(tableHeader)
         self.addChildViewController(expensesTableView)
         
         view.addSubview(summaryView.view)
-        view.addSubview(datepickerView.view)
         view.addSubview(tableHeader.view)
+        view.addSubview(addExpenseButton)
         view.addSubview(expensesTableView.view)
         
-        let views:[NSObject : AnyObject] = ["summary":summaryView.view,"datepicker":datepickerView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view]
+        let views:[NSObject : AnyObject] = ["summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton]
         
-        setChildviewConstraints(views)
+        setConstraints(views)
     }
     
-    func setChildviewConstraints(views:[NSObject:AnyObject]){
-        let screenHeight = view.frame.height
-        println(screenHeight)
+    func setConstraints(views:[NSObject:AnyObject]){
         
-        switch screenHeight {
-            //            case 480: setupForiPhoneFour(views)
-            //            case 568: setupForiPhoneFive(views)
-        case 667: setupForiPhoneSix(views)
-        case 736: setupForiPhoneSix(views)
-            //            case 1024: setupForiPadTwo(views)
-        default: println("default")
-        }
-        
-        
-    }
-    func setupForiPhoneSix(views:[NSObject:AnyObject]) {
-        let constraintModel = GroupPanelConstraints(bannerHeight: 80, summaryHeight: 200, datepickerHeight: 50, expensesHeight: 300, cellHeight: 30)
-        
-        setConstraints(views, constraintsModel: constraintModel)
-        
-    }
-    
-    func setConstraints(views:[NSObject:AnyObject], constraintsModel:GroupPanelConstraints){
-        
-        var visualFormat = String(format: "V:|-72-[summary(%d)]-0-[datepicker(%d)]-[tableHeader(30)]-[expenses(%d)]",
-            constraintsModel.summaryHeight,
-            constraintsModel.datepickerHeight,
-            constraintsModel.expensesHeight
-        )
-        
-        
+        var visualFormat = String(format: "V:|-72-[summary(250)]-0-[addButton(50)]-[tableHeader(30)]-[expenses]-|")
         
         let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
       
         visualFormat = "H:|-0-[summary]-0-|"
         let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
-        
-        visualFormat = "H:|-0-[datepicker]-0-|"
-        let groupPanelWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
         
         visualFormat = "H:|-0-[expenses]-0-|"
         let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
@@ -107,15 +79,23 @@ class GroupView : UIViewController {
         
         view.addConstraints(verticalLayout)
         view.addConstraints(profileWidth)
-        view.addConstraints(groupPanelWidth)
         view.addConstraints(buttonWidth)
     }
     
     func backButtonPressed(notification: NSNotification){
-        //Got back
-        println("got back")
         delegate.dismissViewControllerAnimated(true, completion: nil)
-        
+    }
+    
+    func createNewButton() -> UIButton{
+        var button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.setTitle("+", forState: .Normal)
+        button.titleLabel!.font = UIFont(name:"Helvetica", size:30)
+        return button
+    }
+    
+    func sendButtonPressed(sender:UIButton!){
+        //TODO display progress and verified completion
         
     }
     
@@ -129,9 +109,13 @@ class GroupView : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(groupId:Int){
-        self.groupId = groupId
+    init(group:Group){
+        self.group = group
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    func newButtonPressed(sender:UIButton) {
+        println("create new expense")
     }
     
     
