@@ -34,20 +34,20 @@ class ExpenseCell : UITableViewCell {
         contentView.addSubview(amount)
         contentView.addSubview(split)
         
-        let views:[NSObject : AnyObject] = ["payee":payee, "date":date, "comment":comment, "amount":amount, "split":split]
+        let views:[String : AnyObject] = ["payee":payee, "date":date, "comment":comment, "amount":amount, "split":split]
         
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(50)]-[date(40)]-[comment(100)]-[amount(50)]-[split(50)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[payee]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[date]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[comment]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[split]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(50)]-[date(40)]-[comment(100)]-[amount(50)]-[split(50)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[payee]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[date]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[comment]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[split]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 
     }
     
     func updateLabels(){
         
-        var dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM"
         if(self.expense.creator.shortName.isEmpty) {
             payee.text = self.expense.creator.name
@@ -62,14 +62,14 @@ class ExpenseCell : UITableViewCell {
     }
     
     func createLabel() -> UILabel{
-        var label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = ""
         label.font = UIFont(name: "Helvetica", size: 12)
         return label
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
     }

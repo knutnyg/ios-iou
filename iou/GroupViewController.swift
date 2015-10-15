@@ -35,7 +35,7 @@ class GroupView : UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "backButtonPressed:", name: "backPressed", object: nil)
 
         summaryView = SummaryViewController()
-        summaryView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        summaryView.view.translatesAutoresizingMaskIntoConstraints = false
         
 //        datepickerView = DatePickerViewController()
 //        datepickerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -44,10 +44,10 @@ class GroupView : UIViewController {
         addExpenseButton.addTarget(self, action: Selector("newButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         tableHeader = TableViewHeader()
-        tableHeader.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tableHeader.view.translatesAutoresizingMaskIntoConstraints = false
         
         expensesTableView = ExpensesTableViewController(group: self.group)
-        expensesTableView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        expensesTableView.view.translatesAutoresizingMaskIntoConstraints = false
         
         self.addChildViewController(summaryView)
         self.addChildViewController(tableHeader)
@@ -58,24 +58,24 @@ class GroupView : UIViewController {
         view.addSubview(addExpenseButton)
         view.addSubview(expensesTableView.view)
         
-        let views:[NSObject : AnyObject] = ["summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton]
+        let views:[String : AnyObject] = ["summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton]
         
         setConstraints(views)
     }
     
-    func setConstraints(views:[NSObject:AnyObject]){
+    func setConstraints(views:[String:AnyObject]){
         
         var visualFormat = String(format: "V:|-72-[summary(250)]-0-[addButton(50)]-[tableHeader(30)]-[expenses]-|")
         
-        let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
       
         visualFormat = "H:|-0-[summary]-0-|"
-        let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         visualFormat = "H:|-0-[expenses]-0-|"
-        let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[tableHeader]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[tableHeader]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
         view.addConstraints(verticalLayout)
         view.addConstraints(profileWidth)
@@ -87,8 +87,8 @@ class GroupView : UIViewController {
     }
     
     func createNewButton() -> UIButton{
-        var button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let button = UIButton(type: UIButtonType.System)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("+", forState: .Normal)
         button.titleLabel!.font = UIFont(name:"Helvetica", size:30)
         return button
@@ -105,7 +105,7 @@ class GroupView : UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -115,7 +115,7 @@ class GroupView : UIViewController {
     }
     
     func newButtonPressed(sender:UIButton) {
-        println("create new expense")
+        print("create new expense")
     }
     
     

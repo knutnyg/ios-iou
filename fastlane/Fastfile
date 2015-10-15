@@ -6,7 +6,7 @@ platform :ios do
 
   before_all do
       cocoapods
-
+      ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
       xctest({
         workspace: "iou.xcworkspace",
         scheme: "iou",
@@ -15,12 +15,11 @@ platform :ios do
     })
   end
 
-  desc "test"
+desc "test"
   lane :test do
-    slack({
-      message: "Starting fastlane test"
+      slack({
+        message: "Finished running tests"
       })
-    
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"

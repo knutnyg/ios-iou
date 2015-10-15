@@ -20,13 +20,13 @@ class ParentViewController : UIViewController {
         setupNavigationBar()
     
         profileView = ProfileViewController()
-        profileView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        profileView.view.translatesAutoresizingMaskIntoConstraints = false
         
         groupPanelView = GroupListPanel()
-        groupPanelView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        groupPanelView.view.translatesAutoresizingMaskIntoConstraints = false
         
         label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "tonaowda"
         label.backgroundColor = UIColor.blueColor()
         
@@ -37,25 +37,24 @@ class ParentViewController : UIViewController {
         view.addSubview(groupPanelView.view)
         view.addSubview(label)
         
-        let views:[NSObject : AnyObject] = ["profile":profileView.view,"groupPanel":groupPanelView.view, "label":label]
-        let screenHeight = view.frame.height
+        let views:[String : AnyObject] = ["profile":profileView.view,"groupPanel":groupPanelView.view, "label":label]
         
-        var profileHeight = 200
+        let profileHeight = 200
         
         var visualFormat = String(format: "V:|-63-[profile(%d)]-0-[groupPanel]-0-[label(30)]-|",
             profileHeight
         )
         
-        let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         visualFormat = "H:|-0-[profile]-0-|"
-        let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         visualFormat = "H:|-0-[groupPanel]-0-|"
-        let groupPanelWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let groupPanelWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         visualFormat = "H:|-0-[label]-0-|"
-        let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+        let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         view.addConstraints(verticalLayout)
         view.addConstraints(profileWidth)
@@ -68,7 +67,7 @@ class ParentViewController : UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x123add)
         
         var font = UIFont(name: "Verdana", size:22)!
-        var attributes:[NSObject : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        var attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationItem.title = "IOU"
         navigationController?.navigationBar.titleTextAttributes = attributes
         

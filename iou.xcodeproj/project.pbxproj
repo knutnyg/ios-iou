@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		720883591BD013ED001A716A /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E973A11AF3993300ECB4CD /* SwiftHTTP.framework */; settings = {ASSET_TAGS = (); }; };
+		7208835A1BD013ED001A716A /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E973A11AF3993300ECB4CD /* SwiftHTTP.framework */; settings = {ASSET_TAGS = (); }; };
+		7208835C1BD01C03001A716A /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208835B1BD01C03001A716A /* GroupList.swift */; settings = {ASSET_TAGS = (); }; };
+		7208835E1BD01E2C001A716A /* GroupListFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208835D1BD01E2C001A716A /* GroupListFetcherTests.swift */; settings = {ASSET_TAGS = (); }; };
+		7208835F1BD01F86001A716A /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208835B1BD01C03001A716A /* GroupList.swift */; settings = {ASSET_TAGS = (); }; };
+		720883611BD02B9E001A716A /* ExpenseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720883601BD02B9E001A716A /* ExpenseList.swift */; settings = {ASSET_TAGS = (); }; };
+		720883621BD02B9E001A716A /* ExpenseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720883601BD02B9E001A716A /* ExpenseList.swift */; settings = {ASSET_TAGS = (); }; };
 		7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */; };
 		7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */; };
 		7210F1B11AB0D1A600C2A797 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */; };
@@ -17,7 +24,7 @@
 		724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 724ACD1A1AB0AA6100DFA724 /* Podfile */; };
 		725707191AF14AA800180A45 /* FAHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725707181AF14AA800180A45 /* FAHelpers.swift */; };
 		7257071B1AF14EC000180A45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7257071A1AF14EC000180A45 /* Extensions.swift */; };
-		726CA7B61AAF828C00EC7DFA /* GroupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */; };
+		726CA7B61AAF828C00EC7DFA /* GroupListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupListFetcher.swift */; };
 		728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709841AAE2BC3002FC91A /* GroupCell.swift */; };
 		728709871AAE2E14002FC91A /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709861AAE2E14002FC91A /* HeaderViewController.swift */; };
 		728709891AAE49DE002FC91A /* GroupListPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709881AAE49DE002FC91A /* GroupListPanel.swift */; };
@@ -25,11 +32,10 @@
 		72A07E991AA8EE570016C61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E971AA8EE570016C61B /* Main.storyboard */; };
 		72A07E9B1AA8EE570016C61B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E9A1AA8EE570016C61B /* Images.xcassets */; };
 		72A07E9E1AA8EE570016C61B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A07E9C1AA8EE570016C61B /* LaunchScreen.xib */; };
-		72A07EAA1AA8EE570016C61B /* iouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EA91AA8EE570016C61B /* iouTests.swift */; };
 		72A07EB61AA8EED60016C61B /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB51AA8EED60016C61B /* ParentViewController.swift */; };
 		72A07EBA1AA8EEF60016C61B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */; };
 		72A07EBC1AA8EF1D0016C61B /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */; };
-		72A6228E1ACAA8CD007D1F93 /* ExpensesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */; };
+		72A6228E1ACAA8CD007D1F93 /* ExpensesListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesListFetcher.swift */; };
 		72A622901ACAA936007D1F93 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228F1ACAA936007D1F93 /* Group.swift */; };
 		72A622921ACAA9BD007D1F93 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622911ACAA9BD007D1F93 /* User.swift */; };
 		72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622931ACAAD3F007D1F93 /* Expense.swift */; };
@@ -56,8 +62,8 @@
 		72E973B51AF39CA300ECB4CD /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */; };
 		72E973B61AF39CAC00ECB4CD /* expenseResponse.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72A622A11ACD1540007D1F93 /* expenseResponse.txt */; };
 		72E973B71AF39CAC00ECB4CD /* groupResponse.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72A622A21ACD1540007D1F93 /* groupResponse.txt */; };
-		72E973B81AF39CAC00ECB4CD /* GroupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */; };
-		72E973B91AF39CAC00ECB4CD /* ExpensesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */; };
+		72E973B81AF39CAC00ECB4CD /* GroupListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupListFetcher.swift */; };
+		72E973B91AF39CAC00ECB4CD /* ExpensesListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesListFetcher.swift */; };
 		72E973BB1AF39CAF00ECB4CD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */; };
 		72E973BC1AF39CAF00ECB4CD /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728709861AAE2E14002FC91A /* HeaderViewController.swift */; };
 		72E973BD1AF39CAF00ECB4CD /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */; };
@@ -84,6 +90,9 @@
 
 /* Begin PBXFileReference section */
 		108EFFAC047710158FD90D5B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7208835B1BD01C03001A716A /* GroupList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
+		7208835D1BD01E2C001A716A /* GroupListFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListFetcherTests.swift; sourceTree = "<group>"; };
+		720883601BD02B9E001A716A /* ExpenseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseList.swift; sourceTree = "<group>"; };
 		7210F1AA1AB0D0B000C2A797 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		7210F1AE1AB0D19200C2A797 /* ExpensesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewController.swift; sourceTree = "<group>"; };
 		7210F1B01AB0D1A600C2A797 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +105,7 @@
 		7257071A1AF14EC000180A45 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7266E30B1ACD5021006C54D0 /* Pods-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "Pods-frameworks.sh"; path = "Pods/Target Support Files/Pods/Pods-frameworks.sh"; sourceTree = "<group>"; };
 		7266E30D1ACD6146006C54D0 /* iou-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iou-Bridging-Header.h"; sourceTree = "<group>"; };
-		726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHandler.swift; sourceTree = "<group>"; };
+		726CA7B51AAF828C00EC7DFA /* GroupListFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListFetcher.swift; sourceTree = "<group>"; };
 		728709841AAE2BC3002FC91A /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		728709861AAE2E14002FC91A /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
 		728709881AAE49DE002FC91A /* GroupListPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListPanel.swift; sourceTree = "<group>"; };
@@ -108,11 +117,10 @@
 		72A07E9D1AA8EE570016C61B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		72A07EA31AA8EE570016C61B /* iouTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iouTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A07EA81AA8EE570016C61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		72A07EA91AA8EE570016C61B /* iouTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iouTests.swift; sourceTree = "<group>"; };
 		72A07EB51AA8EED60016C61B /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		72A07EB91AA8EEF60016C61B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		72A07EBB1AA8EF1D0016C61B /* GroupListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListTableViewController.swift; sourceTree = "<group>"; };
-		72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesHandler.swift; sourceTree = "<group>"; };
+		72A6228D1ACAA8CD007D1F93 /* ExpensesListFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesListFetcher.swift; sourceTree = "<group>"; };
 		72A6228F1ACAA936007D1F93 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		72A622911ACAA9BD007D1F93 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		72A622931ACAAD3F007D1F93 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -136,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				720883591BD013ED001A716A /* SwiftHTTP.framework in Frameworks */,
 				DF66FBDA0A85055F9A3020C4 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7208835A1BD013ED001A716A /* SwiftHTTP.framework in Frameworks */,
 				CAC64B624C87775EE6B98DFE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				72A622A01ACD1507007D1F93 /* MockResponse */,
-				726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */,
-				72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */,
+				726CA7B51AAF828C00EC7DFA /* GroupListFetcher.swift */,
+				72A6228D1ACAA8CD007D1F93 /* ExpensesListFetcher.swift */,
 			);
 			name = BackendStuffs;
 			sourceTree = "<group>";
@@ -240,9 +250,9 @@
 		72A07EA61AA8EE570016C61B /* iouTests */ = {
 			isa = PBXGroup;
 			children = (
-				72A07EA91AA8EE570016C61B /* iouTests.swift */,
 				72A07EA71AA8EE570016C61B /* Supporting Files */,
 				72E973A31AF39B6000ECB4CD /* ExpenseTests.swift */,
+				7208835D1BD01E2C001A716A /* GroupListFetcherTests.swift */,
 			);
 			path = iouTests;
 			sourceTree = "<group>";
@@ -283,6 +293,8 @@
 				72A622911ACAA9BD007D1F93 /* User.swift */,
 				72A622931ACAAD3F007D1F93 /* Expense.swift */,
 				7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */,
+				7208835B1BD01C03001A716A /* GroupList.swift */,
+				720883601BD02B9E001A716A /* ExpenseList.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -365,7 +377,9 @@
 		72A07E861AA8EE570016C61B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "APM solutions";
 				TargetAttributes = {
 					72A07E8D1AA8EE570016C61B = {
@@ -537,13 +551,15 @@
 				725707191AF14AA800180A45 /* FAHelpers.swift in Sources */,
 				72289D1B1ACFD4DB0073C60C /* SummaryViewController.swift in Sources */,
 				72A622901ACAA936007D1F93 /* Group.swift in Sources */,
+				7208835C1BD01C03001A716A /* GroupList.swift in Sources */,
 				723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */,
-				72A6228E1ACAA8CD007D1F93 /* ExpensesHandler.swift in Sources */,
-				726CA7B61AAF828C00EC7DFA /* GroupHandler.swift in Sources */,
+				72A6228E1ACAA8CD007D1F93 /* ExpensesListFetcher.swift in Sources */,
+				726CA7B61AAF828C00EC7DFA /* GroupListFetcher.swift in Sources */,
 				723836AF1AB0EF4B007EC1FC /* GroupViewDelegate.swift in Sources */,
 				72F3D6021AF2817E00C68B49 /* EditReceiptViewController.swift in Sources */,
 				7257071B1AF14EC000180A45 /* Extensions.swift in Sources */,
 				7210F1AB1AB0D0B000C2A797 /* GroupViewController.swift in Sources */,
+				720883611BD02B9E001A716A /* ExpenseList.swift in Sources */,
 				7210F1AF1AB0D19200C2A797 /* ExpensesTableViewController.swift in Sources */,
 				728709851AAE2BC3002FC91A /* GroupCell.swift in Sources */,
 				72A622921ACAA9BD007D1F93 /* User.swift in Sources */,
@@ -567,19 +583,21 @@
 				72E973C11AF39D8900ECB4CD /* SummaryItem.swift in Sources */,
 				72E973A81AF39C5900ECB4CD /* Group.swift in Sources */,
 				72E973C01AF39CB400ECB4CD /* ParentViewController.swift in Sources */,
-				72E973B81AF39CAC00ECB4CD /* GroupHandler.swift in Sources */,
+				72E973B81AF39CAC00ECB4CD /* GroupListFetcher.swift in Sources */,
 				72E973A91AF39C5C00ECB4CD /* GroupPanelConstraints.swift in Sources */,
 				72E973BD1AF39CAF00ECB4CD /* GroupListTableViewController.swift in Sources */,
 				72E973AF1AF39CA300ECB4CD /* GroupViewController.swift in Sources */,
 				72E973BB1AF39CAF00ECB4CD /* ProfileViewController.swift in Sources */,
 				72E973B31AF39CA300ECB4CD /* GroupViewDelegate.swift in Sources */,
-				72A07EAA1AA8EE570016C61B /* iouTests.swift in Sources */,
+				7208835E1BD01E2C001A716A /* GroupListFetcherTests.swift in Sources */,
 				72E973B11AF39CA300ECB4CD /* ExpensesTableViewController.swift in Sources */,
 				72E973B51AF39CA300ECB4CD /* TableViewHeader.swift in Sources */,
-				72E973B91AF39CAC00ECB4CD /* ExpensesHandler.swift in Sources */,
+				72E973B91AF39CAC00ECB4CD /* ExpensesListFetcher.swift in Sources */,
 				72E973B41AF39CA300ECB4CD /* ExpenseCell.swift in Sources */,
+				720883621BD02B9E001A716A /* ExpenseList.swift in Sources */,
 				72E973AB1AF39C9600ECB4CD /* EditReceiptViewController.swift in Sources */,
 				72E973BF1AF39CAF00ECB4CD /* GroupListPanel.swift in Sources */,
+				7208835F1BD01F86001A716A /* GroupList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +651,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -705,6 +724,7 @@
 				);
 				INFOPLIST_FILE = iou/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apmsolutions.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iou-Bridging-Header.h";
@@ -724,6 +744,7 @@
 				);
 				INFOPLIST_FILE = iou/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apmsolutions.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iou-Bridging-Header.h";
@@ -738,6 +759,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -745,6 +767,7 @@
 				);
 				INFOPLIST_FILE = iouTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apmsolutions.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iou.app/iou";
 			};
@@ -758,9 +781,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 				);
 				INFOPLIST_FILE = iouTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apmsolutions.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iou.app/iou";
 			};

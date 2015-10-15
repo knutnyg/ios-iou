@@ -12,30 +12,56 @@ import XCTest
 class ExpenseTests : XCTestCase {
 
     var users:[User]!
+    var user:User!
+    var group:Group!
     
-    override func setUp() {
+        override func setUp() {
         super.setUp()
-        users = createMembers()
+        user = User(name: "Knut Nygaard", shortName: "Knut", id: 3, photoUrl: "https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50")
+        group = Group(members: [user], id: 26, archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testExpenseListFetch(){
+        let expensesListFetcher:ExpensesListFetcher = ExpensesListFetcher()
+        
+        let expectation = expectationWithDescription("promise")
+        
+        expensesListFetcher.getExpensesForGroup(group)
+            .onSuccess { expenses in
+                XCTAssertTrue(expenses.count > 0)
+                expectation.fulfill()
+            }
+            .onFailure { error in
+                XCTAssert(false)
+                expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
     }
     
-    func testToJSON(){
+    func testExpenseUpdate(){
+        let expensesListFetcher:ExpensesListFetcher = ExpensesListFetcher()
         
-        var expense = Expense(participants: users, amount: 10.0, date: NSDate(), groupId: 0, id: 0, created: NSDate(), updated: NSDate(), comment: "a comment", creator: users[0])
-        println(expense.toJSONparsableDicitonary())
-    }
-    
-    func createMembers() -> [User] {
-        var user1 = User(name: "User 1", shortName: "1", id: 0, photoUrl: "url")
-        var user2 = User(name: "User 2", shortName: "2", id: 1, photoUrl: "url")
-        var user3 = User(name: "User 3", shortName: "3", id: 2, photoUrl: "url")
-        var user4 = User(name: "User 4", shortName: "4", id: 3, photoUrl: "url")
+        let expectation = expectationWithDescription("promise")
         
-        return [user1, user2, user3, user4]
+        let expense = Expense(participants: [user], amount: 150, date: NSDate(), groupId: group.id, id: 338, created: NSDate(), updated: NSDate(), comment: "Updated in Test", creator: user)
+        
+        expensesListFetcher.updateExpense(expense)
+            .onSuccess { expense in
+                XCTAssertTrue(expense.comment.containsString("Updated"))
+                expectation.fulfill()
+            }
+            .onFailure { error in
+                XCTAssert(false)
+                expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
     }
+
 }

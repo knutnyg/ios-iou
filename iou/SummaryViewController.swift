@@ -24,8 +24,8 @@ class SummaryViewController:UIViewController {
     
     
     func readResponseFromFile() -> UIImage{
-        var path = NSBundle.mainBundle().pathForResource("image", ofType: "png")
-        var data = NSData(contentsOfFile: path!)!
+        let path = NSBundle.mainBundle().pathForResource("image", ofType: "png")
+        let data = NSData(contentsOfFile: path!)!
         //        var text = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
         return UIImage(data: data)!
     }
@@ -33,9 +33,9 @@ class SummaryViewController:UIViewController {
     func addBorderBasedOnStatus(){
         
         for item in self.summary {
-            var baseColor = setBaseColor(item)
-            var color = setAlphaColor(baseColor, item: item)
-            println(CGColorGetAlpha(color.CGColor))
+            let baseColor = setBaseColor(item)
+            let color = setAlphaColor(baseColor, item: item)
+            print(CGColorGetAlpha(color.CGColor))
             item.imageView.layer.borderWidth = 3.0
             item.imageView.layer.borderColor = color.CGColor
         }
@@ -56,7 +56,7 @@ class SummaryViewController:UIViewController {
         if abs(item.amount) > 1000 {
             return color
         } else {
-            var strenght = abs(item.amount).CGFloatValue  / 1000.0
+            let strenght = abs(item.amount).CGFloatValue  / 1000.0
             return color.colorWithAlphaComponent(strenght)
         }
     }
@@ -70,11 +70,11 @@ class SummaryViewController:UIViewController {
             //first image
             self.view.addSubview(summary[i].imageView)
             if i == 0 {
-                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[image\(i)(50)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-5-[image\(i)(50)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[image\(i)(50)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-5-[image\(i)(50)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
             } else if i % 4 == 0 {
-                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[image\(i)(50)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[image\(i-4)]-10-[image\(i)(50)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[image\(i)(50)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[image\(i-4)]-10-[image\(i)(50)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
             } else {
                 self.view.addConstraint(NSLayoutConstraint(item: summary[i].imageView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: summary[i-1].imageView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 60))
                 self.view.addConstraint(NSLayoutConstraint(item: summary[i].imageView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: summary[i-1].imageView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
@@ -84,8 +84,8 @@ class SummaryViewController:UIViewController {
         }
     }
     
-    func createViews() -> [NSObject : AnyObject]{
-        var views:[NSObject : AnyObject] = [:]
+    func createViews() -> [String : AnyObject]{
+        var views:[String : AnyObject] = [:]
         for i in 0...summary.count-1 {
             views["image\(i)"] = summary[i].imageView
         }
@@ -95,9 +95,9 @@ class SummaryViewController:UIViewController {
     
     func createImage() -> UIImageView {
         
-        var image = readResponseFromFile()
-        var iw = UIImageView(image: image)
-        iw.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let image = readResponseFromFile()
+        let iw = UIImageView(image: image)
+        iw.translatesAutoresizingMaskIntoConstraints = false
         iw.layer.cornerRadius = 25
         iw.clipsToBounds = true
         
@@ -107,13 +107,13 @@ class SummaryViewController:UIViewController {
     
     func createMockSummary(count:Int) {
         
-        var userList = createMockUsers(count)
+        let userList = createMockUsers(count)
         for user in userList {
-            var imageView = createImage()
-            var amount = Double(arc4random_uniform(2000)) - 1000
-            var summaryItem = SummaryItem(imageView: imageView, user: user, amount: amount)
+            let imageView = createImage()
+            let amount = Double(arc4random_uniform(2000)) - 1000
+            let summaryItem = SummaryItem(imageView: imageView, user: user, amount: amount)
             summary.append(summaryItem)
-            println("made row with values: \(summaryItem.user.name), \(summaryItem.amount)")
+            print("made row with values: \(summaryItem.user.name), \(summaryItem.amount)")
         }
     }
     

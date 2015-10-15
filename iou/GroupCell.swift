@@ -20,10 +20,10 @@ class GroupCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     
         groupName = UILabel()
-        groupName.setTranslatesAutoresizingMaskIntoConstraints(false)
+        groupName.translatesAutoresizingMaskIntoConstraints = false
         groupName.text = "gruppe1"
         memberCount = UILabel()
-        memberCount.setTranslatesAutoresizingMaskIntoConstraints(false)
+        memberCount.translatesAutoresizingMaskIntoConstraints = false
         memberCount.text = "4"
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,10 +31,10 @@ class GroupCell : UITableViewCell {
         contentView.addSubview(groupName)
         contentView.addSubview(memberCount)
         
-        let views:[NSObject : AnyObject] = ["name":groupName, "count":memberCount]
+        let views:[String : AnyObject] = ["name":groupName, "count":memberCount]
         
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[name]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[count]-10-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[count]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
         contentView.addConstraint(NSLayoutConstraint(item: groupName, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: contentView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: memberCount, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: contentView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
@@ -42,7 +42,7 @@ class GroupCell : UITableViewCell {
 
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
     }

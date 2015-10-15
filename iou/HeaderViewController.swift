@@ -16,11 +16,11 @@ class HeaderView : UIViewController {
     
     override func viewDidLoad() {
         groupName = UILabel()
-        groupName.setTranslatesAutoresizingMaskIntoConstraints(false)
+        groupName.translatesAutoresizingMaskIntoConstraints = false
         groupName.text = "Group title"
         groupName.font = UIFont(name: "Helvetica-Bold", size: 15)
         members = UILabel()
-        members.setTranslatesAutoresizingMaskIntoConstraints(false)
+        members.translatesAutoresizingMaskIntoConstraints = false
         members.text = "Members"
         members.font = UIFont(name: "Helvetica-Bold", size: 15)
         
@@ -29,13 +29,13 @@ class HeaderView : UIViewController {
         view.addSubview(groupName)
         view.addSubview(members)
         
-        let views:[NSObject : AnyObject] = ["groupName":groupName, "memberCount":members]
+        let views:[String : AnyObject] = ["groupName":groupName, "memberCount":members]
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[groupName]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[groupName]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[memberCount]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[memberCount]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[groupName]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[memberCount]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[groupName]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[memberCount]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
 }

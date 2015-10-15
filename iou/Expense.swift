@@ -55,7 +55,7 @@ class Expense :JSONJoy {
     }
 
     func toJSONparsableDicitonary() -> NSDictionary{
-        var participantIDs = participants.map { return ["id": $0.id] }
+        let participantIDs = participants.map { return ["id": $0.id] }
         
         return [
             "participants":participantIDs,

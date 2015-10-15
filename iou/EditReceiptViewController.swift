@@ -42,7 +42,7 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
         namePicker = UIPickerView()
         namePicker.dataSource = self
         namePicker.delegate = self
-        var payeeIndex = find(group.members.map{return $0.id}, self.receipt.creator.id)!
+        var payeeIndex = group.members.map{return $0.id}.indexOf(self.receipt.creator.id)!
         namePicker.selectRow(payeeIndex, inComponent: 0, animated: true)
         
         payedByLabel = createLabel("Payee:")
@@ -78,19 +78,19 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
         view.addSubview(amountTF)
         view.addSubview(saveButton)
         
-        let views:[NSObject:AnyObject] = ["payedBy":payedByTF,"comment":commentTF,"date":dateTF,"amount":amountTF, "payeeLabel":payedByLabel, "amountLabel":amountLabel, "dateLabel":dateLabel, "commentLabel":commentLabel, "saveButton":saveButton]
+        let views:[String:AnyObject] = ["payedBy":payedByTF,"comment":commentTF,"date":dateTF,"amount":amountTF, "payeeLabel":payedByLabel, "amountLabel":amountLabel, "dateLabel":dateLabel, "commentLabel":commentLabel, "saveButton":saveButton]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-100-[payeeLabel]-[payedBy]-[date]-[amount]-[commentLabel]-[comment]-[saveButton(40)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-100-[payeeLabel]-[payedBy]-[date]-[amount]-[commentLabel]-[comment]-[saveButton(40)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payedBy]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payeeLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[comment]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[commentLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payedBy]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payeeLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[comment]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[commentLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: dateLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: dateTF, attribute: .CenterY, multiplier: 1, constant: 0))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[dateLabel(80)]-[date]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[amountLabel(80)]-[amount]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[dateLabel(80)]-[date]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[amountLabel(80)]-[amount]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: amountLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: amountTF, attribute: .CenterY, multiplier: 1, constant: 0))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[saveButton(80)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[saveButton(80)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 
     }
     
@@ -122,14 +122,14 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
         updateModel()
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     func updateModel(){
         receipt.creator = group.members[namePicker.selectedRowInComponent(0)]
         receipt.date = datePicker.date
-        receipt.amount = (amountTF.text as NSString).doubleValue
+        receipt.amount = (amountTF.text as! NSString).doubleValue
         receipt.comment = commentTF.text
         
     }
@@ -143,7 +143,7 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
     }
     
     func datePickerValueChanged(sender: UIDatePicker){
-        var dateformatter = NSDateFormatter()
+        let dateformatter = NSDateFormatter()
         dateformatter.dateStyle = NSDateFormatterStyle.MediumStyle
         dateTF.text = dateformatter.stringFromDate(sender.date)
         updateModel()
@@ -155,19 +155,19 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
         self.group = group
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func createLabel(text:String) -> UILabel{
-        var label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
     }
     
     func createDatePicker() -> UIDatePicker {
-        var datePicker = UIDatePicker()
+        let datePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePickerMode.Date
         datePicker.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         datePicker.date = receipt.date
@@ -176,9 +176,9 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
     }
     
     func createTextField() -> UITextField{
-        var textField = UITextField()
+        let textField = UITextField()
         textField.delegate = self
-        textField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = UITextBorderStyle.RoundedRect
         textField.placeholder = ""
         textField.textAlignment = NSTextAlignment.Center
@@ -189,8 +189,8 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
     }
     
     func createTextView() -> UITextView {
-        var textView = UITextView()
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.scrollEnabled = false
         textView.layer.cornerRadius = 5
         textView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
@@ -200,8 +200,8 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
     }
     
     func createSendButton() -> UIButton{
-        var button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let button = UIButton(type: UIButtonType.System)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Save", forState: .Normal)
         button.titleLabel!.font = UIFont(name:"Helvetica", size:30)
         return button
@@ -209,7 +209,7 @@ class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextV
     
     func sendButtonPressed(sender:UIButton!){
         //TODO display progress and verified completion
-        ExpensesHandler().updateExpense(receipt)
+//        ExpensesHandler().updateExpense(receipt)
     }
     
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import JSONJoy
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -26,21 +27,21 @@ extension UIColor {
 extension NSDate {
     
     func shortPrintable()-> String{
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM"
         
         return dateFormatter.stringFromDate(self)
     }
     
     func mediumPrintable() -> String {
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd. MMMM YYYY"
         
         return dateFormatter.stringFromDate(self)
     }
     
     func utcFormat() -> String {
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         
         return dateFormatter.stringFromDate(self)
@@ -48,8 +49,8 @@ extension NSDate {
 }
 
 extension Array {
-    func find(includedElement: T -> Bool) -> Int? {
-        for (idx, element) in enumerate(self) {
+    func find(includedElement: Element -> Bool) -> Int? {
+        for (idx, element) in self.enumerate() {
             if includedElement(element) {
                 return idx
             }

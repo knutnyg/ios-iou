@@ -10,8 +10,8 @@ import Foundation
 
 
 func createfontAwesomeButton(unicode:String) -> UIButton{
-    var button = UIButton()
-    button.setTranslatesAutoresizingMaskIntoConstraints(false)
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle(unicode, forState: .Normal)
     button.titleLabel!.font = UIFont(name: "Verdana", size: 22)
     button.setTitleColor(UIColor.whiteColor(), forState: .Normal)

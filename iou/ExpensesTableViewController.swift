@@ -23,18 +23,18 @@ class ExpensesTableViewController:UITableViewController {
         
         self.tableView.registerClass(ExpenseCell.self, forCellReuseIdentifier: "expenseCell")
         
-        ExpensesHandler().getExpensesForGroup(group).onSuccess{expenseList in
-            self.expenses = expenseList
-            self.tableView.reloadData()
-            self.activity.stopAnimating()
-        }
+//        ExpensesHandler().getExpensesForGroup(group).onSuccess{expenseList in
+//            self.expenses = expenseList
+//            self.tableView.reloadData()
+//            self.activity.stopAnimating()
+//        }
         self.activity.startAnimating()
         
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cellIdentifier = "expenseCell"
-        var cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpenseCell
+        let cellIdentifier = "expenseCell"
+        let cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpenseCell
         cell.expense = self.expenses[indexPath.item]
         cell.updateLabels()
 
@@ -42,7 +42,7 @@ class ExpensesTableViewController:UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell:ExpenseCell = tableView.cellForRowAtIndexPath(indexPath) as! ExpenseCell
+        let cell:ExpenseCell = tableView.cellForRowAtIndexPath(indexPath) as! ExpenseCell
         let vc = EditReceiptViewController(group: group, receipt: cell.expense)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
@@ -57,8 +57,8 @@ class ExpensesTableViewController:UITableViewController {
     }
     
     func positionSpinnerInMiddle(){
-        var x = view.bounds.width / 2
-        var y = view.bounds.height / 2
+        let x = view.bounds.width / 2
+        let y = view.bounds.height / 2
         activity.center = CGPoint(x: x, y: y)
     }
     

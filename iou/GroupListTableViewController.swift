@@ -24,9 +24,8 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         view.addSubview(activity)
         activity.bringSubviewToFront(view)
         
-        //fetch group.
-        GroupHandler().getGroupsForUser().onSuccess { groupList in
-            self.groups = groupList
+        GroupListFetcher().getGroupsForUser().onSuccess { groups in
+            self.groups = groups
             self.tableView.reloadData()
             self.activity.stopAnimating()
             }
@@ -40,9 +39,9 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cellIdentifier:String = "groupCell"
+        let cellIdentifier:String = "groupCell"
         
-        var cell:GroupCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroupCell
+        let cell:GroupCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroupCell
         cell.group = self.groups[indexPath.item]
         cell.groupName.text = groups[indexPath.item].description
         cell.memberCount.text = String(groups[indexPath.item].members.count)
@@ -50,7 +49,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as! GroupCell
+        let cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as! GroupCell
         let vc = GroupView(group: cell.group)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
@@ -74,8 +73,8 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     }
     
     func positionSpinnerInMiddle(){
-        var x = view.bounds.width / 2
-        var y = view.bounds.height / 2
+        let x = view.bounds.width / 2
+        let y = view.bounds.height / 2
         activity.center = CGPoint(x: x, y: y)
     }
 }

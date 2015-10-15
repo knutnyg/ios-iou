@@ -13,15 +13,15 @@ class GroupListPanel : UIViewController {
     
     var headerView:HeaderView!
     var groupPanel:GroupListTableViewController!
-    var views:[NSObject : AnyObject]!
+    var views:[String : AnyObject]!
     
     override func viewDidLoad(){
         headerView = HeaderView()
-        headerView.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        headerView.view.translatesAutoresizingMaskIntoConstraints = false
         headerView.view.backgroundColor = UIColor.orangeColor()
         
         groupPanel = GroupListTableViewController()
-        groupPanel.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        groupPanel.view.translatesAutoresizingMaskIntoConstraints = false
         groupPanel.view.backgroundColor = UIColor.purpleColor()
         
         self.addChildViewController(headerView)
@@ -32,9 +32,9 @@ class GroupListPanel : UIViewController {
         
         views = ["header":headerView.view,"group":groupPanel.view]
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[group]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[group]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(30)]-[group]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(30)]-[group]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
 }
