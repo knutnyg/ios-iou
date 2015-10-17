@@ -1,8 +1,8 @@
 import Foundation
 
 
-func dateFromUTCString(dateOnUTC:String) -> NSDate{
+func dateFromUTCString(dateOnUTC:String) -> NSDate?{
     let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    return dateFormatter.dateFromString(dateOnUTC)!
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    return dateFormatter.dateFromString(dateOnUTC)
 }
