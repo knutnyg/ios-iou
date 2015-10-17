@@ -118,7 +118,7 @@ class SummaryViewController:UIViewController {
     }
     
     func createMockUsers(count:Int) -> [User]{
-        var user = User(name: "Knut Nygaard", shortName: "Knut", id: 1, photoUrl: "url")
+        var user = User(name: "Knut Nygaard", shortName: "Knut", id: 1, photoUrl: "url", email:"knutnyg@gmail.com")
         var userList:[User] = []
         for i in 0...count-1 {
             userList.append(user)

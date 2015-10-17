@@ -24,7 +24,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         view.addSubview(activity)
         activity.bringSubviewToFront(view)
         
-        GroupListFetcher().getGroupsForUser().onSuccess { groups in
+        GroupHandler().getGroupsForUser().onSuccess { groups in
             self.groups = groups
             self.tableView.reloadData()
             self.activity.stopAnimating()
