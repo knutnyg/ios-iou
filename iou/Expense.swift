@@ -62,7 +62,7 @@ class Expense :JSONJoy {
             "comment":comment,
             "date":date.utcFormat(),
             "id":id,
-            "creator":creator.toDictionary(),
+            "creator":creator.toJSONParseableDictionary(),
             "amount":amount,
             "created_at":created.utcFormat(),
             "spreadsheet_id":groupId,
