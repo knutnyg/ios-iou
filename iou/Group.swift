@@ -47,4 +47,16 @@ class Group : JSONJoy{
         creator = User(decoder["creator"])
     }
     
+    func toJSONparsableDicitonary() -> [String:AnyObject]{
+        return [
+            "members":members.map{member in member.toJSONParseableDictionary()},
+            "id":id,
+            "archived":archived,
+            "created_at":created.utcFormat(),
+            "description":description,
+            "updated_at":lastUpdated.utcFormat(),
+            "creator":creator.toJSONParseableDictionary()
+        ]
+    }
+    
 }
