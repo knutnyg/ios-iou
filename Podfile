@@ -11,4 +11,7 @@ link_with 'iou', 'iouTests'
 pod 'JSONJoy-Swift','1.0.0'
 link_with 'iou', 'iouTests'
 
+pod 'FBSDKLoginKit', '4.7.0'
+link_with 'iou', 'iouTests'
+
 

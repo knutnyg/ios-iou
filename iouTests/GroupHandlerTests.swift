@@ -14,12 +14,14 @@ class GroupListFetcherTests : XCTestCase {
     var users:[User]!
     var user:User!
     var group:Group!
+    var activeUser:ActiveUser!
 
     override func setUp() {
         super.setUp()
         user = User(name: "Knut Nygaard", shortName: "Knut", id: 3, photoUrl: "https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50", email:"knutnyg@gmail.com")
         users = [user]
         group = Group(members: users, id: 44, archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user)
+        activeUser = ActiveUser(accessToken: "CAAEZAy4GLsL4BADhNHtLSNUL84XUZBdol067sJSLRNUMShllfaWWb9pxI6JxqN1pSiBcECOxRE6xABRLMW1oepcSLBCUxSZBRg7knvJKZCRj06zXIUYJGsZB3uH4uZC4Ias6ZAuYtZBbiZBzUCObb421oJm7SUxhtqEN4DXrt0ZCe0KD8sHt64yZCbhFFD6PY4O2PdMLvwlCWjoiSIF0lpGmhq6XclKZAw7J0UWyF4QmG6vZB1QZDZD=")
     }
     
     func testFetchGroups(){
@@ -27,9 +29,9 @@ class GroupListFetcherTests : XCTestCase {
         
         let expectation = expectationWithDescription("promise")
     
-        groupHandler.getGroupsForUser()
+        groupHandler.getGroupsForUser(activeUser)
             .onSuccess { groups in
-                XCTAssertTrue(groups.count > 3)
+                XCTAssertTrue(groups.count > 0)
                 expectation.fulfill()
             }
             .onFailure { error in
@@ -49,7 +51,7 @@ class GroupListFetcherTests : XCTestCase {
         
         let inputGroup:Group = group
         
-        groupHandler.createGroup(inputGroup)
+        groupHandler.createGroup(activeUser, group: inputGroup)
             .onSuccess { outputGroup in
                 XCTAssertTrue(outputGroup.id != nil)
                 XCTAssertTrue(outputGroup.description == inputGroup.description)
@@ -62,9 +64,7 @@ class GroupListFetcherTests : XCTestCase {
         waitForExpectationsWithTimeout(5, handler: { error in
             XCTAssertNil(error, "Error")})
     }
-    
-//    {"id":40,"description":"testSheet1","creator":{"id":3,"photourl":"https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz:50","name":"Knut Nygaard","shortname":"Knut"},"archived":false,"created_at":"2015-10-17T10:00:07Z","updated_at":"2015-10-17T10:00:07Z","members":[{"id":3,"photourl":"https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50","name":"Knut Nygaard","shortname":"Knut"},{"id":1,"email":"eivinlar@stud.ntnu.no","name":"Eivind Siqveland Larsen","shortname":"Eivindss","photourl":"http://graph.facebook.com/10152424427376357/picture","label":"Eivind Siqveland Larsen"}]}
-    
+ 
     func testEditGroup(){
         let groupHandler:GroupHandler = GroupHandler()
         
@@ -74,12 +74,29 @@ class GroupListFetcherTests : XCTestCase {
         let newUser = User(name: "Eivind Siqveland Larsen", shortName: "Eivindss", id: 1, photoUrl: "http://graph.facebook.com/10152424427376357/picture", email: "eivinlar@stud.ntnu.no")
         group.members.append(newUser)
         
-        groupHandler.editGroup(group)
+        groupHandler.editGroup(activeUser, group:group)
             .onSuccess { return_group in
                 XCTAssertTrue(group.members.map{member in return member.id}.contains(newUser.id))
                 expectation.fulfill()
             }.onFailure { error in
                 XCTAssert(false)
+                expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")})
+    }
+    
+    func testGuardForNilAccesstoken(){
+        let groupHandler:GroupHandler = GroupHandler()
+        
+        let expectation = expectationWithDescription("promise")
+        
+        groupHandler.getGroupsForUser(ActiveUser())
+            .onSuccess { groups in
+                XCTAssert(false)
+                expectation.fulfill()
+            }.onFailure { error in
+                XCTAssert(true)
                 expectation.fulfill()
         }
         waitForExpectationsWithTimeout(5, handler: { error in

@@ -20,7 +20,7 @@ class GroupListPanel : UIViewController {
         headerView.view.translatesAutoresizingMaskIntoConstraints = false
         headerView.view.backgroundColor = UIColor.orangeColor()
         
-        groupPanel = GroupListTableViewController()
+        groupPanel = GroupListTableViewController(activeUser: ActiveUser())
         groupPanel.view.translatesAutoresizingMaskIntoConstraints = false
         groupPanel.view.backgroundColor = UIColor.purpleColor()
         

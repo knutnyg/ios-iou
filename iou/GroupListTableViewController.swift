@@ -14,7 +14,18 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     var groups:[Group] = []
     var maxGroupItems = 0
     var activity:UIActivityIndicatorView!
+    var delegate:UIViewController!
+    var activeUser:ActiveUser!
     
+    
+    init(activeUser:ActiveUser){
+        super.init(nibName: nil, bundle: nil)
+        self.activeUser = activeUser
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.blueColor()
@@ -24,11 +35,11 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         view.addSubview(activity)
         activity.bringSubviewToFront(view)
         
-        GroupHandler().getGroupsForUser().onSuccess { groups in
-            self.groups = groups
-            self.tableView.reloadData()
-            self.activity.stopAnimating()
-            }
+//        GroupHandler().getGroupsForUser().onSuccess { groups in
+//            self.groups = groups
+//            self.tableView.reloadData()
+//            self.activity.stopAnimating()
+//            }
         self.activity.startAnimating()
         
     }
@@ -50,7 +61,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as! GroupCell
-        let vc = GroupView(group: cell.group)
+        let vc = GroupViewController(group: cell.group)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }

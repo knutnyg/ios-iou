@@ -19,17 +19,15 @@ import UIKit
 
 
 
-class GroupView : UIViewController {
+class GroupViewController : UIViewController {
     
     var summaryView:SummaryViewController!
     var datepickerView:DatePickerViewController!
     var expensesTableView:ExpensesTableViewController!
     var tableHeader:TableViewHeader!
-    var delegate:GroupListTableViewController!=nil
+    var delegate:UIViewController?
     var group:Group!
     var addExpenseButton:UIButton!
-    
-
     
     override func viewDidLoad(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "backButtonPressed:", name: "backPressed", object: nil)
@@ -46,17 +44,17 @@ class GroupView : UIViewController {
         tableHeader = TableViewHeader()
         tableHeader.view.translatesAutoresizingMaskIntoConstraints = false
         
-        expensesTableView = ExpensesTableViewController(group: self.group)
-        expensesTableView.view.translatesAutoresizingMaskIntoConstraints = false
+//        expensesTableView = ExpensesTableViewController(group: self.group)
+//        expensesTableView.view.translatesAutoresizingMaskIntoConstraints = false
         
         self.addChildViewController(summaryView)
         self.addChildViewController(tableHeader)
-        self.addChildViewController(expensesTableView)
+//        self.addChildViewController(expensesTableView)
         
         view.addSubview(summaryView.view)
         view.addSubview(tableHeader.view)
         view.addSubview(addExpenseButton)
-        view.addSubview(expensesTableView.view)
+//        view.addSubview(expensesTableView.view)
         
         let views:[String : AnyObject] = ["summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton]
         
@@ -83,7 +81,7 @@ class GroupView : UIViewController {
     }
     
     func backButtonPressed(notification: NSNotification){
-        delegate.dismissViewControllerAnimated(true, completion: nil)
+        delegate!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func createNewButton() -> UIButton{

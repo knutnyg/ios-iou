@@ -10,4 +10,5 @@
 #define iou_iou_Bridging_Header_h
 
 #import <UIKit/UIKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #endif

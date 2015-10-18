@@ -19,15 +19,19 @@ class GroupHandler {
     var promiseCreateGroup:Promise<Group,NSError>!
     var promiseEditGroup:Promise<Group,NSError>!
     
-     var accessToken = "eyJpZCI6MywiZW1haWwiOiJrbnV0bnlnQGdtYWlsLmNvbSIsIm5hbWUiOiJLbnV0IE55Z2FhcmQiLCJzaG9ydG5hbWUiOiJLbnV0IiwicGhvdG91cmwiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWYtaXBlRmVUY09vL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUV3L0NfcW9wRGxKb200L3Bob3RvLmpwZz9zej01MCIsInNlY3JldCI6IjJhN2U2ZGUzOGFiMDBiYmVmNTNhYzQxOGY3MmFiNGVjNDM1MzVkZmI0NDYyZTZiNjRkOWI0MWI4YWI4OGFmMGIiLCJjcmVhdGVkX2F0IjoiMjAxNS0wNC0wMlQwNTozMTowMy4zNTc0MjMxNFoifQ=="
-    
-    func getGroupsForUser() -> Future<[Group],NSError> {
+    func getGroupsForUser(user:ActiveUser) -> Future<[Group],NSError> {
         
         promiseGroupsForUser = Promise<[Group], NSError>()
 
+        guard let token = user.accessToken else {
+            // Value requirements not met, do something
+            //TODO: Redirect to login / Cast exception
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
+        
         let url:String = "https://www.logisk.org/api/spreadsheets"
         do {
-            let request = try HTTP.GET(url, headers: ["AccessToken":accessToken], requestSerializer:JSONParameterSerializer())
+            let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
             
             request.start { response in
                 if let err = response.error {
@@ -49,14 +53,20 @@ class GroupHandler {
         return promiseGroupsForUser.future
     }
     
-    func createGroup(group:Group) -> Future<Group,NSError>{
+    func createGroup(user:ActiveUser,group:Group) -> Future<Group,NSError>{
         promiseCreateGroup = Promise<Group, NSError>()
+        
+        guard let token = user.accessToken else {
+            // Value requirements not met, do something
+            //Redirect to login
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
         
         let url:String = "https://www.logisk.org/api/spreadsheets"
         let payload:[String:AnyObject] = ["description":group.description, "creator":group.creator.toJSONParseableDictionary()]
 
         do {
-            let request = try HTTP.POST(url, parameters: payload, headers: ["AccessToken":accessToken], requestSerializer: JSONParameterSerializer())
+            let request = try HTTP.POST(url, parameters: payload, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
             
             print(request.description)
             
@@ -81,14 +91,19 @@ class GroupHandler {
         return promiseCreateGroup.future
     }
     
-    func editGroup(group:Group) -> Future<Group,NSError>{
+    func editGroup(user:ActiveUser,group:Group) -> Future<Group,NSError>{
         promiseEditGroup = Promise<Group, NSError>()
+        guard let token = user.accessToken else {
+            // Value requirements not met, do something
+            //Redirect to login
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
         
         let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
         let payload:[String:AnyObject] = group.toJSONparsableDicitonary()
         
         do {
-            let request = try HTTP.PUT(url, parameters: payload, headers: ["AccessToken":accessToken], requestSerializer: JSONParameterSerializer())
+            let request = try HTTP.PUT(url, parameters: payload, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
             
             request.start { response in
                 if let err = response.error {
