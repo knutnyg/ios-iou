@@ -12,7 +12,7 @@ import SwiftyJSON
 import SwiftHTTP
 import JSONJoy
 
-class ExpensesListFetcher {
+class ExpensesHandler {
 
     var promise:Promise<[Expense],NSError>!
     var updatePromise:Promise<Expense,NSError>!
