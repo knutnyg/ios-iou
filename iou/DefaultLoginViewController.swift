@@ -20,7 +20,7 @@ class DefaultLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         view.backgroundColor = UIColor.whiteColor()
         
         setupNavigationBar()
@@ -49,21 +49,6 @@ class DefaultLoginViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[passwordTextField]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[signInButton]-20-[forgotPasswordButton]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: signInButton, attribute: .Width, relatedBy: .Equal, toItem: forgotPasswordButton, attribute: .Width, multiplier: 1, constant: 0))
-        
-        
-        
-        
-        //        if (FBSDKAccessToken.currentAccessToken() == nil)
-        //        {
-        //            print("Not logged in..")
-        //        }
-        //        else
-        //        {
-        //            print("Logged in..")
-        //        }
-        
-        
-        
     }
     
     func signInButtonPressed(sender:UIButton){
@@ -76,9 +61,15 @@ class DefaultLoginViewController: UIViewController {
         
         LogInHandler().logInWithDefault(un, password: pw)
             .onSuccess{ token in
-                print("seguing")
-                let vc = GroupListTableViewController(activeUser: ActiveUser(accessToken: token))
+                
+                //Store key to disk:
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setValue(token, forKey: "DefaultAccessToken")
+                defaults.synchronize()
+                
+                let vc = MainViewController(activeUser: ActiveUser(accessToken: token))
                 vc.delegate = self
+                
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .onFailure{ error in

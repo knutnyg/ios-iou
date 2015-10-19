@@ -35,11 +35,11 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
         view.addSubview(activity)
         activity.bringSubviewToFront(view)
         
-//        GroupHandler().getGroupsForUser().onSuccess { groups in
-//            self.groups = groups
-//            self.tableView.reloadData()
-//            self.activity.stopAnimating()
-//            }
+        GroupHandler().getGroupsForUser(activeUser).onSuccess { groups in
+            self.groups = groups
+            self.tableView.reloadData()
+            self.activity.stopAnimating()
+            }
         self.activity.startAnimating()
         
     }

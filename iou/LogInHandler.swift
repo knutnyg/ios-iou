@@ -48,32 +48,9 @@ class LogInHandler {
         return logInPromise.future
     }
     
-//    func loginWithFacebook(token:FBSDKAccessToken){
-//        FBlogInPromise = Promise<String,NSError>()
-//        
-//        let url:String = "https://www.logisk.org/api/login"
-//
-//        do {
-//            let request = try HTTP.POST(url, requestSerializer:JSONParameterSerializer())
-//            
-//            request.start { response in
-//                if let err = response.error {
-//                    print("LoginHandler: Response contains error: \(err)")
-//                    self.FBlogInPromise.failure(err)
-//                    return
-//                }
-//                print("Debug: login got response")
-//                print(response.description)
-//                
-//                let accessToken = AccessToken(JSONDecoder(response.data))
-//                
-//                self.FBlogInPromise.success(accessToken.token)
-//            }
-//        } catch {
-//            print("LoginHandler: got error in logInWithDefault")
-//            self.logInPromise.failure(NSError(domain: "Error", code: 503, userInfo: nil))
-//        }
-//        
-//        return FBlogInPromise.future
-//    }
+    func logOutDefaultLogin(){
+        //Delete key from storage
+        
+        //segue to loginscreen
+    }
 }

@@ -22,6 +22,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         view.backgroundColor = UIColor.whiteColor()
         
+        //Check if logged in:
+        if let accessToken = NSUserDefaults.standardUserDefaults().stringForKey("DefaultAccessToken"){
+            if !accessToken.isEmpty {
+                //Skip login
+                let vc = MainViewController(activeUser: ActiveUser(accessToken: accessToken))
+                vc.delegate = self
+                
+                self.navigationController?.pushViewController(vc, animated: false)
+                
+            }
+        }
+
+        
+        
         setupNavigationBar()
         facebookLoginButton = createFacebookButton()
         defaultLoginButton = createButton("Log in without facebook")
@@ -59,9 +73,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if error == nil
         {
             print("Login complete.")
+            print(FBSDKAccessToken.currentAccessToken().tokenString)
             
-            
-            let vc = ParentViewController(activeUser: ActiveUser(accessToken: FBSDKAccessToken.currentAccessToken().tokenString))
+            let vc = MainViewController(activeUser: ActiveUser(accessToken: FBSDKAccessToken.currentAccessToken().tokenString))
             vc.delegate = self
             
             navigationController?.pushViewController(vc, animated: true)

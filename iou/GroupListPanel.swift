@@ -14,13 +14,14 @@ class GroupListPanel : UIViewController {
     var headerView:HeaderView!
     var groupPanel:GroupListTableViewController!
     var views:[String : AnyObject]!
+    var activeUser:ActiveUser!
     
     override func viewDidLoad(){
         headerView = HeaderView()
         headerView.view.translatesAutoresizingMaskIntoConstraints = false
         headerView.view.backgroundColor = UIColor.orangeColor()
         
-        groupPanel = GroupListTableViewController(activeUser: ActiveUser())
+        groupPanel = GroupListTableViewController(activeUser: activeUser)
         groupPanel.view.translatesAutoresizingMaskIntoConstraints = false
         groupPanel.view.backgroundColor = UIColor.purpleColor()
         
@@ -37,4 +38,21 @@ class GroupListPanel : UIViewController {
         
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(30)]-[group]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
+    
+    /* ----   Initializers   ----  */
+    
+    init(activeUser:ActiveUser) {
+        super.init(nibName: nil, bundle: nil)
+        self.activeUser = activeUser
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        // Here you can init your properties
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
 }
