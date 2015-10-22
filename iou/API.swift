@@ -23,6 +23,14 @@ class API {
         }
         return UserHandler().getUser(token)
     }
+
+    static func searchUsers(query:String) -> Future<[User],NSError>{
+        guard let token = accessToken else {
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
+        return UserHandler().searchUser(token, query: query)
+    }
+    
     
     static func getGroupsForUser() -> Future<[Group],NSError> {
         guard let token = accessToken else {

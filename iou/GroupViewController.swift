@@ -11,6 +11,7 @@ class GroupViewController : UIViewController {
     var delegate:UIViewController?
     var group:Group!
     var addExpenseButton:UIButton!
+    var addMemberButton:UIButton!
     
     override func viewDidLoad(){
         
@@ -23,8 +24,11 @@ class GroupViewController : UIViewController {
         summaryView = SummaryTableViewController(group: group)
         summaryView.view.translatesAutoresizingMaskIntoConstraints = false
                 
-        addExpenseButton = createNewButton()
-        addExpenseButton.addTarget(self, action: Selector("newButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        addExpenseButton = createButton("+ exp")
+        addExpenseButton.addTarget(self, action: Selector("newExpensePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        addMemberButton = createButton("+ member")
+        addMemberButton.addTarget(self, action: Selector("newMemberPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         tableHeader = TableViewHeader()
         tableHeader.view.translatesAutoresizingMaskIntoConstraints = false
@@ -41,19 +45,23 @@ class GroupViewController : UIViewController {
         view.addSubview(summaryView.view)
         view.addSubview(tableHeader.view)
         view.addSubview(addExpenseButton)
+        view.addSubview(addMemberButton)
         view.addSubview(expensesTableView.view)
         
-        let views:[String : AnyObject] = ["summaryHeader":summaryHeaderView.view,"summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton]
+        let views:[String : AnyObject] = ["summaryHeader":summaryHeaderView.view,"summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton, "addMember":addMemberButton]
         
         var summaryHeight = group.members.count * 30
         if summaryHeight > 180 {
             summaryHeight = 180
         }
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-63-[summaryHeader(30)]-0-[summary(\(summaryHeight))]-0-[addButton(50)]-[tableHeader(30)]-[expenses]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-63-[summaryHeader(30)]-0-[summary(\(summaryHeight))]-0-[addButton]-[tableHeader(30)]-[expenses]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        
+        view.addConstraint(NSLayoutConstraint(item: addExpenseButton, attribute: .CenterY, relatedBy: .Equal, toItem: addMemberButton, attribute: .CenterY, multiplier: 1, constant: 0))
+        
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[summaryHeader]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[summary]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraint(NSLayoutConstraint(item: addExpenseButton, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[addButton(100)]-[addMember(100)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[tableHeader]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[expenses]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
@@ -65,14 +73,6 @@ class GroupViewController : UIViewController {
             self.expensesTableView.tableView.reloadData()
         }
         //force load table
-    }
-    
-    func createNewButton() -> UIButton{
-        let button = UIButton(type: UIButtonType.System)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("+ new", forState: .Normal)
-        button.titleLabel!.font = UIFont(name:"Helvetica", size:30)
-        return button
     }
     
     func setupNavigationBar(){
@@ -96,9 +96,16 @@ class GroupViewController : UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    func newButtonPressed(sender:UIButton) {
+    func newExpensePressed(sender:UIButton) {
         print("create new expense")
         let vc = EditExpense(group: group)
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func newMemberPressed(sender:UIButton) {
+        print("create new member")
+        let vc = EditGroup(group: group)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
