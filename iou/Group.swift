@@ -17,8 +17,9 @@ class Group : JSONJoy{
     var description:String!
     var lastUpdated:NSDate!
     var creator:User!
+    var expenses:[Expense] = []
     
-    init(members:[User], id:Int, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:User){
+    init(members:[User], id:Int, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:User, expenses:[Expense]){
         self.members = members
         self.id = id
         self.archived = archived
@@ -26,6 +27,7 @@ class Group : JSONJoy{
         self.description = description
         self.lastUpdated = lastUpdated
         self.creator = creator
+        self.expenses = expenses
     }
     
     required init(_ decoder: JSONDecoder) {
@@ -45,6 +47,19 @@ class Group : JSONJoy{
         description = decoder["description"].string
         lastUpdated = dateFromUTCString(decoder["updated_at"].string!)
         creator = User(decoder["creator"])
+        
+
+        if let e = decoder["receipts"].array {
+            expenses = []
+            for exp in e {
+                expenses.append(Expense(exp))
+            }
+            
+        }
+        
+        for expense in expenses {
+            populateCreatorIfNotSet(expense, members: members)
+        }
     }
     
     func toJSONparsableDicitonary() -> [String:AnyObject]{
@@ -58,5 +73,24 @@ class Group : JSONJoy{
             "creator":creator.toJSONParseableDictionary()
         ]
     }
+    
+    func populateCreatorIfNotSet(expense:Expense, members:[User]){
+        if expense.creator.name == nil{
+            if let user = findUserById(expense.creator.id, members: members) {
+                print("Manual setting creator!")
+                expense.creator = user
+            }
+        }
+    }
+    
+    func findUserById(id:Int, members:[User]) -> User?{
+        for user in members {
+            if user.id == id {
+                return user
+            }
+        }
+        return nil
+    }
+
     
 }

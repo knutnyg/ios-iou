@@ -14,14 +14,14 @@ class GroupListFetcherTests : XCTestCase {
     var users:[User]!
     var user:User!
     var group:Group!
-    var activeUser:ActiveUser!
+    var token:String!
 
     override func setUp() {
         super.setUp()
         user = User(name: "Knut Nygaard", shortName: "Knut", id: 3, photoUrl: "https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50", email:"knutnyg@gmail.com")
         users = [user]
         group = Group(members: users, id: 44, archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user)
-        activeUser = ActiveUser(accessToken: "CAAEZAy4GLsL4BADhNHtLSNUL84XUZBdol067sJSLRNUMShllfaWWb9pxI6JxqN1pSiBcECOxRE6xABRLMW1oepcSLBCUxSZBRg7knvJKZCRj06zXIUYJGsZB3uH4uZC4Ias6ZAuYtZBbiZBzUCObb421oJm7SUxhtqEN4DXrt0ZCe0KD8sHt64yZCbhFFD6PY4O2PdMLvwlCWjoiSIF0lpGmhq6XclKZAw7J0UWyF4QmG6vZB1QZDZD=")
+        token = "eyJpZCI6MywiZW1haWwiOiJrbnV0bnlnQGdtYWlsLmNvbSIsIm5hbWUiOiJLbnV0IE55Z2FhcmQiLCJzaG9ydG5hbWUiOiJLbnV0IiwicGhvdG91cmwiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWYtaXBlRmVUY09vL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUV3L0NfcW9wRGxKb200L3Bob3RvLmpwZz9zej01MCIsInNlY3JldCI6IjJhN2U2ZGUzOGFiMDBiYmVmNTNhYzQxOGY3MmFiNGVjNDM1MzVkZmI0NDYyZTZiNjRkOWI0MWI4YWI4OGFmMGIiLCJjcmVhdGVkX2F0IjoiMjAxNS0wNC0wMlQwNTozMTowMy4zNTc0MjMxNFoifQ=="
     }
     
     func testFetchGroups(){
@@ -29,7 +29,7 @@ class GroupListFetcherTests : XCTestCase {
         
         let expectation = expectationWithDescription("promise")
     
-        groupHandler.getGroupsForUser(activeUser)
+        groupHandler.getGroupsForUser(token)
             .onSuccess { groups in
                 XCTAssertTrue(groups.count > 0)
                 expectation.fulfill()
@@ -51,7 +51,7 @@ class GroupListFetcherTests : XCTestCase {
         
         let inputGroup:Group = group
         
-        groupHandler.createGroup(activeUser, group: inputGroup)
+        groupHandler.createGroup(token, group: inputGroup)
             .onSuccess { outputGroup in
                 XCTAssertTrue(outputGroup.id != nil)
                 XCTAssertTrue(outputGroup.description == inputGroup.description)
@@ -74,7 +74,7 @@ class GroupListFetcherTests : XCTestCase {
         let newUser = User(name: "Eivind Siqveland Larsen", shortName: "Eivindss", id: 1, photoUrl: "http://graph.facebook.com/10152424427376357/picture", email: "eivinlar@stud.ntnu.no")
         group.members.append(newUser)
         
-        groupHandler.editGroup(activeUser, group:group)
+        groupHandler.putGroup(token, group:group)
             .onSuccess { return_group in
                 XCTAssertTrue(group.members.map{member in return member.id}.contains(newUser.id))
                 expectation.fulfill()
@@ -91,7 +91,7 @@ class GroupListFetcherTests : XCTestCase {
         
         let expectation = expectationWithDescription("promise")
         
-        groupHandler.getGroupsForUser(ActiveUser())
+        groupHandler.getGroupsForUser("Wrong Token")
             .onSuccess { groups in
                 XCTAssert(false)
                 expectation.fulfill()

@@ -9,61 +9,66 @@
 import Foundation
 import UIKit
 
-class GroupListTableViewController : UITableViewController, GroupViewDelegate {
+class GroupListTableViewController : UITableViewController {
     
     var groups:[Group] = []
     var maxGroupItems = 0
     var activity:UIActivityIndicatorView!
     var delegate:UIViewController!
-    var activeUser:ActiveUser!
-    
-    
-    init(activeUser:ActiveUser){
-        super.init(nibName: nil, bundle: nil)
-        self.activeUser = activeUser
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
-        view.backgroundColor = UIColor.blueColor()
-        self.tableView.registerClass(GroupCell.self, forCellReuseIdentifier: "groupCell")
         
+        view.backgroundColor = UIColor.whiteColor()
+        view.translatesAutoresizingMaskIntoConstraints = false
         activity = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 75, height: 75))
         view.addSubview(activity)
         activity.bringSubviewToFront(view)
         
-        GroupHandler().getGroupsForUser(activeUser).onSuccess { groups in
+        API.getGroupsForUser().onSuccess { groups in
             self.groups = groups
             self.tableView.reloadData()
             self.activity.stopAnimating()
-            }
+        }
         self.activity.startAnimating()
         
     }
     
-    func didFinishGroup(controller: GroupListPanel) {
-        controller.navigationController?.popViewControllerAnimated(true)
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Groups:"
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            //
+            //Archive
+            print("archive")
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellIdentifier:String = "groupCell"
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "groupCell")
+        cell.textLabel?.text = self.groups[indexPath.item].description
+        cell.detailTextLabel?.text = "Last entry: 10h"
         
-        let cell:GroupCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroupCell
-        cell.group = self.groups[indexPath.item]
-        cell.groupName.text = groups[indexPath.item].description
-        cell.memberCount.text = String(groups[indexPath.item].members.count)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell:GroupCell = tableView.cellForRowAtIndexPath(indexPath) as! GroupCell
-        let vc = GroupViewController(group: cell.group)
-        vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        API.getAllGroupData(groups[indexPath.item]).onSuccess{group in
+            let vc = GroupViewController(group: group)
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
@@ -76,7 +81,7 @@ class GroupListTableViewController : UITableViewController, GroupViewDelegate {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 30
+        return 50
     }
     
     override func viewDidLayoutSubviews() {

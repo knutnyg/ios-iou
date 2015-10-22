@@ -22,7 +22,7 @@ class LogInHandler {
     func logInWithDefault(username:String, password:String) -> Future<String,NSError> {
         logInPromise = Promise<String,NSError>()
         
-        let url:String = "https://www.logisk.org/api/login"
+        let url = "https://www.logisk.org/api/login"
         let payload = ["username":username, "password":password]
         do {
             let request = try HTTP.POST(url, parameters: payload, requestSerializer:JSONParameterSerializer())
@@ -37,7 +37,6 @@ class LogInHandler {
                 print(response.description)
                 
                 let accessToken = AccessToken(JSONDecoder(response.data))
-                
                 self.logInPromise.success(accessToken.token)
             }
         } catch {

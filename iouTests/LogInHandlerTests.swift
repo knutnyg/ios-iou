@@ -48,7 +48,7 @@ class LogInHandlerTests : XCTestCase {
         LogInHandler().logInWithDefault(username, password: password)
             .onSuccess{ token in
                 
-                GroupHandler().getGroupsForUser(ActiveUser(accessToken: token)).onSuccess{groups in
+                API.getGroupsForUser().onSuccess{groups in
                         XCTAssertTrue(groups.count > 0)
                         expectation.fulfill()
                     }.onFailure{ error in

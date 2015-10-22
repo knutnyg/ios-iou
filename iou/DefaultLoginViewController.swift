@@ -59,15 +59,17 @@ class DefaultLoginViewController: UIViewController {
             return
         }
         
-        LogInHandler().logInWithDefault(un, password: pw)
+        API.defaultLogIn(un, password: pw)
             .onSuccess{ token in
+                
+                API.accessToken = token
                 
                 //Store key to disk:
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(token, forKey: "DefaultAccessToken")
                 defaults.synchronize()
                 
-                let vc = MainViewController(activeUser: ActiveUser(accessToken: token))
+                let vc = MainViewController()
                 vc.delegate = self
                 
                 self.navigationController?.pushViewController(vc, animated: true)

@@ -49,7 +49,7 @@ class ExpenseCell : UITableViewCell {
         
         let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM"
-        if(self.expense.creator.shortName.isEmpty) {
+        if(self.expense.creator.shortName == nil) {
             payee.text = self.expense.creator.name
         } else {
             payee.text = self.expense.creator.shortName

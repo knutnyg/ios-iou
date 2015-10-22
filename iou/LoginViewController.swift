@@ -26,7 +26,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if let accessToken = NSUserDefaults.standardUserDefaults().stringForKey("DefaultAccessToken"){
             if !accessToken.isEmpty {
                 //Skip login
-                let vc = MainViewController(activeUser: ActiveUser(accessToken: accessToken))
+                API.accessToken = accessToken
+                let vc = MainViewController()
                 vc.delegate = self
                 
                 self.navigationController?.pushViewController(vc, animated: false)
@@ -75,7 +76,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("Login complete.")
             print(FBSDKAccessToken.currentAccessToken().tokenString)
             
-            let vc = MainViewController(activeUser: ActiveUser(accessToken: FBSDKAccessToken.currentAccessToken().tokenString))
+            let vc = MainViewController()
             vc.delegate = self
             
             navigationController?.pushViewController(vc, animated: true)

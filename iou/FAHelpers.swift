@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 func createfontAwesomeButton(unicode:String) -> UIButton{
     let font = UIFont(name: "FontAwesome", size: 22)!

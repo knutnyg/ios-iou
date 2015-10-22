@@ -22,15 +22,23 @@ class Expense :JSONJoy {
     var creator:User!
     
     
-    init(participants:[User], amount:Double, date:NSDate, groupId:Int, id:Int, created:NSDate, updated:NSDate?, comment:String, creator:User){
+    init(participants:[User], amount:Double, date:NSDate, groupId:Int, created:NSDate, updated:NSDate?, comment:String, creator:User){
         self.participants = participants
         self.amount = amount
         self.date = date
         self.groupId = groupId
-        self.id = id
         self.created = created
         self.date = date
         self.updated = updated
+        self.comment = comment
+        self.creator = creator
+    }
+    
+    init(participants:[User], amount:Double, date:NSDate, groupId:Int, comment:String, creator:User){
+        self.participants = participants
+        self.amount = amount
+        self.groupId = groupId
+        self.date = date
         self.comment = comment
         self.creator = creator
     }
@@ -67,6 +75,18 @@ class Expense :JSONJoy {
             "created_at":created.utcFormat(),
             "spreadsheet_id":groupId,
             "updated_at":NSDate().utcFormat()
+        ]
+    }
+    
+    func toJSONCreate() -> NSDictionary{
+        
+        return [
+            "participants":participants.map{member in member.toJSONParseableDictionary()},
+            "comment":comment,
+            "date":date.utcFormat(),
+            "creator":creator.toJSONParseableDictionary(),
+            "amount":amount,
+            "spreadsheet_id":groupId,
         ]
     }
 }

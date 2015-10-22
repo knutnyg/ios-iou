@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EditReceiptViewController : UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
+class ReceiptViewController : UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
 
     var group:Group!
     var receipt:Expense!

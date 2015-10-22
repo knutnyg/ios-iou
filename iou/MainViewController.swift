@@ -12,10 +12,9 @@ import UIKit
 class MainViewController : UIViewController {
     
     var profileView:ProfileViewController!
-    var groupPanelView:GroupListPanel!
+    var groupListTableViewController:GroupListTableViewController!
     var delegate:UIViewController!
     var label:UILabel!
-    var activeUser:ActiveUser!
     var settingsButton:UIButton!
     var settingsButtonItem:UIBarButtonItem!
     
@@ -26,45 +25,24 @@ class MainViewController : UIViewController {
         profileView = ProfileViewController()
         profileView.view.translatesAutoresizingMaskIntoConstraints = false
         
-        groupPanelView = GroupListPanel(activeUser: activeUser)
-        groupPanelView.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "tonaowda"
-        label.backgroundColor = UIColor.blueColor()
+        groupListTableViewController = GroupListTableViewController()
         
         self.addChildViewController(profileView)
-        self.addChildViewController(groupPanelView)
+        self.addChildViewController(groupListTableViewController)
         
         view.addSubview(profileView.view)
-        view.addSubview(groupPanelView.view)
-        view.addSubview(label)
+        view.addSubview(groupListTableViewController.view)
         
-        let views:[String : AnyObject] = ["profile":profileView.view,"groupPanel":groupPanelView.view, "label":label]
+        let views:[String : AnyObject] = ["profile":profileView.view,"group":groupListTableViewController.view]
         
-        let profileHeight = 200
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-63-[profile(200)]-0-[group]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[profile]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[group]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        var visualFormat = String(format: "V:|-63-[profile(%d)]-0-[groupPanel]-0-[label(30)]-|",
-            profileHeight
-        )
-        
-        let verticalLayout = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        
-        visualFormat = "H:|-0-[profile]-0-|"
-        let profileWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        
-        visualFormat = "H:|-0-[groupPanel]-0-|"
-        let groupPanelWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        
-        visualFormat = "H:|-0-[label]-0-|"
-        let buttonWidth = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        
-        view.addConstraints(verticalLayout)
-        view.addConstraints(profileWidth)
-        view.addConstraints(groupPanelWidth)
-        view.addConstraints(buttonWidth)
-
+        API.getUser()
+            .onSuccess{ user in
+                    API.currentUser = user
+            }
     }
     
     func setupNavigationBar(){
@@ -72,7 +50,7 @@ class MainViewController : UIViewController {
         
         let font = UIFont(name: "Verdana", size:22)!
         let attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
-        navigationItem.title = "IOU"
+        navigationItem.title = "Groups"
         navigationController?.navigationBar.titleTextAttributes = attributes
         
         navigationItem.setHidesBackButton(true, animated: false)
@@ -91,21 +69,5 @@ class MainViewController : UIViewController {
         let vc = SettingsViewController()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    /* ----   Initializers   ----  */
-    
-    init(activeUser:ActiveUser) {
-        super.init(nibName: nil, bundle: nil)
-        self.activeUser = activeUser
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // Here you can init your properties
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }

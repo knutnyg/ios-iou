@@ -11,31 +11,21 @@ import UIKit
 
 class ExpensesTableViewController:UITableViewController {
     
-    var expenses:[Expense]!
     var activity:UIActivityIndicatorView!
     var group:Group!
-    var delegate:GroupListTableViewController!
+    var delegate:UIViewController!
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.greenColor()
         self.activity = UIActivityIndicatorView()
-        self.expenses = []
         
         self.tableView.registerClass(ExpenseCell.self, forCellReuseIdentifier: "expenseCell")
-        
-//        ExpensesHandler().getExpensesForGroup(group).onSuccess{expenseList in
-//            self.expenses = expenseList
-//            self.tableView.reloadData()
-//            self.activity.stopAnimating()
-//        }
-        self.activity.startAnimating()
-        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "expenseCell"
         let cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpenseCell
-        cell.expense = self.expenses[indexPath.item]
+        cell.expense = group.expenses[indexPath.item]
         cell.updateLabels()
 
         return cell
@@ -43,13 +33,13 @@ class ExpensesTableViewController:UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell:ExpenseCell = tableView.cellForRowAtIndexPath(indexPath) as! ExpenseCell
-        let vc = EditReceiptViewController(group: group, receipt: cell.expense)
+        let vc = ReceiptViewController(group: group, receipt: cell.expense)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.expenses.count
+        return group.expenses.count
     }
     
     override func viewDidLayoutSubviews() {

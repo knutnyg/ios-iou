@@ -26,7 +26,21 @@ class User :JSONJoy{
     }
     
     func toJSONParseableDictionary() -> [String:AnyObject]{
-        return ["name":name, "shortname":shortName, "id":id, "photourl":photoURL, "email:":email]
+        var returnDict:[String:AnyObject] = ["name":name,"id":id]
+        
+        if let sn = shortName{
+            returnDict["shortname"] = sn
+        }
+        
+        if let purl = photoURL {
+            returnDict["photourl"] = purl
+        }
+        
+        if let e = email {
+            returnDict["email"] = e
+        }
+        
+        return returnDict
     }
     
     required init(_ decoder: JSONDecoder) {

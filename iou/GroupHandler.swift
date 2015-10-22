@@ -18,16 +18,11 @@ class GroupHandler {
     var promiseGroupsForUser:Promise<[Group],NSError>!
     var promiseCreateGroup:Promise<Group,NSError>!
     var promiseEditGroup:Promise<Group,NSError>!
+    var promiseGetGroup:Promise<Group,NSError>!
     
-    func getGroupsForUser(user:ActiveUser) -> Future<[Group],NSError> {
+    func getGroupsForUser(token:String) -> Future<[Group],NSError> {
         
         promiseGroupsForUser = Promise<[Group], NSError>()
-
-        guard let token = user.accessToken else {
-            // Value requirements not met, do something
-            //TODO: Redirect to login / Cast exception
-            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
-        }
         
         let url:String = "https://www.logisk.org/api/spreadsheets"
         do {
@@ -40,6 +35,7 @@ class GroupHandler {
                     return
                 }
                 print("Debug: GroupHandler got response")
+                print(response.description)
                 let groupList = GroupList(JSONDecoder(response.data))
                 
                 self.promiseGroupsForUser.success(groupList.groups)
@@ -53,14 +49,8 @@ class GroupHandler {
         return promiseGroupsForUser.future
     }
     
-    func createGroup(user:ActiveUser,group:Group) -> Future<Group,NSError>{
+    func createGroup(token:String,group:Group) -> Future<Group,NSError>{
         promiseCreateGroup = Promise<Group, NSError>()
-        
-        guard let token = user.accessToken else {
-            // Value requirements not met, do something
-            //Redirect to login
-            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
-        }
         
         let url:String = "https://www.logisk.org/api/spreadsheets"
         let payload:[String:AnyObject] = ["description":group.description, "creator":group.creator.toJSONParseableDictionary()]
@@ -91,13 +81,8 @@ class GroupHandler {
         return promiseCreateGroup.future
     }
     
-    func editGroup(user:ActiveUser,group:Group) -> Future<Group,NSError>{
+    func putGroup(token:String,group:Group) -> Future<Group,NSError>{
         promiseEditGroup = Promise<Group, NSError>()
-        guard let token = user.accessToken else {
-            // Value requirements not met, do something
-            //Redirect to login
-            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
-        }
         
         let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
         let payload:[String:AnyObject] = group.toJSONparsableDicitonary()
@@ -128,12 +113,35 @@ class GroupHandler {
         return promiseEditGroup.future
     }
     
-    func archiveGroup(group:Group){
+    func getGroup(token:String, group:Group) -> Future<Group,NSError>{
+        promiseGetGroup = Promise<Group, NSError>()
         
-    }
-    
-    func addMember(user:User){
+        let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
         
+        do {
+            let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
+            
+            request.start { response in
+                if let err = response.error {
+                    print("GroupHandler: Response contains error: \(err)")
+                    self.promiseGetGroup.failure(err)
+                    return
+                } else if response.statusCode != 200 {
+                    self.promiseGetGroup.failure(NSError(domain: "Wrong HTTPCODE", code: response.statusCode!, userInfo: nil))
+                    return
+                }
+                print("Debug: GroupHandler got response")
+                print(response.description)
+                let group = Group(JSONDecoder(response.data))
+                
+                self.promiseGetGroup.success(group)
+            }
+            
+        } catch {
+            print("GroupHandler: got error in getGroupForUser")
+            self.promiseEditGroup.failure(NSError(domain: "SSL", code: 200, userInfo: nil))
+        }
+        return promiseGetGroup.future
     }
 }
 
