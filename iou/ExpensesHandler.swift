@@ -21,7 +21,7 @@ class ExpensesHandler {
         
         promise = Promise<[Expense], NSError>()
         
-        let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
+        let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)/receipts"
         do {
             let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
             
@@ -80,6 +80,38 @@ class ExpensesHandler {
         }
         return updatePromise.future
     }
+    
+    func newExpense(token:String, expense:Expense) -> Future<Expense,NSError>{
+        
+        updatePromise = Promise<Expense,NSError>()
+        
+        let urlString = "https://www.logisk.org/api/spreadsheets/\(expense.groupId)/receipts"
+        
+        let payload:[String:AnyObject] = expense.toJSONCreate() as! [String : AnyObject]
+        do {
+            let request = try HTTP.POST(urlString, parameters: payload, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
+            request.start { response in
+                if let err = response.error {
+                    print("ExpensesListFetcher-updateExpense: Response contains error: \(err)")
+                    self.updatePromise.failure(NSError(domain: "New expense failed", code: response.statusCode!, userInfo: nil))
+                    return
+                }
+                
+                if response.statusCode! != 201 {
+                    self.updatePromise.failure(NSError(domain: "New expense failed?", code: response.statusCode!, userInfo: nil))
+                    return
+                }
+                
+                print(response.description)
+                let expense = Expense(JSONDecoder(response.data))
+                self.updatePromise.success(expense)
+            }
+        } catch {
+            self.updatePromise.failure(NSError(domain: "Request Error", code: 500, userInfo: nil))
+        }
+        return updatePromise.future
+    }
+
 
     func populateCreatorIfNotSet(expense:Expense, members:[User]){
         if expense.creator.name == nil{
