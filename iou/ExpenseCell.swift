@@ -1,10 +1,3 @@
-//
-//  GroupCell.swift
-//  iou
-//
-//  Created by Knut Nygaard on 3/9/15.
-//  Copyright (c) 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -34,13 +27,20 @@ class ExpenseCell : UITableViewCell {
         contentView.addSubview(amount)
         contentView.addSubview(split)
         
-        let views:[String : AnyObject] = ["payee":payee, "date":date, "comment":comment, "amount":amount]
+        let views:[String : AnyObject] = ["payee":payee, "date":date, "comment":comment, "amount":amount, "split":split]
         
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(50)]-[date(40)]-[comment(100)]-[amount(50)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[payee]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[date]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[comment]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(50)]-[date(40)]-[comment(100)]-[amount(50)]",
+                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[comment]-[split]",
+                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[payee]-|",
+                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[date]-|",
+                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[comment]-|",
+                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount(15)]-0-[split(10)]|",
+                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 
     }
     
