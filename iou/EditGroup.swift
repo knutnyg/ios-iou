@@ -1,5 +1,6 @@
 
 import Foundation
+import UIKit
 
 class EditGroup : UIViewController{
     
@@ -17,7 +18,6 @@ class EditGroup : UIViewController{
         entryLabel = createLabel("Search:")
         entryTextField = createTextField("start typing name...")
         entryTextField.addTarget(self, action: Selector("entryEdited:"), forControlEvents: UIControlEvents.EditingChanged)
-
         
         memberTable = AddMemberTableViewController()
         memberTable.delegate = self

@@ -18,7 +18,7 @@ class GroupTests : XCTestCase {
     override func setUp() {
         user = User(name: "Knut Nygaard", shortName: "Knut", id: 3, photoUrl: "https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50", email:"knutnyg@gmail.com")
         users = [user]
-        group = Group(members: users, id: 26, archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user)
+        group = Group(members: users, id: 26, archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user, expenses: [])
     }
     
     func testToJSONparseableDictionaryTest(){

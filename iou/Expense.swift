@@ -33,6 +33,19 @@ class Expense :JSONJoy {
         self.comment = comment
         self.creator = creator
     }
+
+    init(participants:[User], amount:Double, date:NSDate, groupId:Int, created:NSDate, updated:NSDate?, comment:String, creator:User, id:Int){
+        self.participants = participants
+        self.amount = amount
+        self.date = date
+        self.groupId = groupId
+        self.created = created
+        self.date = date
+        self.updated = updated
+        self.comment = comment
+        self.creator = creator
+        self.id = id
+    }
     
     init(participants:[User], amount:Double, date:NSDate, groupId:Int, comment:String, creator:User){
         self.participants = participants

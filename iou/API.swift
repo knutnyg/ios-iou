@@ -1,10 +1,3 @@
-//
-//  API.swift
-//  iou
-//
-//  Created by Knut Nygaard on 20/10/15.
-//  Copyright © 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import BrightFutures
@@ -31,13 +24,11 @@ class API {
         return UserHandler().searchUser(token, query: query)
     }
     
-    
     static func getGroupsForUser() -> Future<[Group],NSError> {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
         return GroupHandler().getGroupsForUser(token)
-
     }
     
     static func createGroup(group:Group) -> Future<Group, NSError> {
@@ -62,12 +53,12 @@ class API {
         return GroupHandler().getGroup(token, group: group)
     }
     
-//    static func getExpensesFromGroup(group:Group) -> Future<[Expense],NSError>{
-//        guard let token = accessToken else {
-//            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
-//        }
-//        return ExpensesHandler().getExpensesForGroup(token, group: group)
-//    }
+    static func getExpensesFromGroup(group:Group) -> Future<[Expense],NSError>{
+        guard let token = accessToken else {
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
+        return ExpensesHandler().getExpensesForGroup(token, group: group)
+    }
     
     static func putExpense(expense:Expense) -> Future<Expense,NSError>{
         guard let token = accessToken else {
