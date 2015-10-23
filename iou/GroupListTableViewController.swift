@@ -63,12 +63,10 @@ class GroupListTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        API.getAllGroupData(groups[indexPath.item]).onSuccess{group in
-            let vc = GroupViewController(group: group)
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
+
+        let vc = GroupViewController(group: groups[indexPath.item])
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
