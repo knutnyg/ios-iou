@@ -29,7 +29,7 @@ class ExpenseCell : UITableViewCell {
         
         let views:[String : AnyObject] = ["payee":payee, "date":date, "comment":comment, "amount":amount, "split":split]
         
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(50)]-[date(40)]-[comment(100)]-[amount(50)]",
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(60)]-[date(60)]-[comment]-[amount(60)]-|",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[comment]-[split]",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
@@ -39,7 +39,7 @@ class ExpenseCell : UITableViewCell {
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[comment]-|",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount(15)]-0-[split(10)]|",
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount(15)]-0-[split(10)]",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 
     }

@@ -7,8 +7,6 @@ class ExpensesTableViewController:UITableViewController {
     
     var activity:UIActivityIndicatorView!
     var delegate:GroupViewController!
-
-    var expenses:[Expense] = []
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.greenColor()
@@ -20,7 +18,7 @@ class ExpensesTableViewController:UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "expenseCell"
         let cell:ExpenseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpenseCell
-        cell.expense = delegate.group.expenses[indexPath.item]
+        cell.expense = API.currentGroup!.expenses[indexPath.item]
         cell.updateLabels()
 
         return cell
@@ -28,13 +26,15 @@ class ExpensesTableViewController:UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell:ExpenseCell = tableView.cellForRowAtIndexPath(indexPath) as! ExpenseCell
-        let vc = ReceiptViewController(group: delegate.group, receipt: cell.expense)
+        API.currentExpense = API.currentGroup!.expenses[indexPath.item]
+
+        let vc = EditExpense()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return delegate.group.expenses.count
+        return API.currentGroup!.expenses.count
     }
     
     override func viewDidLayoutSubviews() {

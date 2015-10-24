@@ -4,7 +4,7 @@ import UIKit
 
 class EditExpense : UIViewController {
     
-    var delegate:UIViewController!
+    var delegate:ExpensesTableViewController!
     
     var paidByLabel:UILabel!
     var paidByTextField:UITextField!
@@ -19,11 +19,8 @@ class EditExpense : UIViewController {
     var saveButton:UIButton!
     var cancelButton:UIButton!
     
-    var membersSelectorTableViewController:MembersTableViewController!
-    var group:Group!
+    var addExpenseToGroupTableViewController: AddParticipantsToExpenseTableViewController!
     var selectedDate:NSDate!
-    
-    var selectedMembers:[User] = []
     
     override func viewDidLoad() {
         
@@ -57,9 +54,11 @@ class EditExpense : UIViewController {
         cancelButton = createButton("Cancel")
         cancelButton.addTarget(self, action: "cancelPressed:", forControlEvents: .TouchUpInside)
         
-        membersSelectorTableViewController = MembersTableViewController()
-        membersSelectorTableViewController.delegate = self
-        membersSelectorTableViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        addExpenseToGroupTableViewController = AddParticipantsToExpenseTableViewController()
+        addExpenseToGroupTableViewController.delegate = self
+        addExpenseToGroupTableViewController.view.translatesAutoresizingMaskIntoConstraints = false
+
+        populateFieldsIfExpenseSet()
         
         view.addSubview(paidByLabel)
         view.addSubview(paidByTextField)
@@ -72,14 +71,14 @@ class EditExpense : UIViewController {
         view.addSubview(saveButton)
         view.addSubview(cancelButton)
 
-        addChildViewController(membersSelectorTableViewController)
-        view.addSubview(membersSelectorTableViewController.view)
+        addChildViewController(addExpenseToGroupTableViewController)
+        view.addSubview(addExpenseToGroupTableViewController.view)
         
         //Constraints:
         
-        let views = ["paidLabel":paidByLabel, "paidTextField":paidByTextField, "commentLabel":commentLabel, "commentTextField":commentTextField, "dateLabel":dateLabel, "dateTextField":dateTextField, "amountLabel":amountLabel, "amountTextField":amountTextField, "saveButton":saveButton, "cancelButton":cancelButton, "table":membersSelectorTableViewController.view]
+        let views = ["paidLabel":paidByLabel, "paidTextField":paidByTextField, "commentLabel":commentLabel, "commentTextField":commentTextField, "dateLabel":dateLabel, "dateTextField":dateTextField, "amountLabel":amountLabel, "amountTextField":amountTextField, "saveButton":saveButton, "cancelButton":cancelButton, "table": addExpenseToGroupTableViewController.view]
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[paidLabel]-[paidTextField]-[commentLabel]-[commentTextField]-[dateLabel]-[dateTextField]-[amountLabel]-[amountTextField]-[saveButton]-[table]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-67-[paidLabel]-[paidTextField]-[commentLabel]-[commentTextField]-[dateLabel]-[dateTextField]-[amountLabel]-[amountTextField]-[saveButton]-[table]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[paidTextField]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[commentTextField]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[dateTextField]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
@@ -99,12 +98,21 @@ class EditExpense : UIViewController {
     
     func savePressed(sender:UIButton){
         let amount = Double(amountTextField.text!)
-        API.newExpense(Expense(participants: selectedMembers, amount: amount!, date: datePicker.date, groupId: group.id, comment: commentTextField.text!, creator: API.currentUser!))
+        API.newExpense(Expense(participants: addExpenseToGroupTableViewController.selectedMembers, amount: amount!, date: datePicker.date, groupId: API.currentGroup!.id, comment: commentTextField.text!, creator: API.currentUser!))
             .onSuccess{ expense in
                 self.navigationController?.popViewControllerAnimated(true)
             }
-            .onFailure{err in print("failure")}
+            .onFailure{err in print(err)}
 
+    }
+
+    func populateFieldsIfExpenseSet(){
+        if let exp = API.currentExpense {
+            paidByTextField.text = exp.creator.name
+            datePicker.date = exp.date
+            dateTextField.text = exp.date.shortPrintable()
+            amountTextField.text = exp.amount.description
+        }
     }
     
     func cancelPressed(sender:UIButton){
@@ -119,15 +127,7 @@ class EditExpense : UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    init(group:Group){
-        super.init(nibName: nil, bundle: nil)
-        self.group = group
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     
 }

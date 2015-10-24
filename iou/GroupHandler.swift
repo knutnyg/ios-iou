@@ -133,7 +133,7 @@ class GroupHandler {
                 print("Debug: GroupHandler got response")
                 print(response.description)
                 let group = Group(JSONDecoder(response.data))
-                
+                group.expenses = group.expenses.sort({$0.date.timeIntervalSinceNow > $1.date.timeIntervalSinceNow})
                 self.promiseGetGroup.success(group)
             }
             

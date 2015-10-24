@@ -9,7 +9,6 @@ class GroupViewController : UIViewController {
     var expensesTableView:ExpensesTableViewController!
     var tableHeader:TableViewHeader!
     var delegate:UIViewController?
-    var group:Group!
     var addExpenseButton:UIButton!
     var addMemberButton:UIButton!
     
@@ -52,7 +51,7 @@ class GroupViewController : UIViewController {
         
         let views:[String : AnyObject] = ["summaryHeader":summaryHeaderView.view,"summary":summaryView.view, "expenses":expensesTableView.view, "tableHeader":tableHeader.view, "addButton":addExpenseButton, "addMember":addMemberButton]
         
-        var summaryHeight = group.members.count * 30
+        var summaryHeight = API.currentGroup!.members.count * 30
         if summaryHeight > 180 {
             summaryHeight = 180
         }
@@ -70,19 +69,17 @@ class GroupViewController : UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         //reload expenses
-        API.getAllGroupData(group).onSuccess {
+        API.currentExpense = nil
+        API.getAllGroupData(API.currentGroup!).onSuccess {
             group in
-            self.group = group
-
-            self.group.expenses = self.group.expenses.sort({$0.date.timeIntervalSinceNow > $1.date.timeIntervalSinceNow})
-
+            API.currentGroup = group
             self.summaryView.tableView.reloadData()
             self.expensesTableView.tableView.reloadData()
         }
     }
     
     func setupNavigationBar(){
-        navigationItem.title = group.description
+        navigationItem.title = API.currentGroup!.description
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
@@ -90,33 +87,17 @@ class GroupViewController : UIViewController {
 
     func newExpensePressed(sender:UIButton) {
         print("create new expense")
-        let vc = EditExpense(group: group)
+        let vc = NewExpense()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 
     func newMemberPressed(sender:UIButton) {
         print("create new member")
-        let vc = EditGroup(group: group)
+        let vc = EditGroup()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
 
     }
-
-    //----- Required initializers -----//
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    init(group:Group){
-        self.group = group
-        super.init(nibName: nil, bundle: nil)
-    }
-
 }
 

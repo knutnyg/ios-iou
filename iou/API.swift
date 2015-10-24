@@ -5,6 +5,8 @@ import BrightFutures
 class API {
     static var accessToken:String?
     static var currentUser:User?
+    static var currentGroup:Group?
+    static var currentExpense:Expense?
     
     static func defaultLogIn(username:String, password:String) -> Future<String,NSError>{
         return LogInHandler().logInWithDefault(username, password: password)

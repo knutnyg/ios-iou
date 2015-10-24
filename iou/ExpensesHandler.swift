@@ -77,6 +77,10 @@ class ExpensesHandler {
     func newExpense(token:String, expense:Expense) -> Future<Expense,NSError>{
         
         updatePromise = Promise<Expense,NSError>()
+
+        if expense.participants.count == 0 {
+            return Future(error: NSError(domain: "Participants cannot be 0", code: 500, userInfo: nil))
+        }
         
         let urlString = "https://www.logisk.org/api/spreadsheets/\(expense.groupId)/receipts"
         

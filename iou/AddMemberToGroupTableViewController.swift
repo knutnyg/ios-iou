@@ -3,10 +3,10 @@ import Foundation
 import UIKit
 
 
-class AddMemberTableViewController : UITableViewController {
-    
+class AddMemberToGroupTableViewController : UITableViewController {
+
     var delegate:EditGroup!
-    
+
     override func viewDidLoad() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.whiteColor()
@@ -16,6 +16,7 @@ class AddMemberTableViewController : UITableViewController {
         
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
         cell.textLabel?.text = delegate.searchResult[indexPath.item].name
+
         return cell
         
     }
@@ -35,14 +36,14 @@ class AddMemberTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        delegate.group.members.append(delegate.searchResult[indexPath.item])
+        API.currentGroup!.members.append(delegate.searchResult[indexPath.item])
         
-        API.putGroup(delegate.group)
+        API.putGroup(API.currentGroup!)
             .onSuccess{group in
                 self.delegate.navigationController?.popViewControllerAnimated(true)
             }
             .onFailure{ err in
-                self.delegate.group.members.removeLast()
+                API.currentGroup!.members.removeLast()
             }
     }
 }
