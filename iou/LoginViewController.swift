@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func setupNavigationBar(){
-        navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x19B5FE)
+        navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x007ee5)
         
         let font = UIFont(name: "Verdana", size:22)!
         let attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
