@@ -32,7 +32,7 @@ class SummaryHeaderView : UIViewController {
         
         let views = ["member":memberLabel, "paid":paidLabel,"owed":owedLabel,"sum":sumLabel]
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[member]-[paid(60)]-[owed(60)]-[sum(60)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[member]-[paid(80)]-[owed(80)]-[sum(80)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[member(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[paid(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[owed(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))

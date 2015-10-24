@@ -31,7 +31,7 @@ class SummaryTableViewCell : UITableViewCell {
         
         let views = ["name":nameLabel, "paid":paidLabel, "owes":owesLabel, "sum":sumLabel]
         
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-[paid(60)]-[owes(60)]-[sum(60)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-[paid(80)]-[owes(80)]-[sum(80)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[name]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[paid]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[owes]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
@@ -43,9 +43,9 @@ class SummaryTableViewCell : UITableViewCell {
     
     func updateLabels(name:String, paid:Double, owes:Double){
         nameLabel.text = name
-        paidLabel.text = paid.description
-        owesLabel.text = owes.description
-        sumLabel.text = (paid - owes).description
+        paidLabel.text = String(format: "%.2f", paid)
+        owesLabel.text = String(format: "%.2f", owes)
+        sumLabel.text = String(format: "%.2f", (paid - owes))
     }
     
     

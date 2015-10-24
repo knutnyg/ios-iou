@@ -3,9 +3,10 @@ import Foundation
 import UIKit
 
 
-class MembersTableViewController : UITableViewController {
+class AddParticipantsToExpenseTableViewController: UITableViewController {
     
-    var delegate:EditExpense!
+    var delegate:UIViewController!
+    var selectedMembers:[User] = []
     
     override func viewDidLoad() {
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -15,14 +16,21 @@ class MembersTableViewController : UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
-        cell.textLabel?.text = delegate.group.members[indexPath.item].name
+        cell.textLabel?.text = API.currentGroup!.members[indexPath.item].name
+
+        if let exp = API.currentExpense {
+            if exp.participants.map({return $0.id}).contains(API.currentGroup!.members[indexPath.item].id){
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            }
+        }
+
         return cell
         
     }
     
     func findUserInList(user:User) -> Int?{
         var i = 0
-        for u in delegate.selectedMembers {
+        for u in selectedMembers {
             if u.id == user.id {
                 return i
             }
@@ -50,7 +58,7 @@ class MembersTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Find max size
-        return delegate.group.members.count
+        return API.currentGroup!.members.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -60,12 +68,12 @@ class MembersTableViewController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
-        if let index = findUserInList(delegate.group.members[indexPath.item]) {
-            delegate.selectedMembers.removeAtIndex(index)
+        if let index = findUserInList(API.currentGroup!.members[indexPath.item]) {
+            selectedMembers.removeAtIndex(index)
             cell?.accessoryType = UITableViewCellAccessoryType.None
             
         } else {
-            delegate.selectedMembers.append(delegate.group.members[indexPath.item])
+            selectedMembers.append(API.currentGroup!.members[indexPath.item])
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
     }

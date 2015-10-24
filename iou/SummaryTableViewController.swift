@@ -20,7 +20,7 @@ class SummaryTableViewController:UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:SummaryTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SummaryTableViewCell
-        let user = delegate.group.members[indexPath.item]
+        let user = API.currentGroup!.members[indexPath.item]
         if let sn = user.shortName {
             cell.updateLabels(sn, paid: getTotalPaid(user), owes: getTotalOwed(user))
         } else {
@@ -36,7 +36,7 @@ class SummaryTableViewController:UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Find max size
-        return delegate.group.members.count
+        return API.currentGroup!.members.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -44,11 +44,25 @@ class SummaryTableViewController:UITableViewController {
     }
     
     func getTotalPaid(user:User) -> Double {
-        return 0.0
+        var paid:Double = 0
+        for expense in API.currentGroup!.expenses {
+            if expense.creator.id == user.id {
+                paid += expense.amount
+            }
+        }
+
+        return paid
     }
     
     func getTotalOwed(user:User) -> Double {
-        return 0.0
+
+        var owed:Double = 0
+        for expense:Expense in API.currentGroup!.expenses {
+            if expense.participants.map({ return $0.id }).contains(user.id) {
+                owed += (expense.amount / Double(API.currentGroup!.members.count))
+            }
+        }
+        return owed
     }
     
     func getSum(user:User) -> Double {
