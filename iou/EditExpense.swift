@@ -48,10 +48,10 @@ class EditExpense : UIViewController {
         amountTextField = createTextField("$$")
         amountTextField.keyboardType = UIKeyboardType.NumberPad
         
-        saveButton = createButton("Send")
+        saveButton = createButton("Send", font: UIFont(name: "HelveticaNeue",size: 28)!)
         saveButton.addTarget(self, action: "savePressed:", forControlEvents: .TouchUpInside)
         
-        cancelButton = createButton("Cancel")
+        cancelButton = createButton("Cancel", font: UIFont(name: "HelveticaNeue",size: 28)!)
         cancelButton.addTarget(self, action: "cancelPressed:", forControlEvents: .TouchUpInside)
         
         addExpenseToGroupTableViewController = AddParticipantsToExpenseTableViewController()

@@ -40,7 +40,7 @@ class SummaryTableViewController:UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 30
+        return 50
     }
     
     func getTotalPaid(user:User) -> Double {
@@ -59,7 +59,7 @@ class SummaryTableViewController:UITableViewController {
         var owed:Double = 0
         for expense:Expense in API.currentGroup!.expenses {
             if expense.participants.map({ return $0.id }).contains(user.id) {
-                owed += (expense.amount / Double(API.currentGroup!.members.count))
+                owed += (expense.amount / Double(expense.participants.count))
             }
         }
         return owed

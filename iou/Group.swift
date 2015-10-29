@@ -63,6 +63,7 @@ class Group : JSONJoy{
     }
     
     func toJSONparsableDicitonary() -> [String:AnyObject]{
+
         return [
             "members":members.map{member in member.toJSONParseableDictionary()},
             "id":id,

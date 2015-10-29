@@ -15,11 +15,15 @@ class ExpenseCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        payee = createLabel()
-        date = createLabel()
-        comment = createLabel()
-        amount = createLabel()
-        split = createLabel()
+        payee = createLabel("",font:UIFont(name: "HelveticaNeue", size:17)!)
+        date = createLabel("",font:UIFont(name: "HelveticaNeue", size:17)!)
+        date.textAlignment = .Right
+        comment = createLabel("",font:UIFont(name: "HelveticaNeue", size:13)!)
+        comment.numberOfLines = 2
+        amount = createLabel("",font:UIFont(name: "HelveticaNeue", size:13)!)
+        amount.textAlignment = .Right
+        split = createLabel("",font:UIFont(name: "HelveticaNeue", size:13)!)
+        split.textAlignment = .Right
         
         contentView.addSubview(payee)
         contentView.addSubview(date)
@@ -28,20 +32,20 @@ class ExpenseCell : UITableViewCell {
         contentView.addSubview(split)
         
         let views:[String : AnyObject] = ["payee":payee, "date":date, "comment":comment, "amount":amount, "split":split]
-        
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(60)]-[date(60)]-[comment]-[amount(60)]-|",
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[payee(200)]",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[comment]-[split]",
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[comment(200)]",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[payee]-|",
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[date(150)]-|",
+        options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[amount(100)]-|",
+        options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[split(100)]-|",
+        options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-4-[payee(17)]-2-[comment]",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[date]-|",
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-4-[date(17)]-2-[amount]-2-[split]",
                 options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[comment]-|",
-                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[amount(15)]-0-[split(10)]",
-                options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-
     }
     
     func updateLabels(){
@@ -54,18 +58,12 @@ class ExpenseCell : UITableViewCell {
             payee.text = self.expense.creator.shortName
         }
 
-        date.text = self.expense.date.shortPrintable()
+        date.text = self.expense.date.mediumPrintable()
         comment.text = self.expense.comment
-        amount.text = String(format: "%.2f", self.expense.amount)
-        split.text = String(format: "%.2f", (self.expense.amount / Double(self.expense.participants.count)))
-    }
-    
-    func createLabel() -> UILabel{
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.font = UIFont(name: "Helvetica", size: 12)
-        return label
+
+        amount.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount)
+        split.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount / Double(expense.participants.count))
+
     }
     
     required init?(coder aDecoder: NSCoder) {

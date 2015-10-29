@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
         
         view.backgroundColor = UIColor.whiteColor()
         
-        logOutButton = createButton("Log Out")
+        logOutButton = createButton("Log Out", font: UIFont(name: "HelveticaNeue",size: 28)!)
         logOutButton.addTarget(self, action: "logOutPressed:", forControlEvents: .TouchUpInside)
         
         let views = ["logOutButton":logOutButton]

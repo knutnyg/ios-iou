@@ -109,6 +109,38 @@ class ExpensesHandler {
         return updatePromise.future
     }
 
+    func deleteExpense(token:String, expense:Expense) -> Future<Expense, NSError>{
+
+        let deletePromise = Promise<Expense,NSError>()
+
+        let urlString = "https://www.logisk.org/api/spreadsheets/\(expense.groupId)/receipts/\(expense.id)"
+
+        do {
+            let request = try HTTP.DELETE(urlString, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
+            request.start { response in
+
+                print(response.description)
+
+                if let err = response.error {
+                    print("ExpensesHandler-deleteExpense: Response contains error: \(err)")
+                    deletePromise.failure(NSError(domain: "Delete expense failed", code: response.statusCode!, userInfo: nil))
+                    return
+                }
+
+                if (response.statusCode! == 200 || response.statusCode! == 204)  {
+                    deletePromise.success(expense)
+                    return
+                }
+
+                deletePromise.failure(NSError(domain: "Delete expense failed", code: response.statusCode!, userInfo: nil))
+                return
+            }
+        } catch {
+            deletePromise.failure(NSError(domain: "Request Error", code: 500, userInfo: nil))
+        }
+        return deletePromise.future
+    }
+
 
     func populateCreatorIfNotSet(expense:Expense, members:[User]){
         if expense.creator.name == nil{

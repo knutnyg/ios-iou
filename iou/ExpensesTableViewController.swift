@@ -9,8 +9,15 @@ class ExpensesTableViewController:UITableViewController {
     var delegate:GroupViewController!
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.greenColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         self.activity = UIActivityIndicatorView()
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.purpleColor()
+        refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+
+        tableView.addSubview(refreshControl)
         
         self.tableView.registerClass(ExpenseCell.self, forCellReuseIdentifier: "expenseCell")
     }
@@ -23,10 +30,35 @@ class ExpensesTableViewController:UITableViewController {
 
         return cell
     }
-    
+
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            //
+            let expense = API.currentGroup!.expenses[indexPath.item]
+            API.deleteExpense(expense).onSuccess{expense in
+                self.delegate.refreshData()
+            }
+        }
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Expense list:"
+    }
+
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
+    }
+
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell:ExpenseCell = tableView.cellForRowAtIndexPath(indexPath) as! ExpenseCell
         API.currentExpense = API.currentGroup!.expenses[indexPath.item]
+
+        print("in did select")
 
         let vc = EditExpense()
         vc.delegate = self
@@ -45,5 +77,14 @@ class ExpensesTableViewController:UITableViewController {
         let x = view.bounds.width / 2
         let y = view.bounds.height / 2
         activity.center = CGPoint(x: x, y: y)
+    }
+
+    func refresh(refreshControl: UIRefreshControl){
+        API.getAllGroupData(API.currentGroup!).onSuccess{group in
+            API.currentGroup = group
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
+        }
+
     }
 }

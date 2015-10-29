@@ -49,11 +49,11 @@ class GroupHandler {
         return promiseGroupsForUser.future
     }
     
-    func createGroup(token:String,group:Group) -> Future<Group,NSError>{
+    func createGroup(token:String, name:String, creator:User) -> Future<Group,NSError>{
         promiseCreateGroup = Promise<Group, NSError>()
         
         let url:String = "https://www.logisk.org/api/spreadsheets"
-        let payload:[String:AnyObject] = ["description":group.description, "creator":group.creator.toJSONParseableDictionary()]
+        let payload:[String:AnyObject] = ["description":name, "creator":creator.toJSONParseableDictionary()]
 
         do {
             let request = try HTTP.POST(url, parameters: payload, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
@@ -85,11 +85,13 @@ class GroupHandler {
         promiseEditGroup = Promise<Group, NSError>()
         
         let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
-        let payload:[String:AnyObject] = group.toJSONparsableDicitonary()
-        
+        var payload:[String:AnyObject] = group.toJSONparsableDicitonary()
+
         do {
             let request = try HTTP.PUT(url, parameters: payload, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
-            
+
+            print(payload)
+
             request.start { response in
                 if let err = response.error {
                     print("GroupHandler: Response contains error: \(err)")
@@ -113,15 +115,16 @@ class GroupHandler {
         return promiseEditGroup.future
     }
     
-    func getGroup(token:String, group:Group) -> Future<Group,NSError>{
+    func getGroup(token:String, group:Group) -> Future<Group,NSError> {
         promiseGetGroup = Promise<Group, NSError>()
-        
-        let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
-        
+
+        let url: String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
+
         do {
-            let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
-            
-            request.start { response in
+            let request = try HTTP.GET(url, headers: ["AccessToken": token], requestSerializer: JSONParameterSerializer())
+
+            request.start {
+                response in
                 if let err = response.error {
                     print("GroupHandler: Response contains error: \(err)")
                     self.promiseGetGroup.failure(err)
@@ -133,10 +136,10 @@ class GroupHandler {
                 print("Debug: GroupHandler got response")
                 print(response.description)
                 let group = Group(JSONDecoder(response.data))
-                group.expenses = group.expenses.sort({$0.date.timeIntervalSinceNow > $1.date.timeIntervalSinceNow})
+                group.expenses = group.expenses.sort({ $0.date.timeIntervalSinceNow > $1.date.timeIntervalSinceNow })
                 self.promiseGetGroup.success(group)
             }
-            
+
         } catch {
             print("GroupHandler: got error in getGroupForUser")
             self.promiseEditGroup.failure(NSError(domain: "SSL", code: 200, userInfo: nil))

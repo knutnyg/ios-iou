@@ -7,6 +7,7 @@ class API {
     static var currentUser:User?
     static var currentGroup:Group?
     static var currentExpense:Expense?
+    static var currentLocale:NSLocale?
     
     static func defaultLogIn(username:String, password:String) -> Future<String,NSError>{
         return LogInHandler().logInWithDefault(username, password: password)
@@ -33,11 +34,11 @@ class API {
         return GroupHandler().getGroupsForUser(token)
     }
     
-    static func createGroup(group:Group) -> Future<Group, NSError> {
+    static func createGroup(name:String, creator:User) -> Future<Group, NSError> {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return GroupHandler().createGroup(token, group: group)
+        return GroupHandler().createGroup(token, name: name, creator: creator)
 
     }
     
@@ -74,6 +75,13 @@ class API {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
         return ExpensesHandler().newExpense(token, expense: expense)
+    }
+
+    static func deleteExpense(expense:Expense) -> Future<Expense,NSError>{
+        guard let token = accessToken else {
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
+        return ExpensesHandler().deleteExpense(token, expense: expense)
     }
     
     

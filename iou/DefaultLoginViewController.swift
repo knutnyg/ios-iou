@@ -17,8 +17,8 @@ class DefaultLoginViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         setupNavigationBar()
-        forgotPasswordButton = createButton("Forgot password")
-        signInButton = createButton("Sign in!")
+        forgotPasswordButton = createButton("Forgot password", font: UIFont(name: "HelveticaNeue",size: 28)!)
+        signInButton = createButton("Sign in!", font: UIFont(name: "HelveticaNeue",size: 28)!)
         
         usernameTextField = createTextField("username")
         passwordTextField = createTextField("password")

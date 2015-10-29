@@ -20,7 +20,7 @@ class ForgotPasswordViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         emailTextField = createTextField("email")
-        submitButton = createButton("Submit")
+        submitButton = createButton("Submit", font: UIFont(name: "HelveticaNeue",size: 28)!)
         submitButton.addTarget(self, action: "submitPressed:", forControlEvents: .TouchUpInside)
         
         let views = ["emailTextField":emailTextField, "submitButton":submitButton]

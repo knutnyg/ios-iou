@@ -13,30 +13,32 @@ class SummaryHeaderView : UIViewController {
     
     var memberLabel:UILabel!
     var paidLabel:UILabel!
-    var owedLabel:UILabel!
+//    var owedLabel:UILabel!
     var sumLabel:UILabel!
     
     override func viewDidLoad() {
         
         view.backgroundColor = UIColor.whiteColor()
         
-        memberLabel = createLabel("Name:")
-        paidLabel = createLabel("Paid:")
-        owedLabel = createLabel("Owes:")
-        sumLabel = createLabel("Sum:")
+        memberLabel = createLabel("Name:", font: UIFont(name: "HelveticaNeue-Bold", size: 19)!)
+        paidLabel = createLabel("Paid/Owed:", font: UIFont(name: "HelveticaNeue-Bold", size: 19)!)
+        paidLabel.textAlignment = NSTextAlignment.Right
+//        owedLabel = createLabel("Owes:", font: UIFont(name: "HelveticaNeue-Bold", size: 19)!)
+        sumLabel = createLabel("Sum:", font: UIFont(name: "HelveticaNeue-Bold", size: 19)!)
+        sumLabel.textAlignment = NSTextAlignment.Right
         
         view.addSubview(memberLabel)
         view.addSubview(paidLabel)
-        view.addSubview(owedLabel)
+//        view.addSubview(owedLabel)
         view.addSubview(sumLabel)
         
-        let views = ["member":memberLabel, "paid":paidLabel,"owed":owedLabel,"sum":sumLabel]
+        let views = ["member":memberLabel, "paid":paidLabel,"sum":sumLabel]
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[member]-[paid(80)]-[owed(80)]-[sum(80)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[member(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[member]-[paid(120)]-[sum(100)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[member]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[paid(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[owed(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[sum(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[owed(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[sum]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 }
     
 

@@ -21,19 +21,33 @@ func createTextField(placeholder:String) -> UITextField {
     return textField
 }
 
+func createButton(text:String, font:UIFont) -> UIButton {
+    let button = UIButton(type: UIButtonType.System)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle(text, forState: UIControlState.Normal)
+    button.titleLabel!.font = font
+    return button
+}
+
 func createButton(text:String) -> UIButton {
     let button = UIButton(type: UIButtonType.System)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle(text, forState: UIControlState.Normal)
-    button.layer.borderWidth = 1.0
     return button
 }
-
 
 func createLabel(text:String) -> UILabel{
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = text
     label.font = UIFont(name: "Helvetica", size: 18)
+    return label
+}
+
+func createLabel(text:String, font:UIFont) -> UILabel{
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = text
+    label.font = font
     return label
 }
