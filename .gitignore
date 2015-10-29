@@ -3,4 +3,8 @@ Pods
 *xcuserdata*
 *Podfile.lock
 .idea
+*.cer
+*.p12
+*.mobileprovision
+*.certSigningRequest
 
