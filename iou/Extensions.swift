@@ -46,6 +46,18 @@ extension NSDate {
         
         return dateFormatter.stringFromDate(self)
     }
+
+    func relativePrintable() -> String {
+        let elapsedTime = self.timeIntervalSinceNow * -1
+
+        if elapsedTime < 3600 {
+            return "\(Int(elapsedTime / 60))m"
+        } else if elapsedTime < 86400.0 {
+            return "\(Int(elapsedTime / 3600))h"
+        } else {
+            return "\(Int(elapsedTime / 86400))d"
+        }
+    }
 }
 
 extension Array {

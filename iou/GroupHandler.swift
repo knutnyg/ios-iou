@@ -37,8 +37,8 @@ class GroupHandler {
                 print("Debug: GroupHandler got response")
                 print(response.description)
                 let groupList = GroupList(JSONDecoder(response.data))
-                
-                self.promiseGroupsForUser.success(groupList.groups)
+                let sortedGroup = groupList.groups.sort({ $0.lastUpdated.timeIntervalSinceNow > $1.lastUpdated.timeIntervalSinceNow })
+                self.promiseGroupsForUser.success(sortedGroup)
             }
             
         } catch {

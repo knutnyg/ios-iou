@@ -140,7 +140,6 @@ class GroupListTableViewController : UITableViewController {
             self.groups[idx].archived = archived
             self.visibleGroups[indexPath.item].archived = archived
         }
-
     }
 
     func refresh(refreshControl: UIRefreshControl){
@@ -153,9 +152,11 @@ class GroupListTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
+        let group = visibleGroups[indexPath.item]
+
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "groupCell")
-        cell.textLabel?.text = visibleGroups[indexPath.item].description
-        cell.detailTextLabel?.text = "Last entry: 10h"
+        cell.textLabel?.text = group.description
+        cell.detailTextLabel?.text = "Last entry: \(group.lastUpdated.relativePrintable())"
         
         return cell
     }
@@ -202,6 +203,5 @@ class GroupListTableViewController : UITableViewController {
             visibleGroups = groups.filter({$0.archived == false})
         }
         tableView.reloadData()
-
     }
 }
