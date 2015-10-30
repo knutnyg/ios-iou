@@ -27,9 +27,12 @@ class GroupListTableViewController : UITableViewController {
     }
 
 
+
+
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "archivePressed:", name: "archive", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "unArchivePressed:", name: "unArchive", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "buttonChanged:", name: "buttonChanged", object: nil)
         view.backgroundColor = UIColor.whiteColor()
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -54,8 +57,7 @@ class GroupListTableViewController : UITableViewController {
         visibleGroups[indexPath].archived = true
         API.putGroup(visibleGroups[indexPath])
         .onSuccess{group in
-            self.unArchivedGroups = self.groups.filter({$0.archived == false})
-            self.visibleGroups = self.unArchivedGroups
+            self.visibleGroups = self.groups.filter({$0.archived == false})
             self.tableView.reloadData()
         }
         .onFailure {
@@ -78,8 +80,7 @@ class GroupListTableViewController : UITableViewController {
         visibleGroups[indexPath].archived = false
         API.putGroup(visibleGroups[indexPath])
         .onSuccess{group in
-            self.unArchivedGroups = self.groups.filter({$0.archived == false})
-            self.tableView.reloadData()
+            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "setArchiveButtonValue",object:false))
         }
         .onFailure {
             err in
@@ -107,11 +108,6 @@ class GroupListTableViewController : UITableViewController {
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-
-
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "Groups:"
-//    }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -209,6 +205,18 @@ class GroupListTableViewController : UITableViewController {
             i++
         }
         return nil
+
+    }
+
+    func buttonChanged(notification: NSNotification){
+        let val = notification.object as! Bool
+
+        if val == true {
+            visibleGroups = groups
+        } else {
+            visibleGroups = groups.filter({$0.archived == false})
+        }
+        tableView.reloadData()
 
     }
 }

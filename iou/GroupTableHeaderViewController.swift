@@ -15,6 +15,8 @@ class GroupTableHeaderViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setArchiveButtonValue:", name: "setArchiveButtonValue", object: nil)
+
         view.backgroundColor = UIColor.whiteColor()
 
         name = createLabel("Groups:")
@@ -39,13 +41,12 @@ class GroupTableHeaderViewController : UIViewController {
     }
 
     func buttonPressed(sender:UISwitch){
-        if sender.on == true {
-            delegate.groupListTableViewController.visibleGroups = delegate.groupListTableViewController.groups
-        } else {
-            delegate.groupListTableViewController.visibleGroups = delegate.groupListTableViewController.unArchivedGroups
-        }
-        delegate.groupListTableViewController.tableView.reloadData()
+        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "buttonChanged", object: sender.on))
     }
 
-
+    func setArchiveButtonValue(notification: NSNotification){
+        let val = notification.object as! Bool
+        archived.setOn(val, animated: true)
+        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "buttonChanged", object: archived.on))
+    }
 }
