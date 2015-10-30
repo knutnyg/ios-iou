@@ -14,5 +14,7 @@ link_with 'iou', 'iouTests'
 pod 'FBSDKLoginKit', '4.7.1'
 link_with 'iou', 'iouTests'
 
+pod 'SwiftValidator', '3.0.1'
+link_with 'iou', 'iouTests'
 
 

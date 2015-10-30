@@ -55,18 +55,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[facebookButton]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[defaultLoginButton]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[signupButton]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        
-//        if (FBSDKAccessToken.currentAccessToken() == nil)
-//        {
-//            print("Not logged in..")
-//        }
-//        else
-//        {
-//            print("Logged in..")
-//        }
-        
-        
-    
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
