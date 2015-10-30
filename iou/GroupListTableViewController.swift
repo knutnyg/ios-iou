@@ -26,9 +26,6 @@ class GroupListTableViewController : UITableViewController {
         NSNotificationCenter.defaultCenter().postNotificationName("archive", object: index.item)
     }
 
-
-
-
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "archivePressed:", name: "archive", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "unArchivePressed:", name: "unArchive", object: nil)
@@ -124,38 +121,26 @@ class GroupListTableViewController : UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 
-        print("test")
-
         guard let idx = findGroupIndexById(groups, archivedGroup: visibleGroups[indexPath.item]) else {
             return
         }
 
-        if visibleGroups[indexPath.item].archived == true {
+        let archived = visibleGroups[indexPath.item].archived
 
-            groups[idx].archived = false
-            visibleGroups[indexPath.item].archived = false
-            API.putGroup(visibleGroups[indexPath.item])
-            .onSuccess{group in
-                self.visibleGroups = self.groups.filter({$0.archived == false})
-                self.tableView.reloadData()
-            }
-            .onFailure{err in
-                self.groups[idx].archived = true
-                self.visibleGroups[indexPath.item].archived = true
-            }
-        } else {
-            groups[idx].archived = true
-            visibleGroups[indexPath.item].archived = true
-            API.putGroup(visibleGroups[indexPath.item])
-            .onSuccess{group in
-                self.visibleGroups = self.groups.filter({$0.archived == false})
-                self.tableView.reloadData()
-            }
-            .onFailure{err in
-                self.groups[idx].archived = false
-                self.visibleGroups[indexPath.item].archived = false
-            }
+        groups[idx].archived = !archived
+        visibleGroups[indexPath.item].archived = !archived
+        API.putGroup(visibleGroups[indexPath.item])
+        .onSuccess {
+            group in
+            self.visibleGroups = self.groups.filter({ $0.archived == false })
+            self.tableView.reloadData()
         }
+        .onFailure {
+            err in
+            self.groups[idx].archived = archived
+            self.visibleGroups[indexPath.item].archived = archived
+        }
+
     }
 
     func refresh(refreshControl: UIRefreshControl){

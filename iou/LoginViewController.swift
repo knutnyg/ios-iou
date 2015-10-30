@@ -35,8 +35,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
 
-        
-        
         setupNavigationBar()
         facebookLoginButton = createFacebookButton()
         defaultLoginButton = createButton("Log in without facebook")
