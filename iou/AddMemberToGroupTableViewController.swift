@@ -40,6 +40,7 @@ class AddMemberToGroupTableViewController : UITableViewController {
         
         API.putGroup(API.currentGroup!)
             .onSuccess{group in
+                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name:"GroupMembershipChanged", object: nil))
                 self.delegate.navigationController?.popViewControllerAnimated(true)
             }
             .onFailure{ err in
