@@ -10,8 +10,13 @@ class GroupViewController : UIViewController {
     var delegate:UIViewController?
     var addExpenseButton:UIButton!
     var addMemberButton:UIButton!
+
+    var verticalConstraints:[NSLayoutConstraint]?
+    var views:[String:AnyObject]!
     
     override func viewDidLoad(){
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "GroupMembershipChanged:", name:"GroupMembershipChanged", object:nil)
         
         setupNavigationBar()
         view.backgroundColor = UIColor.whiteColor()
@@ -44,14 +49,10 @@ class GroupViewController : UIViewController {
         view.addSubview(addMemberButton)
         view.addSubview(expensesTableView.view)
         
-        let views:[String : AnyObject] = ["summaryHeader":summaryHeaderView.view,"summary":summaryView.view, "expenses":expensesTableView.view, "addButton":addExpenseButton, "addMember":addMemberButton]
-        
-        var summaryHeight = API.currentGroup!.members.count * 50
-        if summaryHeight > 180 {
-            summaryHeight = 180
-        }
-        
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-72-[summaryHeader(30)]-0-[summary(\(summaryHeight))]-[addButton(38)]-[expenses]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        views = ["summaryHeader":summaryHeaderView.view,"summary":summaryView.view, "expenses":expensesTableView.view, "addButton":addExpenseButton, "addMember":addMemberButton]
+
+        recalculateVerticalConstraint()
+
         view.addConstraint(NSLayoutConstraint(item: addExpenseButton, attribute: .CenterY, relatedBy: .Equal, toItem: addMemberButton, attribute: .CenterY, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: addExpenseButton, attribute: .Height, relatedBy: .Equal, toItem: addMemberButton, attribute: .Height, multiplier: 1, constant: 0))
 
@@ -60,6 +61,24 @@ class GroupViewController : UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[addButton]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[addMember]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[expenses]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+    }
+
+    func GroupMembershipChanged(notification:NSNotification){
+        recalculateVerticalConstraint()
+    }
+
+    func recalculateVerticalConstraint() {
+        if verticalConstraints != nil {
+            view.removeConstraints(verticalConstraints!)
+        }
+
+        var summaryHeight = API.currentGroup!.members.count * 50
+        if summaryHeight > 250 {
+            summaryHeight = 250
+        }
+        verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-72-[summaryHeader(30)]-0-[summary(\(summaryHeight))]-[addButton(38)]-[expenses]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        view.addConstraints(verticalConstraints!)
+
     }
 
     func refreshData(){
