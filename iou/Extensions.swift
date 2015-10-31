@@ -49,8 +49,9 @@ extension NSDate {
 
     func relativePrintable() -> String {
         let elapsedTime = self.timeIntervalSinceNow * -1
-
-        if elapsedTime < 3600 {
+        if elapsedTime < 60 {
+            return "\(Int(elapsedTime))s"
+        } else if elapsedTime < 3600 {
             return "\(Int(elapsedTime / 60))m"
         } else if elapsedTime < 86400.0 {
             return "\(Int(elapsedTime / 3600))h"
