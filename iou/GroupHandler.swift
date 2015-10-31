@@ -37,8 +37,16 @@ class GroupHandler {
                 print("Debug: GroupHandler got response")
                 print(response.description)
                 let groupList = GroupList(JSONDecoder(response.data))
-                let sortedGroup = groupList.groups.sort({ $0.lastUpdated.timeIntervalSinceNow > $1.lastUpdated.timeIntervalSinceNow })
-                self.promiseGroupsForUser.success(sortedGroup)
+                var sortedGroups = groupList.groups.sort({ $0.lastUpdated.timeIntervalSinceNow > $1.lastUpdated.timeIntervalSinceNow })
+                var newSortedGroups:[Group] = []
+                for group:Group in sortedGroups {
+                    let sortedMembers = group.members.sort({$0.name < $1.name})
+                    var g = group
+                    g.members = sortedMembers
+                    newSortedGroups.append(g)
+                }
+
+                self.promiseGroupsForUser.success(newSortedGroups)
             }
             
         } catch {
@@ -85,7 +93,7 @@ class GroupHandler {
         promiseEditGroup = Promise<Group, NSError>()
         
         let url:String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
-        var payload:[String:AnyObject] = group.toJSONparsableDicitonary()
+        let payload:[String:AnyObject] = group.toJSONparsableDicitonary()
 
         do {
             let request = try HTTP.PUT(url, parameters: payload, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
@@ -137,6 +145,7 @@ class GroupHandler {
                 print(response.description)
                 let group = Group(JSONDecoder(response.data))
                 group.expenses = group.expenses.sort({ $0.date.timeIntervalSinceNow > $1.date.timeIntervalSinceNow })
+                group.members = group.members.sort({$0.name < $1.name})
                 self.promiseGetGroup.success(group)
             }
 
