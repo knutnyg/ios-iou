@@ -51,7 +51,7 @@ class GroupListFetcherTests : XCTestCase {
         
         let inputGroup:Group = group
         
-        groupHandler.createGroup(token, group: inputGroup)
+        groupHandler.createGroup(token, name: group.description, creator: group.creator)
             .onSuccess { outputGroup in
                 XCTAssertTrue(outputGroup.id != nil)
                 XCTAssertTrue(outputGroup.description == inputGroup.description)

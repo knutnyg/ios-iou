@@ -47,6 +47,7 @@ class MainViewController : UIViewController {
         API.getUser()
             .onSuccess{ user in
                     API.currentUser = user
+                    self.profileView.refreshProfile()
             }
     }
 

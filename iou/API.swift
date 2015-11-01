@@ -83,6 +83,10 @@ class API {
         }
         return ExpensesHandler().deleteExpense(token, expense: expense)
     }
+
+    static func getImageForUser(user:User) -> Future<UIImage, NSError> {
+        return ProfileHandler().getImageForUser(user)
+    }
     
     
     

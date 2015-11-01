@@ -37,7 +37,7 @@ class SummaryTableViewCell : UITableViewCell {
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-[paid(120)]-[sum(100)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: owesLabel, attribute: .Width, relatedBy: .Equal, toItem: paidLabel, attribute: .Width, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: owesLabel, attribute: .CenterX, relatedBy: .Equal, toItem: paidLabel, attribute: .CenterX, multiplier: 1, constant: 0))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[paid]-2-[owes]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 //        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0--0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[sum]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
