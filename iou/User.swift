@@ -13,11 +13,11 @@ import JSONJoy
 class User :JSONJoy{
     var name:String!
     var shortName:String!
-    var id:Int!
+    var id:String!
     var photoURL:String!
     var email:String!
     
-    init(name:String, shortName:String, id:Int, photoUrl:String, email:String){
+    init(name:String, shortName:String, id:String, photoUrl:String, email:String){
         self.name = name
         self.shortName = shortName
         self.id = id
@@ -45,7 +45,7 @@ class User :JSONJoy{
     
     required init(_ decoder: JSONDecoder) {
         name = decoder["name"].string
-        id = decoder["id"].integer
+        id = decoder["id"].string
         photoURL = decoder["photourl"].string
         shortName = decoder["shortname"].string
         email = decoder["email"].string

@@ -7,4 +7,5 @@ Pods
 *.p12
 *.mobileprovision
 *.certSigningRequest
-
+*.zip
+*.ipa

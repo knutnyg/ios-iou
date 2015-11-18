@@ -114,6 +114,7 @@ class ExpensesHandler {
         let deletePromise = Promise<Expense,NSError>()
 
         let urlString = "https://www.logisk.org/api/spreadsheets/\(expense.groupId)/receipts/\(expense.id)"
+        print(urlString)
 
         do {
             let request = try HTTP.DELETE(urlString, headers: ["AccessToken":token], requestSerializer: JSONParameterSerializer())
@@ -150,7 +151,7 @@ class ExpensesHandler {
         }
     }
     
-    func findUserById(id:Int, members:[User]) -> User?{
+    func findUserById(id:String, members:[User]) -> User?{
         for user in members {
             if user.id == id {
                 return user

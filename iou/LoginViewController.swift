@@ -73,6 +73,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             print(error.localizedDescription)
         }
     }
+
+    func signupButtonPressed(sender:UIButton){
+        let vc = SignUpViewController()
+        navigationController?.pushViewController(vc, animated: true)
+
+    }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
     {

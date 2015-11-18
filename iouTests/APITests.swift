@@ -19,7 +19,7 @@ class APITests : XCTestCase {
     func testGetProfileImageRealURL() {
         let expectation = expectationWithDescription("promise")
 
-        let user = User(name: "Test Testson", shortName: "TT", id: 55, photoUrl: "https://graph.facebook.com/10152424427376357/picture", email:"nope@gmail.com")
+        let user = User(name: "Test Testson", shortName: "TT", id: "IDSareFUN", photoUrl: "https://graph.facebook.com/10152424427376357/picture", email:"nope@gmail.com")
         API.getImageForUser(user).onSuccess{image in
             print("yey")
             XCTAssert(true)
@@ -38,7 +38,7 @@ class APITests : XCTestCase {
     func testGetProfileImageWrongURL() {
         let expectation = expectationWithDescription("promise")
 
-        let user = User(name: "Test Testson", shortName: "TT", id: 55, photoUrl: "https://graph.facebook.comawdawd/picture", email:"nope@gmail.com")
+        let user = User(name: "Test Testson", shortName: "TT", id: "IDSareFUN", photoUrl: "https://graph.facebook.comawdawd/picture", email:"nope@gmail.com")
         API.getImageForUser(user).onSuccess{image in
             print("yey")
             XCTAssert(false)
@@ -57,7 +57,7 @@ class APITests : XCTestCase {
     func testGetProfileImageNoURL() {
         let expectation = expectationWithDescription("promise")
 
-        let user = User(name: "Test Testson", shortName: "TT", id: 55, photoUrl: "", email:"nope@gmail.com")
+        let user = User(name: "Test Testson", shortName: "TT", id: "IDSareFUN", photoUrl: "", email:"nope@gmail.com")
         API.getImageForUser(user).onSuccess{image in
             print("yey")
             XCTAssert(false)

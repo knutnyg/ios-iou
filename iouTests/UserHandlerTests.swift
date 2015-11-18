@@ -14,7 +14,7 @@ class UserHandlerTests : XCTestCase {
     
     override func setUp() {
         super.setUp()
-        API.accessToken = "eyJpZCI6MTYsImVtYWlsIjoia251dG55Zyt0ZXN0QGdtYWlsLmNvbSIsIm5hbWUiOiJ0ZXN0X0tudXQiLCJzaG9ydG5hbWUiOiIiLCJwaG90b3VybCI6IiIsInNlY3JldCI6ImFlZDExYzYwYTJiODBkZDkxYTA3NThkYWY2YTRjOTkwYWRhMzA5Y2Y2MWQxNzQ0NWQ3ODZjYTY3NzA3Yjk2MjAiLCJjcmVhdGVkX2F0IjoiMjAxNS0xMC0yMFQxODoyMDo1NS4wODE2MzY0NDlaIn0="
+        API.accessToken = "eyJpZCI6IjFhZjEwMmQ5LWMyMjQtNDUxYi1iNzkzLTdhMjM5YWYwOTgwNyIsInRva2VuX2lkIjoiIiwiZW1haWwiOiJrbnV0bnlnK3Rlc3RAZ21haWwuY29tIiwibmFtZSI6IktudXRfdGVzdCIsInNob3J0bmFtZSI6IiIsInBob3RvdXJsIjoiIiwic2VjcmV0IjoiMDIwZjQ0MGNmZmVlYmZmMGFjMzRkZmJmMWRiNDgzZjAyN2ExMjlmNTE5NGZlMzEwNWViM2JjMmQ2ZmQ4OGRhYiIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTE3VDE5OjM5OjUxLjg2NDQzNzUyNloifQ=="
     }
     
     func testFetchUser(){
@@ -23,7 +23,7 @@ class UserHandlerTests : XCTestCase {
         
         API.getUser()
             .onSuccess { user in
-                XCTAssertTrue(user.id == 16)
+                XCTAssertTrue(user.id == "1af102d9-c224-451b-b793-7a239af09807")
                 expectation.fulfill()
             }
             .onFailure { error in

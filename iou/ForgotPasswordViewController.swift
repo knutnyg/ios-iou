@@ -31,7 +31,7 @@ class ForgotPasswordViewController: UIViewController, ValidationDelegate{
         view.addSubview(emailErrorLabel)
         emailErrorLabel.hidden = true
 
-        let views = ["emailTextField":emailTextField, "submitButton":submitButton, "test":emailErrorLabel]
+        let views = ["emailTextField":emailTextField, "submitButton":submitButton, "emailErrorLabel":emailErrorLabel]
         
         view.addSubview(emailTextField)
         view.addSubview(submitButton)
@@ -44,14 +44,13 @@ class ForgotPasswordViewController: UIViewController, ValidationDelegate{
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[emailTextField]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: submitButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: submitButton, attribute: NSLayoutAttribute.Width, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 100))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[test]-[emailTextField]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[test]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[emailErrorLabel]-[emailTextField]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[emailErrorLabel]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
     
     func submitPressed(sender:UIButton){
+        clearValidationErrors()
         validator.validate(self)
-
-
     }
 
     func validationSuccessful() {

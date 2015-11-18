@@ -11,7 +11,7 @@ import JSONJoy
 
 class Group : JSONJoy{
     var members:[User]!
-    var id:Int!
+    var id:String!
     var archived:Bool!
     var created:NSDate!
     var description:String!
@@ -19,7 +19,7 @@ class Group : JSONJoy{
     var creator:User!
     var expenses:[Expense] = []
     
-    init(members:[User], id:Int, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:User, expenses:[Expense]){
+    init(members:[User], id:String, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:User, expenses:[Expense]){
         self.members = members
         self.id = id
         self.archived = archived
@@ -38,7 +38,7 @@ class Group : JSONJoy{
             }
         }
         
-        id = decoder["id"].integer
+        id = decoder["id"].string
         archived = decoder["archived"].bool
         if let t = decoder["created_at"].string {
             created = dateFromUTCString(t)
@@ -84,7 +84,7 @@ class Group : JSONJoy{
         }
     }
     
-    func findUserById(id:Int, members:[User]) -> User?{
+    func findUserById(id:String, members:[User]) -> User?{
         for user in members {
             if user.id == id {
                 return user

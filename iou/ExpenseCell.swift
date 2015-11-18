@@ -58,7 +58,12 @@ class ExpenseCell : UITableViewCell {
             payee.text = self.expense.creator.shortName
         }
 
-        date.text = self.expense.date.mediumPrintable()
+        if expense.date != nil {
+            date.text = self.expense.date.mediumPrintable()
+        } else {
+            date.text = "nil"
+        }
+
         comment.text = self.expense.comment
 
         amount.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount)

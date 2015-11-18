@@ -27,7 +27,6 @@ class SettingsViewController: UIViewController {
         
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-100-[logOutButton(40)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: logOutButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: logOutButton, attribute: NSLayoutAttribute.Width, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 100))
     }
     
     func logOutPressed(sender:UIButton){

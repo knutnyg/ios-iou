@@ -42,7 +42,7 @@ extension NSDate {
     
     func utcFormat() -> String {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         
         return dateFormatter.stringFromDate(self)
     }

@@ -14,15 +14,15 @@ class Expense :JSONJoy {
     var participants:[User]!
     var amount:Double!
     var date:NSDate!
-    var groupId:Int!
-    var id:Int!
+    var groupId:String!
+    var id:String!
     var created:NSDate!
     var updated:NSDate?
     var comment:String!
     var creator:User!
     
     
-    init(participants:[User], amount:Double, date:NSDate, groupId:Int, created:NSDate, updated:NSDate?, comment:String, creator:User){
+    init(participants:[User], amount:Double, date:NSDate, groupId:String, created:NSDate, updated:NSDate?, comment:String, creator:User){
         self.participants = participants
         self.amount = amount
         self.date = date
@@ -34,7 +34,7 @@ class Expense :JSONJoy {
         self.creator = creator
     }
 
-    init(participants:[User], amount:Double, date:NSDate, groupId:Int, created:NSDate, updated:NSDate?, comment:String, creator:User, id:Int){
+    init(participants:[User], amount:Double, date:NSDate, groupId:String, created:NSDate, updated:NSDate?, comment:String, creator:User, id:String){
         self.participants = participants
         self.amount = amount
         self.date = date
@@ -47,7 +47,7 @@ class Expense :JSONJoy {
         self.id = id
     }
     
-    init(participants:[User], amount:Double, date:NSDate, groupId:Int, comment:String, creator:User){
+    init(participants:[User], amount:Double, date:NSDate, groupId:String, comment:String, creator:User){
         self.participants = participants
         self.amount = amount
         self.groupId = groupId
@@ -67,8 +67,8 @@ class Expense :JSONJoy {
         amount = decoder["amount"].double
         comment = decoder["comment"].string
         date = dateFromUTCString(decoder["date"].string!)
-        groupId = decoder["spreadsheet_id"].integer
-        id = decoder["id"].integer
+        groupId = decoder["spreadsheet_id"].string
+        id = decoder["id"].string
         created = dateFromUTCString(decoder["created_at"].string!)
         updated = dateFromUTCString(decoder["updated_at"].string!)
         creator = User(decoder["creator"])

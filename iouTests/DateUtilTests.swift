@@ -16,7 +16,7 @@ class DateUtilTests : XCTestCase {
     }
     
     func testDateFromUTCString() {
-        let dateString = "2014-06-29T11:34:14Z"
+        let dateString = "2015-11-17T20:11:30.902Z"
         
         XCTAssertNotNil(dateFromUTCString(dateString))
     }

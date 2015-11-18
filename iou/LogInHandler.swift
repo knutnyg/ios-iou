@@ -15,12 +15,11 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class LogInHandler {
-    
-    var logInPromise:Promise<String,NSError>!
+
     var FBlogInPromise:Promise<String,NSError>!
     
     func logInWithDefault(username:String, password:String) -> Future<String,NSError> {
-        logInPromise = Promise<String,NSError>()
+        let logInPromise = Promise<String,NSError>()
         
         let url = "https://www.logisk.org/api/login"
         let payload = ["username":username, "password":password]
@@ -30,18 +29,18 @@ class LogInHandler {
             request.start { response in
                 if let err = response.error {
                     print("LoginHandler: Response contains error: \(err)")
-                    self.logInPromise.failure(err)
+                    logInPromise.failure(err)
                     return
                 }
                 print("Debug: login got response")
                 print(response.description)
                 
                 let accessToken = AccessToken(JSONDecoder(response.data))
-                self.logInPromise.success(accessToken.token)
+                logInPromise.success(accessToken.token)
             }
         } catch {
             print("LoginHandler: got error in logInWithDefault")
-            self.logInPromise.failure(NSError(domain: "Error", code: 503, userInfo: nil))
+            logInPromise.failure(NSError(domain: "Error", code: 503, userInfo: nil))
         }
         
         return logInPromise.future
