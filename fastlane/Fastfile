@@ -10,12 +10,7 @@ platform :ios do
 
 desc "test"
   lane :test do
-      xctest({
-        workspace: "iou.xcworkspace",
-        scheme: "iou",
-        sdk: "iphonesimulator",
-        destination: "platform=iOS Simulator,name=iPhone 6,OS=latest"
-      })
+      scan
       slack({
         message: "Finished running tests"
       })
