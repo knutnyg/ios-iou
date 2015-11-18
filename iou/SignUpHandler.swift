@@ -13,32 +13,39 @@ import JSONJoy
 
 class SignUpHandler {
     
-    var signUpPromise:Promise<Int, NSError>!
-    
-    func signUp(name:String, email:String, password: String, confirm_password:String) -> Future<Int,NSError>{
-        signUpPromise = Promise<Int,NSError>()
+    static func signUp(name:String, email:String, password: String, confirm_password:String) -> Future<String,NSError>{
+        let signUpPromise = Promise<String,NSError>()
         
         let url:String = "https://www.logisk.org/api/register"
         let payload = ["name":name, "email":email, "password":password, "confirm_password":confirm_password]
         
         do {
-            let request = try HTTP.PUT(url, parameters: payload, requestSerializer:JSONParameterSerializer())
+            let request = try HTTP.POST(url, parameters: payload, requestSerializer:JSONParameterSerializer())
             
             request.start { response in
                 if let err = response.error {
                     print("SignUpHandler: Response contains error: \(err)")
-                    self.signUpPromise.failure(err)
+                    signUpPromise.failure(err)
                     return
                 }
                 print("Debug: GroupHandler got response")
+
+                if let code = response.statusCode {
+                    if code != 200 {
+                        print("SignUpHandler: Response was _not_ OK!")
+                        signUpPromise.failure(NSError(domain: "ErrorCode", code: code, userInfo: nil))
+                        return
+                    }
+                }
+
                 let signUpResponse = SignUpResponse(JSONDecoder(response.data))
                 
-                self.signUpPromise.success(signUpResponse.id)
+                signUpPromise.success(signUpResponse.id)
             }
             
         } catch {
-            print("GroupHandler: got error in getGroupForUser")
-            self.signUpPromise.failure(NSError(domain: "Error", code: 500, userInfo: nil))
+            print("SignupHandler: got error in getGroupForUser")
+            signUpPromise.failure(NSError(domain: "Error", code: 500, userInfo: nil))
         }
         
         return signUpPromise.future

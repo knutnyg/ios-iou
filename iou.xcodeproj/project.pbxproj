@@ -10,16 +10,19 @@
 		324F4043C0BD4852EA7800F2 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F41D1D21E1DD27959DE66 /* icon57.png */; };
 		324F4083298820E4591517B0 /* GroupTableHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F484E9BE568E9C5A42FDC /* GroupTableHeaderViewController.swift */; };
 		324F411763E5A5E92E6FB5B4 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F466C05BDC74BB23E7847 /* icon58.png */; };
+		324F41340151F6D0EFD62A01 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4C96DE6156289F30895D /* SignUpViewController.swift */; };
 		324F417E22143F3FDFA61BBA /* LocaleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4A14B6AF6B803D8428CA /* LocaleUtils.swift */; };
 		324F42300EB4BE2B20C67D48 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F41AE2FAA4993C006BFD4 /* profile.png */; };
 		324F42476448A7D2DD191DA3 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F49628FF839A4846854F0 /* ExpensesTableViewController.swift */; };
 		324F4274D329909A8F666D2A /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4A4862246ED76A6D78D8 /* icon72.png */; };
+		324F432C816D95EC653F0B6F /* SignUpHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47D84118411CA3182352 /* SignUpHandlerTests.swift */; };
 		324F4333581ED909FF013921 /* icon87.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4C8832D25802B855AF14 /* icon87.png */; };
 		324F4387932CACB38DD40972 /* icon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4CC1D717A936E3642710 /* icon50.png */; };
 		324F45537F53F575E89941E7 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F47E696165C4C590D7E7A /* icon144.png */; };
 		324F45D52440B66D251C1FEE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4CC971F7C76DFB2C777F /* icon40.png */; };
 		324F4624F561D02AAD9ECA6E /* AddGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F498148E94E963E43E0BF /* AddGroup.swift */; };
 		324F462B0A7875043ED5B3D3 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F41AE2FAA4993C006BFD4 /* profile.png */; };
+		324F47469759DED5B1A2FFE2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4C96DE6156289F30895D /* SignUpViewController.swift */; };
 		324F477D35441104BE0FE1CC /* AddGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F498148E94E963E43E0BF /* AddGroup.swift */; };
 		324F47F734466F805D842251 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4490846D30F2B786284B /* icon80.png */; };
 		324F484BFC2CF014B271ED73 /* icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4EE5A9964F19916B6FE7 /* icon76.png */; };
@@ -167,6 +170,7 @@
 		324F46F3988E5E92F0732427 /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		324F47187392CBE52F6C2AF4 /* NewExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpense.swift; sourceTree = "<group>"; };
 		324F478FCA82B77DE247616A /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		324F47D84118411CA3182352 /* SignUpHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpHandlerTests.swift; sourceTree = "<group>"; };
 		324F47E696165C4C590D7E7A /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		324F483FA4ACA79CFAE72B5D /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
 		324F484E9BE568E9C5A42FDC /* GroupTableHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableHeaderViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 		324F4A4862246ED76A6D78D8 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
 		324F4C871FB1E1A9609FDA95 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		324F4C8832D25802B855AF14 /* icon87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon87.png; sourceTree = "<group>"; };
+		324F4C96DE6156289F30895D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		324F4CC1D717A936E3642710 /* icon50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon50.png; sourceTree = "<group>"; };
 		324F4CC971F7C76DFB2C777F /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
 		324F4EE5A9964F19916B6FE7 /* icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon76.png; sourceTree = "<group>"; };
@@ -296,6 +301,7 @@
 				6A6FEC161BD3919E00FE19FC /* LoginViewController.swift */,
 				6AED420A1BD3EBAD00053831 /* DefaultLoginViewController.swift */,
 				6AED420D1BD3EC9600053831 /* ForgotPasswordViewController.swift */,
+				324F4C96DE6156289F30895D /* SignUpViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 				6AED42041BD3D04E00053831 /* ResetPasswordHandlerTests.swift */,
 				7208E0441BD6BEB800D1A248 /* UserHandlerTests.swift */,
 				7208E04A1BD6CFCB00D1A248 /* APITests.swift */,
+				324F47D84118411CA3182352 /* SignUpHandlerTests.swift */,
 			);
 			name = HandlerTests;
 			sourceTree = "<group>";
@@ -790,6 +797,7 @@
 				324F477D35441104BE0FE1CC /* AddGroup.swift in Sources */,
 				324F4F11A4B286D6CC9DC9B8 /* GroupTableHeaderViewController.swift in Sources */,
 				324F4FB3C58C32AFFCA3956B /* ProfileHandler.swift in Sources */,
+				324F47469759DED5B1A2FFE2 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +858,8 @@
 				324F4083298820E4591517B0 /* GroupTableHeaderViewController.swift in Sources */,
 				324F4DF6DA34D4DA9A5E6967 /* ProfileHandler.swift in Sources */,
 				324F417E22143F3FDFA61BBA /* LocaleUtils.swift in Sources */,
+				324F41340151F6D0EFD62A01 /* SignUpViewController.swift in Sources */,
+				324F432C816D95EC653F0B6F /* SignUpHandlerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

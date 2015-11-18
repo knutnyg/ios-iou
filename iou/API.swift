@@ -31,14 +31,14 @@ class API {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return GroupHandler().getGroupsForUser(token)
+        return GroupHandler.getGroupsForUser(token)
     }
     
     static func createGroup(name:String, creator:User) -> Future<Group, NSError> {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return GroupHandler().createGroup(token, name: name, creator: creator)
+        return GroupHandler.createGroup(token, name: name, creator: creator)
 
     }
     
@@ -46,14 +46,14 @@ class API {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return GroupHandler().putGroup(token, group: group)
+        return GroupHandler.putGroup(token, group: group)
     }
     
     static func getAllGroupData(group:Group) -> Future<Group, NSError> {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return GroupHandler().getGroup(token, group: group)
+        return GroupHandler.getGroup(token, group: group)
     }
     
     static func getExpensesFromGroup(group:Group) -> Future<[Expense],NSError>{
@@ -86,6 +86,10 @@ class API {
 
     static func getImageForUser(user:User) -> Future<UIImage, NSError> {
         return ProfileHandler().getImageForUser(user)
+    }
+
+    static func signUp(name:String, email:String, password:String, confirm_password:String) -> Future<String, NSError> {
+        return SignUpHandler.signUp(name, email: email, password: password, confirm_password: confirm_password)
     }
     
     

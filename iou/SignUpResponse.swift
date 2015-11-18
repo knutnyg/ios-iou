@@ -10,13 +10,13 @@ import Foundation
 import JSONJoy
 
 class SignUpResponse : JSONJoy {
-    var id:Int!
+    var id:String!
     
-    init(id:Int){
+    init(id:String){
         self.id = id
     }
     
     required init(_ decoder: JSONDecoder) {
-        id = decoder["id"].integer
+        id = decoder["id"].string
     }
 }
