@@ -14,8 +14,24 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
+        let profileImage = UIImage(named: "profile.png")!
+
+        let rect = CGRectMake(0, 0, 40, 40)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 40,height: 40), false, 1.0)
+        profileImage.drawInRect(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+//        var profileImageView = UIImageView(image: newImage)
+//        profileImageView.layer.borderWidth = 1.0
+//        profileImageView.layer.masksToBounds = false
+//        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+//        profileImageView.layer.cornerRadius = 100/2
+//        profileImageView.clipsToBounds = true
+
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
+        cell.imageView?.image = newImage
         cell.textLabel?.text = API.currentGroup!.members[indexPath.item].name
 
         if let exp = API.currentExpense {
@@ -62,7 +78,7 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 40
+        return 75
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

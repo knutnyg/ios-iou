@@ -46,6 +46,9 @@ class User :JSONJoy{
     required init(_ decoder: JSONDecoder) {
         name = decoder["name"].string
         id = decoder["id"].string
+        if id == nil {
+            id = decoder["uuid"].string
+        }
         photoURL = decoder["photourl"].string
         shortName = decoder["shortname"].string
         email = decoder["email"].string

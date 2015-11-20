@@ -18,6 +18,7 @@
 		324F432C816D95EC653F0B6F /* SignUpHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47D84118411CA3182352 /* SignUpHandlerTests.swift */; };
 		324F4333581ED909FF013921 /* icon87.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4C8832D25802B855AF14 /* icon87.png */; };
 		324F4387932CACB38DD40972 /* icon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4CC1D717A936E3642710 /* icon50.png */; };
+		324F452EFD8AE00AD0A62D27 /* AddParticipantsParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47B329DD5498FE62DAA7 /* AddParticipantsParent.swift */; };
 		324F45537F53F575E89941E7 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F47E696165C4C590D7E7A /* icon144.png */; };
 		324F45D52440B66D251C1FEE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4CC971F7C76DFB2C777F /* icon40.png */; };
 		324F4624F561D02AAD9ECA6E /* AddGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F498148E94E963E43E0BF /* AddGroup.swift */; };
@@ -29,6 +30,7 @@
 		324F48D6E482430B3C35AB46 /* icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4536F9316028F53503A9 /* icon180.png */; };
 		324F4972E9DCF6828BD8546F /* icon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F417E13605489857EA04C /* icon100.png */; };
 		324F4ADC5688AF8580985862 /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F483FA4ACA79CFAE72B5D /* icon29.png */; };
+		324F4BB1DCCD4CC50CFBA624 /* AddParticipantsParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47B329DD5498FE62DAA7 /* AddParticipantsParent.swift */; };
 		324F4C75CD7F8FCF7FACC4CC /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F40E6C93EFE5A7CCD2E7C /* GroupViewController.swift */; };
 		324F4CC3C1572A5AA9BDE8AF /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F40E6C93EFE5A7CCD2E7C /* GroupViewController.swift */; };
 		324F4DF6DA34D4DA9A5E6967 /* ProfileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F41B27DF10F6EC06EF722 /* ProfileHandler.swift */; };
@@ -170,6 +172,7 @@
 		324F46F3988E5E92F0732427 /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		324F47187392CBE52F6C2AF4 /* NewExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpense.swift; sourceTree = "<group>"; };
 		324F478FCA82B77DE247616A /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		324F47B329DD5498FE62DAA7 /* AddParticipantsParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddParticipantsParent.swift; sourceTree = "<group>"; };
 		324F47D84118411CA3182352 /* SignUpHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpHandlerTests.swift; sourceTree = "<group>"; };
 		324F47E696165C4C590D7E7A /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		324F483FA4ACA79CFAE72B5D /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
@@ -398,6 +401,7 @@
 				7224B9C61BD6AF1700414CF5 /* AddParticipantsToExpenseTableViewController.swift */,
 				728E98501BD94DCE0002C8EB /* AddMemberToGroupTableViewController.swift */,
 				324F47187392CBE52F6C2AF4 /* NewExpense.swift */,
+				324F47B329DD5498FE62DAA7 /* AddParticipantsParent.swift */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -798,6 +802,7 @@
 				324F4F11A4B286D6CC9DC9B8 /* GroupTableHeaderViewController.swift in Sources */,
 				324F4FB3C58C32AFFCA3956B /* ProfileHandler.swift in Sources */,
 				324F47469759DED5B1A2FFE2 /* SignUpViewController.swift in Sources */,
+				324F4BB1DCCD4CC50CFBA624 /* AddParticipantsParent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,6 +865,7 @@
 				324F417E22143F3FDFA61BBA /* LocaleUtils.swift in Sources */,
 				324F41340151F6D0EFD62A01 /* SignUpViewController.swift in Sources */,
 				324F432C816D95EC653F0B6F /* SignUpHandlerTests.swift in Sources */,
+				324F452EFD8AE00AD0A62D27 /* AddParticipantsParent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

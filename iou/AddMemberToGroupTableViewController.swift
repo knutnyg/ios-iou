@@ -36,7 +36,7 @@ class AddMemberToGroupTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        API.currentGroup!.members.append(delegate.searchResult[indexPath.item])
+        let group = API.currentGroup!.members.append(delegate.searchResult[indexPath.item])
         
         API.putGroup(API.currentGroup!)
             .onSuccess{group in

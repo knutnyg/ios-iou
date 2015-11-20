@@ -35,4 +35,22 @@ class UserHandlerTests : XCTestCase {
             XCTAssertNil(error, "Error")
         })
     }
+
+    func testSearchUser(){
+        let expectation = expectationWithDescription("promise")
+
+        API.searchUsers("Knut")
+        .onSuccess { users in
+            XCTAssertTrue(users[0].id != nil)
+            expectation.fulfill()
+        }
+        .onFailure { error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
+    }
 }

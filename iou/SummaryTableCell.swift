@@ -19,7 +19,7 @@ class SummaryTableViewCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        nameLabel = createLabel("", font: UIFont(name: "HelveticaNeue", size: 19)!)
+        nameLabel = createLabel("", font: UIFont(name: "HelveticaNeue", size: 15)!)
         paidLabel = createLabel("", font: UIFont(name: "HelveticaNeue", size: 15)!)
         owesLabel = createLabel("", font: UIFont(name: "HelveticaNeue", size: 15)!)
         sumLabel = createLabel("", font: UIFont(name: "HelveticaNeue", size: 15)!)
@@ -34,7 +34,7 @@ class SummaryTableViewCell : UITableViewCell {
         
         let views = ["name":nameLabel, "paid":paidLabel, "owes":owesLabel, "sum":sumLabel]
         
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-[paid(120)]-[sum(100)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-[paid(100)]-[sum(100)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: owesLabel, attribute: .Width, relatedBy: .Equal, toItem: paidLabel, attribute: .Width, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: owesLabel, attribute: .CenterX, relatedBy: .Equal, toItem: paidLabel, attribute: .CenterX, multiplier: 1, constant: 0))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))

@@ -32,7 +32,7 @@ class GroupViewController : UIViewController {
 
         addExpenseButton.addTarget(self, action: Selector("newExpensePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        addMemberButton = createButton("+Member", font: UIFont(name: "HelveticaNeue",size: 28)!)
+        addMemberButton = createButton("+Member", font: UIFont(name: "HelveticaNeue",size: 24)!)
         addMemberButton.addTarget(self, action: Selector("newMemberPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
 
         expensesTableView = ExpensesTableViewController()

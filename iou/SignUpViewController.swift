@@ -138,7 +138,13 @@ class SignUpViewController: UIViewController, ValidationDelegate {
     }
 
     func validationSuccessful() {
-        print("success")
+        API.signUp(nameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, confirm_password: confirm_passwordTextField.text!)
+        .onSuccess{ id in
+            self.navigationController!.popViewControllerAnimated(true)
+        }
+        .onFailure{error in
+            print("Error in signup")
+        }
     }
 
 

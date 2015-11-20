@@ -10,12 +10,19 @@ import Foundation
 import XCTest
 
 class ResetPasswordHandlerTests : XCTestCase {
-    
+
+    let runIntegrationTests = false
+
     override func setUp() {
         super.setUp()
     }
     
     func testResetPassword(){
+
+        if runIntegrationTests == false {
+            return
+        }
+
         let expectation = expectationWithDescription("promise")
         
         let email = "knutnyg+test@gmail.com"

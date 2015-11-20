@@ -16,7 +16,7 @@ class ExpenseTests: XCTestCase {
     var group: Group!
     var token: String!
 
-    var runIntegrationTests = false
+    var runIntegrationTests = true
 
     override func setUp() {
         super.setUp()
@@ -58,7 +58,7 @@ class ExpenseTests: XCTestCase {
 
         let expenseAmount = Double(arc4random_uniform(150))
 
-        let expense = Expense(participants: [user], amount: expenseAmount, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Updated from test", creator: user, id: "c0c55541-1d66-4a6e-8c76-d2790c569577")
+        let expense = Expense(participants: [user], amount: expenseAmount, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Updated from test", creator: user, id: "1257f0ef-fc80-486b-901a-9fe609271fa1")
 
         expensesHandler.updateExpense(token, expense: expense)
         .onSuccess {

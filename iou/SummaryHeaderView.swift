@@ -36,7 +36,7 @@ class SummaryHeaderView : UIViewController {
         
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[member]-[paid(120)]-[sum(100)]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[member]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[paid(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[paid]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 //        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[owed(30)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[sum]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
 }
