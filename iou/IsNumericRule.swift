@@ -8,9 +8,9 @@ import SwiftValidator
 
 class IsNumericRule : RegexRule {
 
-    static let regex = "^\\d{3}-\\d{2}-\\d{4}$"
+    static let regex = "\\d+[,.]?\\d+"
 
-    convenience init(message : String = "Not a valid SSN"){
-        self.init(regex: SSNVRule.regex, message : message)
+    convenience init(message : String = "Not a valid number"){
+        self.init(regex: IsNumericRule.regex, message : message)
     }
 }

@@ -69,7 +69,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         addParticipantsButton.addTarget(self, action: "addParticipantsPressed:", forControlEvents: .TouchUpInside)
 
         validator.registerField(commentTextField, errorLabel: commentErrorLabel, rules: [RequiredRule()])
-        validator.registerField(amountTextField, errorLabel: amountErrorLabel, rules: [RequiredRule(), FloatRule()])
+        validator.registerField(amountTextField, errorLabel: amountErrorLabel, rules: [RequiredRule(), IsNumericRule()])
 
         view.addSubview(paidByLabel)
         view.addSubview(paidByTextField)
