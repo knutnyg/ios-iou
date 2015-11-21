@@ -4,7 +4,7 @@ import UIKit
 import SnapKit
 import SwiftValidator
 
-class NewExpense : UIViewController, UITextFieldDelegate{
+class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
     var delegate:GroupViewController!
 
     var paidByLabel:UILabel!
@@ -16,6 +16,8 @@ class NewExpense : UIViewController, UITextFieldDelegate{
     var datePicker:UIDatePicker!
     var amountLabel:UILabel!
     var amountTextField:UITextField!
+    var commentErrorLabel:UILabel!
+    var amountErrorLabel:UILabel!
 
     var addParticipantsButton:UIButton!
 
@@ -23,11 +25,17 @@ class NewExpense : UIViewController, UITextFieldDelegate{
 
     var validator: Validator!
 
+//    var originY: CGFloat!
+//    var orginalHeight: CGFloat!
+
     override func viewDidLoad() {
 
         view.backgroundColor = UIColor.whiteColor()
         setupNavigationBar()
         validator = Validator()
+
+//        originY = view.frame.origin.y
+//        orginalHeight = view.frame.height
 
         paidByLabel = createLabel("Paid by:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         paidByTextField = createTextField("")
@@ -48,11 +56,20 @@ class NewExpense : UIViewController, UITextFieldDelegate{
 
         amountLabel = createLabel("Amount:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         amountTextField = createTextField("$$")
-        amountTextField.keyboardType = UIKeyboardType.NumberPad
+        amountTextField.keyboardType = .DecimalPad
         amountTextField.delegate = self
+
+        commentErrorLabel = createLabel("")
+        amountErrorLabel = createLabel("")
+
+        commentErrorLabel.hidden = true
+        amountErrorLabel.hidden = true
 
         addParticipantsButton = createButton("Add participants >", font: UIFont(name: "HelveticaNeue",size: 20)!)
         addParticipantsButton.addTarget(self, action: "addParticipantsPressed:", forControlEvents: .TouchUpInside)
+
+        validator.registerField(commentTextField, errorLabel: commentErrorLabel, rules: [RequiredRule()])
+        validator.registerField(amountTextField, errorLabel: amountErrorLabel, rules: [RequiredRule(), FloatRule()])
 
         view.addSubview(paidByLabel)
         view.addSubview(paidByTextField)
@@ -63,6 +80,8 @@ class NewExpense : UIViewController, UITextFieldDelegate{
         view.addSubview(amountLabel)
         view.addSubview(amountTextField)
         view.addSubview(addParticipantsButton)
+        view.addSubview(commentErrorLabel)
+        view.addSubview(amountErrorLabel)
 
         //Constraints:
 
@@ -72,6 +91,7 @@ class NewExpense : UIViewController, UITextFieldDelegate{
 
         let elements:[UIView] = [paidByTextField, dateTextField, commentTextField, amountTextField]
         let labels:[UIView] = [paidByLabel, dateLabel, commentLabel, amountLabel]
+        let errorLabels:[UIView?] = [nil, nil, commentErrorLabel, amountErrorLabel]
 
         for i in 0...elements.count - 1 {
 
@@ -105,6 +125,14 @@ class NewExpense : UIViewController, UITextFieldDelegate{
                     label.bottom.equalTo(elements[i].snp_top).offset(-5)
                     label.leftMargin.equalTo(edgeMargin)
                 }
+
+                if let errorLabel = errorLabels[i] {
+                    errorLabel.snp_makeConstraints {
+                        (label) -> Void in
+                        label.bottom.equalTo(elements[i].snp_top).offset(-3)
+                        label.right.equalTo(elements[i].snp_right)
+                    }
+                }
             }
         }
 
@@ -115,18 +143,19 @@ class NewExpense : UIViewController, UITextFieldDelegate{
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        clearValidationErrors()
+    }
+
+
     func dateSelected(sender:UIDatePicker){
         dateTextField.text = sender.date.shortPrintable()
     }
 
     func addParticipantsPressed(sender:UIButton){
-
-        let amount = Double(amountTextField.text!)
-
-        let vc = AddParticipantsParent()
-        vc.delegate = delegate
-        vc.expense = Expense(participants: [], amount: amount!, date: datePicker.date, groupId: API.currentGroup!.id, comment: commentTextField.text!, creator: API.currentUser!)
-        navigationController?.pushViewController(vc,animated: true)
+        clearValidationErrors()
+        validator.validate(self)
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -145,7 +174,8 @@ class NewExpense : UIViewController, UITextFieldDelegate{
 
     func moveKeyboardUp() {
         UIView.animateWithDuration(0.25, animations: {
-            self.view.frame = CGRectMake(0 , 0, self.view.frame.width, self.view.frame.height - 150)
+//            self.view.frame = CGRectMake(0 , 0, self.view.frame.width, self.view.frame.height - 150)
+            self.view.frame.origin.y += 150
         })
     }
 
@@ -169,5 +199,39 @@ class NewExpense : UIViewController, UITextFieldDelegate{
         }
     }
 
+    func validationSuccessful() {
+        let amount = normalizeNumberInText(amountTextField.text!).doubleValue
+        resetView()
+        let vc = AddParticipantsParent()
+        vc.delegate = delegate
+        vc.expense = Expense(participants: [], amount: amount, date: datePicker.date, groupId: API.currentGroup!.id, comment: commentTextField.text!, creator: API.currentUser!)
+        navigationController?.pushViewController(vc,animated: true)
+    }
+
+    func validationFailed(errors: [UITextField:ValidationError]) {
+        // turn the fields to red
+        for (field, error) in validator.errors {
+            field.layer.borderColor = UIColor.redColor().CGColor
+            field.layer.borderWidth = 1.0
+            error.errorLabel?.text = error.errorMessage // works if you added labels
+            error.errorLabel?.hidden = false
+        }
+    }
+
+    func clearValidationErrors() {
+        commentTextField.layer.borderWidth = 0.0
+        commentErrorLabel.hidden = true
+
+        amountTextField.layer.borderWidth = 0.0
+        amountErrorLabel.hidden = true
+    }
+
+    func resetView(){
+        commentTextField.resignFirstResponder()
+        amountTextField.resignFirstResponder()
+
+//        self.view.frame = CGRectMake(0 , 0, self.view.frame.width, orginalHeight)
+//        self.view.frame.origin.y = originY
+    }
 
 }
