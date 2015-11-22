@@ -61,7 +61,7 @@ class ExpensesTableViewController:UITableViewController {
         print("in did select")
 
         let vc = EditExpense()
-        vc.delegate = self
+        vc.delegate = self.delegate
         navigationController?.pushViewController(vc, animated: true)
     }
     

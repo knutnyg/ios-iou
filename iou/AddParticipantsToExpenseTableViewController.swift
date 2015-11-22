@@ -33,7 +33,7 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
         cell.imageView?.image = newImage
         cell.textLabel?.text = API.currentGroup!.members[indexPath.item].name
-
+        
         if let exp = API.currentExpense {
             if exp.participants.map({return $0.id}).contains(API.currentGroup!.members[indexPath.item].id){
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark

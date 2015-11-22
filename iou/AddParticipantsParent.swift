@@ -6,12 +6,18 @@
 import Foundation
 import SnapKit
 
+enum Type {
+    case NEW
+    case UPDATE
+}
+
 class AddParticipantsParent: UIViewController {
 
     var addParticipantTableView: AddParticipantsToExpenseTableViewController!
     var sendButton: UIButton!
     var expense: Expense!
     var delegate: GroupViewController!
+    var type:Type!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +53,26 @@ class AddParticipantsParent: UIViewController {
 
     func sendButtonPressed(sender: UIButton) {
         expense.participants = addParticipantTableView.selectedMembers
-        API.newExpense(expense)
-        .onSuccess {
-            expense in
-            self.navigationController?.popToViewController(self.delegate, animated: true)
-        }
-        .onFailure {
-            err in
-            print(err)
+        
+        switch type! {
+        case .NEW:
+            API.newExpense(expense)
+                .onSuccess {
+                    expense in
+                    self.navigationController?.popToViewController(self.delegate, animated: true)
+                }
+                .onFailure {
+                    err in
+                    print(err)
+            }
+            break
+        case .UPDATE:
+            API.putExpense(expense)
+                .onSuccess{ expense in
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                .onFailure{err in print(err)}
+            break
         }
     }
 

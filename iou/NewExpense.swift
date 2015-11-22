@@ -205,6 +205,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         let vc = AddParticipantsParent()
         vc.delegate = delegate
         vc.expense = Expense(participants: [], amount: amount, date: datePicker.date, groupId: API.currentGroup!.id, comment: commentTextField.text!, creator: API.currentUser!)
+        vc.type = Type.NEW
         navigationController?.pushViewController(vc,animated: true)
     }
 
