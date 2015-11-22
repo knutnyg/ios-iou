@@ -56,12 +56,10 @@ class ExpensesTableViewController:UITableViewController {
 
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        API.currentExpense = API.currentGroup!.expenses[indexPath.item]
-
-        print("in did select")
-
         let vc = EditExpense()
         vc.delegate = self.delegate
+        vc.expense = API.currentGroup!.expenses[indexPath.item].copy()
+        vc.groupMembers = API.currentGroup!.members
         navigationController?.pushViewController(vc, animated: true)
     }
     

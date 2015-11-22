@@ -10,7 +10,7 @@ class ProfileViewController : UIViewController {
 
     override func viewDidLoad() {
         view.backgroundColor = UIColor.whiteColor()
-
+        
         profileImage = UIImage(named: "profile.png")
         profileImageView = UIImageView(image: profileImage)
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,16 +35,18 @@ class ProfileViewController : UIViewController {
         view.addConstraint(NSLayoutConstraint(item: nameLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
 
     }
-
+    
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        if API.currentUser != nil {
+            refreshProfile()
+        }
 
     }
 
     func refreshProfile(){
+        print("refreshing")
         API.getImageForUser(API.currentUser!).onSuccess{image in
             self.profileImageView.image = image
-
         }
     }
 }

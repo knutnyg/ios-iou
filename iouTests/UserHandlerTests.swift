@@ -53,4 +53,24 @@ class UserHandlerTests : XCTestCase {
             XCTAssertNil(error, "Error")
         })
     }
+    
+    func testUploadPhoto(){
+        let expectation = expectationWithDescription("promise")
+        
+        let image = UIImage(named: "meg.png")!
+        
+        API.uploadImageForUser(image)
+            .onSuccess { response in
+                XCTAssertTrue(response.success! == true)
+                expectation.fulfill()
+            }
+            .onFailure { error in
+                XCTAssert(false)
+                expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
+    }
 }

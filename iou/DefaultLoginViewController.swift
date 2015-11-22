@@ -16,8 +16,6 @@ class DefaultLoginViewController: UIViewController, ValidationDelegate{
     var passwordTextFieldErrorLabel:UILabel!
 
     var validator:Validator!
-
-    var delegate:LoginViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,12 +85,10 @@ class DefaultLoginViewController: UIViewController, ValidationDelegate{
     }
     
     func setupNavigationBar(){
-        navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x19B5FE)
-        
-        let font = UIFont(name: "Verdana", size:22)!
-        let attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
+//        let font = UIFont(name: "Verdana", size:22)!
+//        let attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationItem.title = "Log In"
-        navigationController!.navigationBar.titleTextAttributes = attributes
+//        navigationController!.navigationBar.titleTextAttributes = attributes
         
         let verticalOffset = 1.5 as CGFloat;
         navigationController?.navigationBar.setTitleVerticalPositionAdjustment(verticalOffset, forBarMetrics: UIBarMetrics.Default)

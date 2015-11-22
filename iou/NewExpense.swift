@@ -4,7 +4,8 @@ import UIKit
 import SnapKit
 import SwiftValidator
 
-class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
+class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
     var delegate:GroupViewController!
 
     var paidByLabel:UILabel!
@@ -20,13 +21,13 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
     var amountErrorLabel:UILabel!
 
     var addParticipantsButton:UIButton!
+    var groupMembers:[User]!
+
+    var memberPickerView: UIPickerView!
 
     var selectedDate:NSDate!
 
     var validator: Validator!
-
-//    var originY: CGFloat!
-//    var orginalHeight: CGFloat!
 
     override func viewDidLoad() {
 
@@ -34,12 +35,17 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         setupNavigationBar()
         validator = Validator()
 
-//        originY = view.frame.origin.y
-//        orginalHeight = view.frame.height
+        memberPickerView = UIPickerView()
+        memberPickerView.delegate = self
+        memberPickerView.dataSource = self
+        if let index = groupMembers.indexOf({$0.id == API.currentUser!.id}) {
+            memberPickerView.selectRow(index,inComponent: 0,animated:false)
+        }
 
         paidByLabel = createLabel("Paid by:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         paidByTextField = createTextField("")
         paidByTextField.text = API.currentUser!.name
+        paidByTextField.inputView = memberPickerView
 
         commentLabel = createLabel("Comment:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         commentTextField = createTextField("Enter a describing comment")
@@ -186,14 +192,13 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         })
     }
 
-    func textFieldDidBeginEditing(_ textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         if textField == commentTextField || textField == amountTextField {
-
             moveKeyboardDown()
         }
     }
-
-    func textFieldDidEndEditing(_ textField: UITextField!) {
+    
+    func textFieldDidEndEditing(textField: UITextField) {
         if textField == commentTextField || textField == amountTextField {
             moveKeyboardUp()
         }
@@ -201,10 +206,11 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
 
     func validationSuccessful() {
         let amount = normalizeNumberInText(amountTextField.text!).doubleValue
+        let date = datePicker.date
         resetView()
         let vc = AddParticipantsParent()
         vc.delegate = delegate
-        vc.expense = Expense(participants: [], amount: amount, date: datePicker.date, groupId: API.currentGroup!.id, comment: commentTextField.text!, creator: API.currentUser!)
+        vc.expense = Expense(participants: [], amount: amount, date: date, groupId: API.currentGroup!.id, created: NSDate(), updated: NSDate(), comment: commentTextField.text!, creator: groupMembers[memberPickerView.selectedRowInComponent(0)])
         vc.type = Type.NEW
         navigationController?.pushViewController(vc,animated: true)
     }
@@ -230,9 +236,23 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
     func resetView(){
         commentTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
-
-//        self.view.frame = CGRectMake(0 , 0, self.view.frame.width, orginalHeight)
-//        self.view.frame.origin.y = originY
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        paidByTextField.text = groupMembers[row].name
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return groupMembers[row].name
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return groupMembers.count
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
     }
 
 }

@@ -6,7 +6,6 @@ class API {
     static var accessToken:String?
     static var currentUser:User?
     static var currentGroup:Group?
-    static var currentExpense:Expense?
     static var currentLocale:NSLocale?
     
     static func defaultLogIn(username:String, password:String) -> Future<String,NSError>{
@@ -17,7 +16,7 @@ class API {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return UserHandler().getUser(token)
+        return UserHandler.getUser(token)
     }
 
     static func searchUsers(query:String) -> Future<[User],NSError>{
@@ -90,6 +89,13 @@ class API {
 
     static func signUp(name:String, email:String, password:String, confirm_password:String) -> Future<String, NSError> {
         return SignUpHandler.signUp(name, email: email, password: password, confirm_password: confirm_password)
+    }
+    
+    static func uploadImageForUser(image:UIImage) -> Future<GenericResponse,NSError>{
+        guard let token = accessToken else {
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
+        return UserHandler.uploadImage(token, image: image)
     }
     
     

@@ -7,10 +7,12 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
     
     var delegate:UIViewController!
     var selectedMembers:[User] = []
+    var expense:Expense!
     
     override func viewDidLoad() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.whiteColor()
+        selectedMembers = expense.participants
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -34,10 +36,9 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
         cell.imageView?.image = newImage
         cell.textLabel?.text = API.currentGroup!.members[indexPath.item].name
         
-        if let exp = API.currentExpense {
-            if exp.participants.map({return $0.id}).contains(API.currentGroup!.members[indexPath.item].id){
-                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-            }
+
+        if expense.participants.map({return $0.id}).contains(API.currentGroup!.members[indexPath.item].id){
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
 
         return cell

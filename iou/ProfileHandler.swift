@@ -9,20 +9,20 @@ import SwiftHTTP
 
 class ProfileHandler {
 
-
-
-
     func getImageForUser(user:User) -> Future<UIImage,NSError> {
 
-        guard let photoUrl = user.photoURL else {
+        guard var photoUrl = user.photoURL else {
             return Future(error: NSError(domain: "NO IMAGE URL", code: 500, userInfo: nil))
+        }
+        
+        if !user.photoURL.containsString("http") {
+            photoUrl = "https://www.logisk.org\(photoUrl)"
         }
 
         let promise = Promise<UIImage, NSError>()
 
-        let url:String = user.photoURL
         do {
-            let request = try HTTP.GET(url)
+            let request = try HTTP.GET(photoUrl)
 
             request.start { response in
                 if let err = response.error {

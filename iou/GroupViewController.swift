@@ -92,7 +92,6 @@ class GroupViewController : UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         //reload expenses
-        API.currentExpense = nil
         refreshData()
     }
     
@@ -101,12 +100,11 @@ class GroupViewController : UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
-
-
     func newExpensePressed(sender:UIButton) {
         print("create new expense")
         let vc = NewExpense()
         vc.delegate = self
+        vc.groupMembers = API.currentGroup!.members
         navigationController?.pushViewController(vc, animated: true)
     }
 

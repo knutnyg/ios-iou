@@ -53,7 +53,6 @@ class MainViewController : UIViewController {
 
 
     func setupNavigationBar(){
-        navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x123add)
         
         let font = UIFont(name: "HelveticaNeue", size:28)!
 

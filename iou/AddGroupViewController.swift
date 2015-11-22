@@ -14,6 +14,7 @@ class AddGroup : UIViewController {
     override func viewDidLoad() {
 
         view.backgroundColor = UIColor.whiteColor()
+        navigationItem.title = "Add group"
 
         addGroupTextField = createTextField("enter a group name")
         submitButton = createButton("Submit", font: UIFont(name: "HelveticaNeue",size: 28)!)

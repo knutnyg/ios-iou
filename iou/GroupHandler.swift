@@ -38,7 +38,7 @@ class GroupHandler {
             var newSortedGroups: [Group] = []
             for group: Group in sortedGroups {
                 let sortedMembers = group.members.sort({ $0.name < $1.name })
-                var g = group
+                let g = group
                 g.members = sortedMembers
                 newSortedGroups.append(g)
             }

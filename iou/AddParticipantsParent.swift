@@ -24,6 +24,7 @@ class AddParticipantsParent: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
 
         addParticipantTableView = AddParticipantsToExpenseTableViewController()
+        addParticipantTableView.expense = expense
         sendButton = createButton("Send", font: UIFont(name: "HelveticaNeue", size: 20)!)
         sendButton.addTarget(self, action: "sendButtonPressed:", forControlEvents: .TouchUpInside)
 
@@ -69,7 +70,7 @@ class AddParticipantsParent: UIViewController {
         case .UPDATE:
             API.putExpense(expense)
                 .onSuccess{ expense in
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popToViewController(self.delegate, animated: true)
                 }
                 .onFailure{err in print(err)}
             break

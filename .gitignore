@@ -9,3 +9,7 @@ Pods
 *.certSigningRequest
 *.zip
 *.ipa
+
+test_output
+fastlane/report.xml
+

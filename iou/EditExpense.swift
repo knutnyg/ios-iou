@@ -4,7 +4,7 @@ import UIKit
 import SnapKit
 import SwiftValidator
 
-class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
+class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     var delegate:GroupViewController!
     
     var paidByLabel:UILabel!
@@ -18,40 +18,53 @@ class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
     var amountTextField:UITextField!
     var commentErrorLabel:UILabel!
     var amountErrorLabel:UILabel!
-    
+
+    var memberPickerView: UIPickerView!
+
     var addParticipantsButton:UIButton!
     
     var selectedDate:NSDate!
+    var expense:Expense!
+    var groupMembers:[User]!
     
     var validator: Validator!
-    
+
     override func viewDidLoad() {
         
         view.backgroundColor = UIColor.whiteColor()
         setupNavigationBar()
         validator = Validator()
-        
+
+        memberPickerView = UIPickerView()
+        memberPickerView.delegate = self
+        memberPickerView.dataSource = self
+        if let index = groupMembers.indexOf({$0.id == expense.creator.id}) {
+            memberPickerView.selectRow(index,inComponent: 0,animated:false)
+        }
+
         paidByLabel = createLabel("Paid by:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         paidByTextField = createTextField("")
-        paidByTextField.text = API.currentExpense?.creator.name
-        
+        paidByTextField.text = expense.creator.name
+        paidByTextField.inputView = memberPickerView
+
         commentLabel = createLabel("Comment:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         commentTextField = createTextField("")
-        commentTextField.text = API.currentExpense?.comment
+        commentTextField.text = expense.comment
         commentTextField.delegate = self
         
         dateLabel = createLabel("Date:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         datePicker = UIDatePicker()
+        datePicker.date = expense.date
         datePicker.datePickerMode = UIDatePickerMode.Date
         
         dateTextField = createTextField("")
-        dateTextField.text =  API.currentExpense?.date.shortPrintable()
+        dateTextField.text =  expense.date.shortPrintable()
         dateTextField.inputView = datePicker
         datePicker.addTarget(self, action: "dateSelected:", forControlEvents: .ValueChanged)
         
         amountLabel = createLabel("Amount:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         amountTextField = createTextField("$$")
-        amountTextField.text =  "\(API.currentExpense!.amount)"
+        amountTextField.text =  "\(expense.amount)"
         amountTextField.keyboardType = .DecimalPad
         amountTextField.delegate = self
         
@@ -61,7 +74,7 @@ class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         commentErrorLabel.hidden = true
         amountErrorLabel.hidden = true
         
-        addParticipantsButton = createButton("Add participants >", font: UIFont(name: "HelveticaNeue",size: 20)!)
+        addParticipantsButton = createButton("Edit participants >", font: UIFont(name: "HelveticaNeue",size: 20)!)
         addParticipantsButton.addTarget(self, action: "addParticipantsPressed:", forControlEvents: .TouchUpInside)
         
         validator.registerField(commentTextField, errorLabel: commentErrorLabel, rules: [RequiredRule()])
@@ -164,7 +177,7 @@ class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
     }
     
     func setupNavigationBar(){
-        navigationItem.title = "Add Expense"
+        navigationItem.title = "Edit Expense"
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
@@ -182,24 +195,33 @@ class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         })
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         if textField == commentTextField || textField == amountTextField {
             moveKeyboardDown()
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField!) {
+    func textFieldDidEndEditing(textField: UITextField) {
         if textField == commentTextField || textField == amountTextField {
             moveKeyboardUp()
         }
     }
+
+
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        expense.creator = groupMembers[row]
+        paidByTextField.text = groupMembers[row].name
+    }
     
     func validationSuccessful() {
-        let amount = normalizeNumberInText(amountTextField.text!).doubleValue
+        expense.creator = groupMembers[memberPickerView.selectedRowInComponent(0)]
+        expense.date = datePicker.date
+        expense.comment = commentTextField.text
+        expense.amount = normalizeNumberInText(amountTextField.text!).doubleValue
         resetView()
         let vc = AddParticipantsParent()
         vc.delegate = delegate
-        vc.expense = Expense(participants: [], amount: amount, date: datePicker.date, groupId: API.currentGroup!.id, comment: commentTextField.text!, creator: API.currentUser!)
+        vc.expense = expense
         vc.type = Type.UPDATE
         navigationController?.pushViewController(vc,animated: true)
     }
@@ -227,4 +249,15 @@ class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate{
         amountTextField.resignFirstResponder()
     }
     
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return groupMembers.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return groupMembers[row].name
+    }
 }

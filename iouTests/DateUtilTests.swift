@@ -15,8 +15,26 @@ class DateUtilTests : XCTestCase {
         
     }
     
-    func testDateFromUTCString() {
+    func testDateWithThreeDecimalsFromUTCString() {
         let dateString = "2015-11-17T20:11:30.902Z"
+        
+        XCTAssertNotNil(dateFromUTCString(dateString))
+    }
+    
+    func testDateWithNoDecimalsFromUTCString() {
+        let dateString = "2015-11-17T20:11:30Z"
+        
+        XCTAssertNotNil(dateFromUTCString(dateString))
+    }
+    
+    func testDateWithOneDecimalsFromUTCString() {
+        let dateString = "2015-11-17T20:11:30.9Z"
+        
+        XCTAssertNotNil(dateFromUTCString(dateString))
+    }
+    
+    func testDateWithTwoDecimalsFromUTCString() {
+        let dateString = "2015-11-17T20:11:30.90Z"
         
         XCTAssertNotNil(dateFromUTCString(dateString))
     }

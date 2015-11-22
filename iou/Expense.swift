@@ -10,19 +10,19 @@ import Foundation
 import SwiftyJSON
 import JSONJoy
 
-class Expense :JSONJoy {
-    var participants:[User]!
-    var amount:Double!
-    var date:NSDate!
-    var groupId:String!
-    var id:String!
-    var created:NSDate!
-    var updated:NSDate?
-    var comment:String!
-    var creator:User!
-    
-    
-    init(participants:[User], amount:Double, date:NSDate, groupId:String, created:NSDate, updated:NSDate?, comment:String, creator:User){
+class Expense: JSONJoy {
+    var participants: [User]!
+    var amount: Double!
+    var date: NSDate!
+    var groupId: String!
+    var id: String!
+    var created: NSDate!
+    var updated: NSDate?
+    var comment: String!
+    var creator: User!
+
+
+    init(participants: [User], amount: Double, date: NSDate, groupId: String, created: NSDate, updated: NSDate?, comment: String, creator: User) {
         self.participants = participants
         self.amount = amount
         self.date = date
@@ -34,7 +34,7 @@ class Expense :JSONJoy {
         self.creator = creator
     }
 
-    init(participants:[User], amount:Double, date:NSDate, groupId:String, created:NSDate, updated:NSDate?, comment:String, creator:User, id:String){
+    init(participants: [User], amount: Double, date: NSDate, groupId: String, created: NSDate, updated: NSDate?, comment: String, creator: User, id: String) {
         self.participants = participants
         self.amount = amount
         self.date = date
@@ -46,8 +46,8 @@ class Expense :JSONJoy {
         self.creator = creator
         self.id = id
     }
-    
-    init(participants:[User], amount:Double, date:NSDate, groupId:String, comment:String, creator:User){
+
+    init(participants: [User], amount: Double, date: NSDate, groupId: String, comment: String, creator: User) {
         self.participants = participants
         self.amount = amount
         self.groupId = groupId
@@ -55,7 +55,7 @@ class Expense :JSONJoy {
         self.comment = comment
         self.creator = creator
     }
-    
+
     required init(_ decoder: JSONDecoder) {
         if let p = decoder["participants"].array {
             participants = []
@@ -63,7 +63,7 @@ class Expense :JSONJoy {
                 participants.append(User(participantDecoder))
             }
         }
-        
+
         amount = decoder["amount"].double
         comment = decoder["comment"].string
         date = dateFromUTCString(decoder["date"].string!)
@@ -72,34 +72,52 @@ class Expense :JSONJoy {
         created = dateFromUTCString(decoder["created_at"].string!)
         updated = dateFromUTCString(decoder["updated_at"].string!)
         creator = User(decoder["creator"])
-        
+
     }
 
-    func toJSONparsableDicitonary() -> NSDictionary{
-        let participantIDs = participants.map { return ["id": $0.id] }
-        
+    func toJSONparsableDicitonary() -> NSDictionary {
+        let participantIDs = participants.map {
+            return ["id": $0.id]
+        }
+
         return [
-            "participants":participantIDs,
-            "comment":comment,
-            "date":date.utcFormat(),
-            "id":id,
-            "creator":creator.toJSONParseableDictionary(),
-            "amount":amount,
-            "created_at":created.utcFormat(),
-            "spreadsheet_id":groupId,
-            "updated_at":NSDate().utcFormat()
+                "participants": participantIDs,
+                "comment": comment,
+                "date": date.utcFormat(),
+                "id": id,
+                "creator": creator.toJSONParseableDictionary(),
+                "amount": amount,
+                "created_at": created.utcFormat(),
+                "spreadsheet_id": groupId,
+                "updated_at": NSDate().utcFormat()
         ]
     }
-    
-    func toJSONCreate() -> NSDictionary{
-        
+
+    func toJSONCreate() -> NSDictionary {
+
         return [
-            "participants":participants.map{member in member.toJSONParseableDictionary()},
-            "comment":comment,
-            "date":date.utcFormat(),
-            "creator":creator.toJSONParseableDictionary(),
-            "amount":amount,
-            "spreadsheet_id":groupId,
+                "participants": participants.map {
+                    member in member.toJSONParseableDictionary()
+                },
+                "comment": comment,
+                "date": date.utcFormat(),
+                "creator": creator.toJSONParseableDictionary(),
+                "amount": amount,
+                "spreadsheet_id": groupId,
         ]
+    }
+
+    func copy() -> Expense {
+        return Expense(
+            participants: self.participants,
+            amount: self.amount,
+            date: self.date,
+            groupId: self.groupId,
+            created: self.created,
+            updated: self.updated,
+            comment: self.comment,
+            creator: self.creator,
+            id: self.id
+        )
     }
 }

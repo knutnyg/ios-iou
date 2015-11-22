@@ -26,7 +26,6 @@ class AddMemberToGroupTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Find max size
         return delegate.searchResult.count
     }
     
@@ -36,7 +35,7 @@ class AddMemberToGroupTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let group = API.currentGroup!.members.append(delegate.searchResult[indexPath.item])
+        API.currentGroup!.members.append(delegate.searchResult[indexPath.item])
         
         API.putGroup(API.currentGroup!)
             .onSuccess{group in

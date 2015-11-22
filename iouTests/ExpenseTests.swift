@@ -16,7 +16,7 @@ class ExpenseTests: XCTestCase {
     var group: Group!
     var token: String!
 
-    var runIntegrationTests = true
+    var runIntegrationTests = false
 
     override func setUp() {
         super.setUp()

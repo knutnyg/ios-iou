@@ -21,6 +21,7 @@ class ForgotPasswordViewController: UIViewController, ValidationDelegate{
     override func viewDidLoad() {
         
         view.backgroundColor = UIColor.whiteColor()
+        navigationItem.title = "Recover login"
         
         emailTextField = createTextField("email")
         submitButton = createButton("Submit", font: UIFont(name: "HelveticaNeue",size: 28)!)

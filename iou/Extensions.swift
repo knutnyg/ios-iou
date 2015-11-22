@@ -60,14 +60,3 @@ extension NSDate {
         }
     }
 }
-
-extension Array {
-    func find(includedElement: Element -> Bool) -> Int? {
-        for (idx, element) in self.enumerate() {
-            if includedElement(element) {
-                return idx
-            }
-        }
-        return nil
-    }
-}

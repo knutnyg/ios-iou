@@ -10,7 +10,7 @@ import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginMenuViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     var facebookLoginButton:UIButton!
     var defaultLoginButton:UIButton!
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func setupNavigationBar(){
-        navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x007ee5)
+        navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x123add)
         
         let font = UIFont(name: "Verdana", size:22)!
         let attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
@@ -115,7 +115,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func defaultLoginPressed(sender:UIButton){
         let vc = DefaultLoginViewController()
-        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 
