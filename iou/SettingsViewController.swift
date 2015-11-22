@@ -39,6 +39,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .PhotoLibrary
+        imagePicker.allowsEditing = true
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
