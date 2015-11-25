@@ -9,10 +9,17 @@
 import Foundation
 import UIKit
 
-func createTextField(placeholder:String) -> UITextField {
+func createTextField(placeholder:String?) -> UITextField {
+    
+    
+    
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.placeholder = placeholder
+    
+    if let text = placeholder {
+        textField.placeholder = text
+    }
+    
     textField.borderStyle = UITextBorderStyle.RoundedRect
     textField.textAlignment = NSTextAlignment.Center
     textField.keyboardType = UIKeyboardType.EmailAddress

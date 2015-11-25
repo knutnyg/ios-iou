@@ -20,5 +20,18 @@ class ImageUtils {
         UIGraphicsEndImageContext()
         return newImage
     }
+    
+    static func createRoundImageView(image:UIImage) -> UIImageView {
+        let iv = UIImageView(image: image)
+        
+        iv.layer.borderWidth = 1.0
+        iv.layer.masksToBounds = false
+        iv.layer.borderColor = UIColor.whiteColor().CGColor
+        iv.layer.cornerRadius = image.size.width/2
+        iv.clipsToBounds = true
+        
+        return iv
+
+    }
 }
 
