@@ -13,14 +13,14 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var logOutButton:UIButton!
     var selectProfileImageButton:UIButton!
-    var delegate:UIViewController!
+    var delegate:MainViewController!
     
     override func viewDidLoad() {
         
         view.backgroundColor = UIColor.whiteColor()
         
-        selectProfileImageButton = createButton("Upload Photo", font: UIFont(name: "HelveticaNeue",size: 28)!)
-        selectProfileImageButton.addTarget(self, action: "uploadPhotoPressed:", forControlEvents: .TouchUpInside)
+        selectProfileImageButton = createButton("Edit Profile", font: UIFont(name: "HelveticaNeue",size: 28)!)
+        selectProfileImageButton.addTarget(self, action: "editProfilePressed:", forControlEvents: .TouchUpInside)
         
         logOutButton = createButton("Log Out", font: UIFont(name: "HelveticaNeue",size: 28)!)
         logOutButton.addTarget(self, action: "logOutPressed:", forControlEvents: .TouchUpInside)
@@ -35,12 +35,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         view.addConstraint(NSLayoutConstraint(item: selectProfileImageButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
     }
     
-    func uploadPhotoPressed(sender:UIButton){
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .PhotoLibrary
-        imagePicker.allowsEditing = true
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+    func editProfilePressed(sender:UIButton){
+        let vc = EditProfileViewController()
+        vc.user = API.currentUser!
+        vc.mainViewViewController = delegate
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func logOutPressed(sender:UIButton){
@@ -49,22 +48,4 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        let scaledImage = ImageUtils.scaleImage(image, height: 200, width: 200)
-        
-        API.uploadImageForUser(scaledImage).onSuccess{response in
-                print("Success!")
-            }
-            .onFailure{error in
-                print("failure!")
-            }
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
 }

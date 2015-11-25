@@ -96,6 +96,8 @@
 		7224B9CD1BD6BA7F00414CF5 /* FAHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725707181AF14AA800180A45 /* FAHelpers.swift */; };
 		7224B9CE1BD6BA8600414CF5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720883651BD5653B001A716A /* SettingsViewController.swift */; };
 		72289D1B1ACFD4DB0073C60C /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72289D1A1ACFD4DB0073C60C /* SummaryTableViewController.swift */; };
+		722ABAE21C06368000289DFC /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722ABAE11C06368000289DFC /* EditProfileViewController.swift */; };
+		722ABAE31C06368000289DFC /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722ABAE11C06368000289DFC /* EditProfileViewController.swift */; };
 		7237DC401AD2CB9C00A29256 /* SummaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */; };
 		723836AB1AB0D3C6007EC1FC /* GroupPanelConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */; };
 		724ACD1B1AB0AA6100DFA724 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 724ACD1A1AB0AA6100DFA724 /* Podfile */; };
@@ -231,6 +233,7 @@
 		7224B9C41BD6AE1300414CF5 /* EditExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpense.swift; sourceTree = "<group>"; };
 		7224B9C61BD6AF1700414CF5 /* AddParticipantsToExpenseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddParticipantsToExpenseTableViewController.swift; sourceTree = "<group>"; };
 		72289D1A1ACFD4DB0073C60C /* SummaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
+		722ABAE11C06368000289DFC /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryItem.swift; sourceTree = "<group>"; };
 		723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPanelConstraints.swift; sourceTree = "<group>"; };
 		724ACD1A1AB0AA6100DFA724 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -371,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				720883651BD5653B001A716A /* SettingsViewController.swift */,
+				722ABAE11C06368000289DFC /* EditProfileViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -795,6 +799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722ABAE21C06368000289DFC /* EditProfileViewController.swift in Sources */,
 				72C1A5D81C023FF0007FFAB6 /* GenericResponse.swift in Sources */,
 				7224B9C51BD6AE1300414CF5 /* EditExpense.swift in Sources */,
 				72A07EB61AA8EED60016C61B /* MainViewController.swift in Sources */,
@@ -869,6 +874,7 @@
 				72E973B21AF39CA300ECB4CD /* SummaryTableViewController.swift in Sources */,
 				6AED42121BD4071A00053831 /* CommonComponents.swift in Sources */,
 				72E973A41AF39B6000ECB4CD /* ExpenseTests.swift in Sources */,
+				722ABAE31C06368000289DFC /* EditProfileViewController.swift in Sources */,
 				6AED42061BD3D04E00053831 /* ResetPasswordHandlerTests.swift in Sources */,
 				72C1A5E01C02589E007FFAB6 /* ImageUtilsTests.swift in Sources */,
 				6A6FEC1A1BD39C7200FE19FC /* AccessToken.swift in Sources */,
