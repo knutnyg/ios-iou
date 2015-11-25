@@ -98,6 +98,13 @@ class API {
         return UserHandler.uploadImage(token, image: image)
     }
     
+    static func updateUser(user:User) -> Future<User,NSError>{
+        guard let token = accessToken else {
+            return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
+        }
+        return UserHandler.updateUser(token, user: user)
+    }
+    
     
     
     

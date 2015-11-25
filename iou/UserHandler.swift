@@ -121,6 +121,36 @@ class UserHandler {
         
         return imagePromise.future
     }
+    
+    static func updateUser(token:String, user:User) -> Future<User,NSError> {
+        
+        let promiseUser = Promise<User, NSError>()
+        let payload = user.toJSONParseableDictionary()
+        
+        let url:String = "https://www.logisk.org/api/user/edit"
+        do {
+            let request = try HTTP.PUT(url, parameters: payload, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
+            
+            request.start { response in
+                if let err = response.error {
+                    print("UserHandler: Response contains error: \(err)")
+                    promiseUser.failure(err)
+                    return
+                }
+                print("Debug: UserHandler got response")
+                print(response.description)
+                promiseUser.success(User(JSONDecoder(response.data)))
+            }
+            
+        } catch {
+            print("UserHandler: got error in getUser")
+            promiseUser.failure(NSError(domain: "SSL", code: 200, userInfo: nil))
+        }
+        
+        return promiseUser.future
+    }
+    
+    
 }
 
 

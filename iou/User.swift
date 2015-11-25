@@ -47,6 +47,7 @@ class User :JSONJoy{
         name = decoder["name"].string
         id = decoder["id"].string
         if id == nil {
+            //Støtte Eivinds varierte apier...
             id = decoder["uuid"].string
         }
         photoURL = decoder["photourl"].string
