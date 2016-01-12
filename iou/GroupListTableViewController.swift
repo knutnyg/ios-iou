@@ -8,8 +8,7 @@ class GroupListTableViewController : UITableViewController {
     var unArchivedGroups:[Group] = []
     var maxGroupItems = 0
     var delegate:MainViewController!
-
-    var visibleGroups:[Group] = []
+    var showArchived:Bool = false
 
     let unarchiveButton = UITableViewRowAction(style: .Normal, title: "unArchive") { action, index in
         NSNotificationCenter.defaultCenter().postNotificationName("unArchive", object: index.item)
@@ -39,23 +38,15 @@ class GroupListTableViewController : UITableViewController {
             return
         }
 
-        guard let idx = findGroupIndexById(groups, archivedGroup: visibleGroups[indexPath]) else {
-            return
-        }
+        visibleGroups()[indexPath].archived = true
 
-        groups.filter{group in !group.archived}
-
-        groups[idx].archived = true
-        visibleGroups[indexPath].archived = true
-        API.putGroup(visibleGroups[indexPath])
+        API.putGroup(groups[indexPath])
         .onSuccess{group in
-            self.visibleGroups = self.groups.filter({$0.archived == false})
             self.tableView.reloadData()
         }
         .onFailure {
             err in
-            self.groups[idx].archived = false
-            self.visibleGroups[indexPath].archived = false
+            self.visibleGroups()[indexPath].archived = false
         }
     }
 
@@ -64,20 +55,15 @@ class GroupListTableViewController : UITableViewController {
             return
         }
 
-        guard let idx = findGroupIndexById(groups, archivedGroup: visibleGroups[indexPath]) else {
-            return
-        }
+        visibleGroups()[indexPath].archived = false
 
-        groups[idx].archived = false
-        visibleGroups[indexPath].archived = false
-        API.putGroup(visibleGroups[indexPath])
+        API.putGroup(visibleGroups()[indexPath])
         .onSuccess{group in
             NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "setArchiveButtonValue",object:false))
         }
         .onFailure {
             err in
-            self.groups[idx].archived = true
-            self.visibleGroups[indexPath].archived = true
+            self.visibleGroups()[indexPath].archived = true
         }
     }
 
@@ -86,16 +72,13 @@ class GroupListTableViewController : UITableViewController {
         super.viewDidAppear(animated)
         API.getGroupsForUser().onSuccess { groups in
             self.groups = groups
-            self.unArchivedGroups = groups.filter({$0.archived == false})
-            if self.delegate.tableHeader.archived.on == true {
-                self.visibleGroups = groups
-            } else {
-                self.visibleGroups = self.unArchivedGroups
-            }
             self.tableView.reloadData()
         }
     }
 
+    func visibleGroups() -> [Group]{
+        return self.groups.filter{group in return !group.archived || self.showArchived}
+    }
 
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -106,7 +89,7 @@ class GroupListTableViewController : UITableViewController {
     }
 
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        if visibleGroups[indexPath.item].archived == true {
+        if visibleGroups()[indexPath.item].archived == true {
             return [unarchiveButton]
         } else {
             return [archiveButton]
@@ -115,25 +98,18 @@ class GroupListTableViewController : UITableViewController {
 
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var archivedStatus = visibleGroups()[indexPath.item].archived
 
-        guard let idx = findGroupIndexById(groups, archivedGroup: visibleGroups[indexPath.item]) else {
-            return
-        }
-
-        let archived = visibleGroups[indexPath.item].archived
-
-        groups[idx].archived = !archived
-        visibleGroups[indexPath.item].archived = !archived
-        API.putGroup(visibleGroups[indexPath.item])
+        visibleGroups()[indexPath.item].archived = !archivedStatus
+        API.putGroup(visibleGroups()[indexPath.item])
         .onSuccess {
             group in
-            self.visibleGroups = self.groups.filter({ $0.archived == false })
             self.tableView.reloadData()
         }
         .onFailure {
             err in
-            self.groups[idx].archived = archived
-            self.visibleGroups[indexPath.item].archived = archived
+            self.visibleGroups()[indexPath.item].archived = archivedStatus
         }
     }
 
@@ -147,7 +123,8 @@ class GroupListTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let group = visibleGroups[indexPath.item]
+        let group = visibleGroups()[indexPath.item]
+//        let group = visibleGroups[indexPath.item]
 
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "groupCell")
         cell.textLabel?.text = group.description
@@ -157,7 +134,7 @@ class GroupListTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        API.currentGroup = visibleGroups[indexPath.item]
+        API.currentGroup = visibleGroups()[indexPath.item]
         let vc = GroupViewController()
 
         vc.delegate = self
@@ -170,7 +147,7 @@ class GroupListTableViewController : UITableViewController {
         
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Find max size
-        return visibleGroups.count
+        return visibleGroups().count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -190,13 +167,7 @@ class GroupListTableViewController : UITableViewController {
     }
 
     func buttonChanged(notification: NSNotification){
-        let val = notification.object as! Bool
-
-        if val == true {
-            visibleGroups = groups
-        } else {
-            visibleGroups = groups.filter({$0.archived == false})
-        }
+        showArchived = notification.object as! Bool
         tableView.reloadData()
     }
 }
