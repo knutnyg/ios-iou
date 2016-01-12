@@ -16,7 +16,7 @@ class ProfileHandler {
         }
         
         if !user.photoURL.containsString("http") {
-            photoUrl = "https://www.logisk.org\(photoUrl)"
+            photoUrl = "\(API.url_root)\(photoUrl)"
         }
 
         let promise = Promise<UIImage, NSError>()

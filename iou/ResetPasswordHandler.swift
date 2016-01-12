@@ -18,7 +18,7 @@ class ResetPasswordHandler {
     func resetPassword(email:String) -> Future<Bool,NSError>{
         resetPasswordPromise = Promise<Bool,NSError>()
         
-        let url:String = "https://www.logisk.org/api/user/forgot"
+        let url:String = "\(API.url_root)/api/user/forgot"
         let payload = ["email":email]
         
         do {

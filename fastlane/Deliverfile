@@ -3,4 +3,4 @@ automatic_release false
 ipa "iou.ipa"
 
 screenshots_path "./screenshots"
-force true
+force true	

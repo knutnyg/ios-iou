@@ -1,10 +1,3 @@
-//
-//  GroupPanelViewController.swift
-//  iou
-//
-//  Created by Knut Nygaard on 3/5/15.
-//  Copyright (c) 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -49,6 +42,8 @@ class GroupListTableViewController : UITableViewController {
         guard let idx = findGroupIndexById(groups, archivedGroup: visibleGroups[indexPath]) else {
             return
         }
+
+        groups.filter{group in !group.archived}
 
         groups[idx].archived = true
         visibleGroups[indexPath].archived = true

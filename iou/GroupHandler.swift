@@ -19,7 +19,7 @@ class GroupHandler {
 
         let promiseGroupsForUser = Promise<[Group], NSError>()
 
-        let url: String = "https://www.logisk.org/api/spreadsheets"
+        let url: String = "\(API.url_root)/api/spreadsheets"
         do {
             let request = try HTTP.GET(url, headers: ["AccessToken": token], requestSerializer: JSONParameterSerializer())
 
@@ -43,7 +43,7 @@ class GroupHandler {
                 newSortedGroups.append(g)
             }
 
-            promiseGroupsForUser.success(newSortedGroups)
+            promiseGroupsForUser.success(groupList.groups)
             }
 
             } catch {
@@ -57,7 +57,7 @@ class GroupHandler {
 static func createGroup(token: String, name: String, creator: User) -> Future<Group, NSError> {
     let promiseCreateGroup = Promise<Group, NSError>()
 
-    let url: String = "https://www.logisk.org/api/spreadsheets"
+    let url: String = "\(API.url_root)/api/spreadsheets"
     let payload: [String:AnyObject] = ["description": name, "creator": creator.toJSONParseableDictionary()]
 
     do {
@@ -90,7 +90,7 @@ static func createGroup(token: String, name: String, creator: User) -> Future<Gr
 static func putGroup(token: String, group: Group) -> Future<Group, NSError> {
     let promiseEditGroup = Promise<Group, NSError>()
 
-    let url: String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
+    let url: String = "\(API.url_root)/api/spreadsheets/\(group.id)"
     let payload: [String:AnyObject] = group.toJSONparsableDicitonary()
 
     do {
@@ -125,7 +125,7 @@ static func putGroup(token: String, group: Group) -> Future<Group, NSError> {
 static func getGroup(token: String, group: Group) -> Future<Group, NSError> {
     let promiseGetGroup = Promise<Group, NSError>()
 
-    let url: String = "https://www.logisk.org/api/spreadsheets/\(group.id)"
+    let url: String = "\(API.url_root)/api/spreadsheets/\(group.id)"
     let payload: [String:AnyObject] = group.toJSONparsableDicitonary()
 
     do {
