@@ -6,7 +6,6 @@ class API {
     static var accessToken:String?
     static var url_root = "https://dev.logisk.org"
     static var currentUser:User?
-    static var currentGroup:Group?
     static var currentLocale:NSLocale?
     
     static func defaultLogIn(username:String, password:String) -> Future<String,NSError>{

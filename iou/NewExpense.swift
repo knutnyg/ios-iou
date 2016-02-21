@@ -180,7 +180,6 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
 
     func moveKeyboardUp() {
         UIView.animateWithDuration(0.25, animations: {
-//            self.view.frame = CGRectMake(0 , 0, self.view.frame.width, self.view.frame.height - 150)
             self.view.frame.origin.y += 150
         })
     }
@@ -210,7 +209,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         resetView()
         let vc = AddParticipantsParent()
         vc.delegate = delegate
-        vc.expense = Expense(participants: [], amount: amount, date: date, groupId: API.currentGroup!.id, created: NSDate(), updated: NSDate(), comment: commentTextField.text!, creator: groupMembers[memberPickerView.selectedRowInComponent(0)])
+        vc.expense = Expense(participants: [], amount: amount, date: date, groupId: delegate.group.id, created: NSDate(), updated: NSDate(), comment: commentTextField.text!, creator: groupMembers[memberPickerView.selectedRowInComponent(0)])
         vc.type = Type.NEW
         navigationController?.pushViewController(vc,animated: true)
     }

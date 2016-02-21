@@ -8,11 +8,13 @@ class EditGroup : UIViewController{
     var entryTextField:UITextField!
     var memberTable:AddMemberToGroupTableViewController!
 
-    var delegate:UIViewController!
+    var delegate:GroupViewController!
     var searchResult:[User] = []
+    var group:Group!
 
     override func viewDidLoad() {
         view.backgroundColor = UIColor.whiteColor()
+        group = delegate.group
 
         entryLabel = createLabel("Search:")
         entryTextField = createTextField("start typing name...")

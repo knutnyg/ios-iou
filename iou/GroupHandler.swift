@@ -144,14 +144,6 @@ static func getGroup(token: String, group: Group) -> Future<Group, NSError> {
             print("Debug: GroupHandler got response")
             print(response.description)
             let group = Group(JSONDecoder(response.data))
-            group.expenses = group.expenses.sort({
-                if let d1 = $0.date, d2 = $1.date {
-                    return d1.timeIntervalSinceNow > d2.timeIntervalSinceNow
-                } else {
-                    return false
-                }
-            })
-            group.members = group.members.sort({ $0.name < $1.name })
             promiseGetGroup.success(group)
         }
 

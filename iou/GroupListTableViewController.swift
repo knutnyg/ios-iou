@@ -114,7 +114,6 @@ class GroupListTableViewController : UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let group = visibleGroups()[indexPath.item]
-//        let group = visibleGroups[indexPath.item]
 
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "groupCell")
         cell.textLabel?.text = group.description
@@ -124,8 +123,8 @@ class GroupListTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        API.currentGroup = visibleGroups()[indexPath.item]
         let vc = GroupViewController()
+        vc.group = visibleGroups()[indexPath.item]
 
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
@@ -136,7 +135,6 @@ class GroupListTableViewController : UITableViewController {
     }
         
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Find max size
         return visibleGroups().count
     }
     

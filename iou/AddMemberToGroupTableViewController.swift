@@ -35,15 +35,15 @@ class AddMemberToGroupTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        API.currentGroup!.members.append(delegate.searchResult[indexPath.item])
+        delegate.group.members.append(delegate.searchResult[indexPath.item])
         
-        API.putGroup(API.currentGroup!)
+        API.putGroup(delegate.group)
             .onSuccess{group in
                 NSNotificationCenter.defaultCenter().postNotification(NSNotification(name:"GroupMembershipChanged", object: nil))
                 self.delegate.navigationController?.popViewControllerAnimated(true)
             }
             .onFailure{ err in
-                API.currentGroup!.members.removeLast()
+                self.delegate.group.members.removeLast()
             }
     }
 }

@@ -25,9 +25,9 @@ class AddParticipantsParent: UIViewController {
 
         addParticipantTableView = AddParticipantsToExpenseTableViewController()
         addParticipantTableView.expense = expense
+        addParticipantTableView.group = delegate.group
         sendButton = createButton("Send", font: UIFont(name: "HelveticaNeue", size: 20)!)
         sendButton.addTarget(self, action: "sendButtonPressed:", forControlEvents: .TouchUpInside)
-
 
         addChildViewController(addParticipantTableView)
         view.addSubview(addParticipantTableView.view)
@@ -39,7 +39,7 @@ class AddParticipantsParent: UIViewController {
             button.right.equalTo(self.view.snp_right).offset(-20)
         }
 
-        var tableHeight = API.currentGroup!.members.count * 100 + 100
+        var tableHeight = delegate.group.members.count * 100 + 100
 
         if tableHeight > 700 {
             tableHeight = 700

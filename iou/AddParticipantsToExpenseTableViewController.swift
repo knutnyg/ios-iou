@@ -8,6 +8,7 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
     var delegate:UIViewController!
     var selectedMembers:[User] = []
     var expense:Expense!
+    var group:Group!
     
     override func viewDidLoad() {
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -25,20 +26,16 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-//        var profileImageView = UIImageView(image: newImage)
-//        profileImageView.layer.borderWidth = 1.0
-//        profileImageView.layer.masksToBounds = false
-//        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
-//        profileImageView.layer.cornerRadius = 100/2
-//        profileImageView.clipsToBounds = true
-
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
         cell.imageView?.image = newImage
-        cell.textLabel?.text = API.currentGroup!.members[indexPath.item].name
-        
+        cell.textLabel?.text = group.members[indexPath.item].name
 
-        if expense.participants.map({return $0.id}).contains(API.currentGroup!.members[indexPath.item].id){
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+
+        do {
+            if try expense.participants.map({return $0.id}).contains(group.members[indexPath.item].id) {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            }
+        } catch {
         }
 
         return cell
@@ -75,7 +72,7 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Find max size
-        return API.currentGroup!.members.count
+        return group.members.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -85,12 +82,12 @@ class AddParticipantsToExpenseTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
-        if let index = findUserInList(API.currentGroup!.members[indexPath.item]) {
+        if let index = findUserInList(group.members[indexPath.item]) {
             selectedMembers.removeAtIndex(index)
             cell?.accessoryType = UITableViewCellAccessoryType.None
             
         } else {
-            selectedMembers.append(API.currentGroup!.members[indexPath.item])
+            selectedMembers.append(group.members[indexPath.item])
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
     }

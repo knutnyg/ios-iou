@@ -13,6 +13,8 @@ class GroupViewController : UIViewController {
 
     var verticalConstraints:[NSLayoutConstraint]?
     var views:[String:AnyObject]!
+
+    var group:Group!
     
     override func viewDidLoad(){
 
@@ -72,7 +74,7 @@ class GroupViewController : UIViewController {
             view.removeConstraints(verticalConstraints!)
         }
 
-        var summaryHeight = API.currentGroup!.members.count * 50
+        var summaryHeight = group.members.count * 50
         if summaryHeight > 250 {
             summaryHeight = 250
         }
@@ -82,9 +84,9 @@ class GroupViewController : UIViewController {
     }
 
     func refreshData(){
-        API.getAllGroupData(API.currentGroup!).onSuccess {
+        API.getAllGroupData(group).onSuccess {
             group in
-            API.currentGroup = group
+            self.group = group
             self.summaryView.tableView.reloadData()
             self.expensesTableView.tableView.reloadData()
         }
@@ -96,7 +98,7 @@ class GroupViewController : UIViewController {
     }
     
     func setupNavigationBar(){
-        navigationItem.title = API.currentGroup!.description
+        navigationItem.title = group.description
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
@@ -104,7 +106,7 @@ class GroupViewController : UIViewController {
         print("create new expense")
         let vc = NewExpense()
         vc.delegate = self
-        vc.groupMembers = API.currentGroup!.members
+        vc.groupMembers = group.members
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -112,8 +114,8 @@ class GroupViewController : UIViewController {
         print("create new member")
         let vc = EditGroup()
         vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
 
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
