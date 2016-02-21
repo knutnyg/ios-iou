@@ -12,8 +12,3 @@ Pods
 
 test_output
 fastlane/report.xml
-
-
-iou.app.dSYM.zip
-
-iou.ipa
