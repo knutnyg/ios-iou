@@ -1,31 +1,43 @@
 
 import Foundation
+import SnapKit
 
 class HorizontalConstraintRules {
 
-    var width:[Int?]?
-    var centerX:[Bool]?
-    var anchorSides:[Bool]?
-    var air:[Int]?
+    var width:Int?
+    var centerX:Bool?
+    var marginLeft:Int?
+    var marginRight:Int?
+    var snapLeft:ConstraintItem?
+    var snapRight:ConstraintItem?
 
-    func withWidth(width:[Int?]) -> HorizontalConstraintRules {
+    func withWidth(width:Int?) -> HorizontalConstraintRules {
         self.width = width
         return self
     }
 
-    func withCenterX(centerX:[Bool]) -> HorizontalConstraintRules {
+    func withCenterX(centerX:Bool) -> HorizontalConstraintRules {
         self.centerX = centerX
         return self
     }
 
-    func withAir(air:[Int]) -> HorizontalConstraintRules {
-        self.air = air
+    func withMarginLeft(margin:Int) -> HorizontalConstraintRules {
+        self.marginLeft = margin
         return self
     }
 
-    func withAnchorSides(anchorSides:[Bool]) -> HorizontalConstraintRules {
-        self.anchorSides = anchorSides
+    func withMarginRight(margin:Int) -> HorizontalConstraintRules {
+        self.marginRight = margin
         return self
     }
 
+    func withSnapLeft(view:ConstraintItem) -> HorizontalConstraintRules {
+        self.snapLeft = view
+        return self
+    }
+
+    func withSnapRight(view:ConstraintItem) -> HorizontalConstraintRules {
+        self.snapRight = view
+        return self
+    }
 }

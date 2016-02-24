@@ -1,77 +1,85 @@
-
-
 import Foundation
+import SnapKit
 
 class SnapKitHelpers {
 
-    static func setVerticalConstraints(view:UIView, components:[UIView], rules:VerticalConstraintRules){
-        for i in 0...components.count-1 {
+    static func setVerticalConstraints(view: UIView, components: [UIView], rules:[VerticalConstraintRules]) {
+        for i in 0 ... components.count - 1 {
             components[i].snp_makeConstraints() {
                 (comp) -> Void in
 
-                var air = 0
-                var after = 0
+                var marginTop = 0
+                var marginBottom = 0
 
-                //Top Anchor
-                if let airs = rules.air {
-                    air = airs[i]
+                var constraints = rules[i]
+
+                //Snap top
+                if let margin = constraints.marginTop {
+                    marginTop = margin
                 }
 
-                if i == 0 {
-                    comp.top.equalTo(view.snp_top).offset(air)
-                } else {
-                    comp.top.equalTo(components[i-1].snp_bottom).offset(air)
+                if let snap = constraints.snapTop {
+                    comp.top.equalTo(snap).offset(marginTop)
                 }
 
                 //Height
-                if let heights = rules.height {
-                    if let height = heights[i] {
-                        comp.height.equalTo(height)
-                    }
+                if let height = constraints.height {
+                    comp.height.equalTo(height)
                 }
 
-                //Bottom Anchor
-                if let a = rules.after {
-                    after = a
+                //CenterY
+                if let _ = constraints.centerY {
+                    comp.centerY.equalTo(view)
                 }
 
-                if i == components.count-1 {
-                    comp.bottom.equalTo(view.snp_bottom).offset(after)
+                //Snap bottom
+                if let margin = constraints.marginBottom {
+                    marginBottom = margin
+                }
+
+                if let snap = constraints.snapBottom {
+                    comp.bottom.equalTo(snap).offset(-marginBottom)
                 }
             }
         }
     }
 
-    static func setHorizontalConstraints(view:UIView, components:[UIView], rules: HorizontalConstraintRules){
-        for i in 0...components.count-1 {
+    static func setHorizontalConstraints(view: UIView, components: [UIView], rules:[HorizontalConstraintRules]) {
+        for i in 0 ... components.count - 1 {
             components[i].snp_makeConstraints() {
                 (comp) -> Void in
 
-                var air = 0
+                var marginLeft = 0
+                var marginRight = 0
+
+                let constraints = rules[i]
+
+                //Snap Left
+                if let margin = constraints.marginLeft {
+                    marginLeft = margin
+                }
+
+                if let snap = constraints.snapLeft {
+                    comp.left.equalTo(snap).offset(marginLeft)
+                }
+
+                //Snap Right
+                if let margin = constraints.marginRight {
+                    marginRight = margin
+                }
+
+                if let snap = constraints.snapRight {
+                    comp.right.equalTo(snap).offset(-marginRight)
+                }
 
                 //Width
-                if let widths = rules.width {
-                    if let width = widths[i] {
-                        comp.width.equalTo(width)
-                    }
+                if let width = constraints.width {
+                    comp.width.equalTo(width)
                 }
 
-                //CenterX
-                if let centerXs = rules.centerX {
-                    if centerXs[i] == true {
-                        comp.centerX.equalTo(view)
-                    }
-                }
-
-                //Left/Right Anchor
-                if let airs = rules.air {
-                    air = airs[i]
-                }
-                if let anchorSides = rules.anchorSides{
-                    if anchorSides[i] == true {
-                        comp.left.equalTo(view).offset(air)
-                        comp.right.equalTo(view).offset(-air)
-                    }
+                //CenterY
+                if let centerX = constraints.centerX {
+                    comp.centerX.equalTo(view.snp_centerX)
                 }
             }
         }
