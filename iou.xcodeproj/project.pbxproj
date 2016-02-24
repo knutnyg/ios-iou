@@ -449,7 +449,7 @@
 			name = Forms;
 			sourceTree = "<group>";
 		};
-		726CA7B41AAF827B00EC7DFA /* BackendStuffs */ = {
+		726CA7B41AAF827B00EC7DFA /* Rest */ = {
 			isa = PBXGroup;
 			children = (
 				726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */,
@@ -461,7 +461,7 @@
 				7208E0471BD6C80700D1A248 /* API.swift */,
 				324F41B27DF10F6EC06EF722 /* ProfileHandler.swift */,
 			);
-			name = BackendStuffs;
+			name = Rest;
 			sourceTree = "<group>";
 		};
 		72A07E851AA8EE570016C61B = {
@@ -488,7 +488,7 @@
 		72A07E901AA8EE570016C61B /* iou */ = {
 			isa = PBXGroup;
 			children = (
-				726CA7B41AAF827B00EC7DFA /* BackendStuffs */,
+				726CA7B41AAF827B00EC7DFA /* Rest */,
 				72B7B9661AACD726007E4AC9 /* Models */,
 				720883631BD56523001A716A /* ViewController */,
 				72A6229D1ACC3BC6007D1F93 /* Util */,

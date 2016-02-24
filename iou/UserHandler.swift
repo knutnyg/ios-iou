@@ -5,7 +5,6 @@ import SwiftyJSON
 import SwiftHTTP
 import JSONJoy
 
-
 class UserHandler {
     
     static func getUser(token:String) -> Future<User,NSError> {

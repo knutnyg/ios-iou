@@ -66,8 +66,8 @@ class ExpenseCell : UITableViewCell {
 
         comment.text = self.expense.comment
 
-        amount.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount)
-        split.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount / Double(expense.participants.count))
+        amount.text = localeStringFromNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount)
+        split.text = localeStringFromNumber(NSLocale(localeIdentifier: "nb_NO"), number: expense.amount / Double(expense.participants.count))
 
     }
     

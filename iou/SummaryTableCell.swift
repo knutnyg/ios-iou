@@ -48,9 +48,9 @@ class SummaryTableViewCell : UITableViewCell {
     
     func updateLabels(name:String, paid:Double, owes:Double){
         nameLabel.text = name
-        paidLabel.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: paid)
-        owesLabel.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: owes)
-        sumLabel.text = localeFormattedNumber(NSLocale(localeIdentifier: "nb_NO"), number: paid-owes)
+        paidLabel.text = localeStringFromNumber(NSLocale(localeIdentifier: "nb_NO"), number: paid)
+        owesLabel.text = localeStringFromNumber(NSLocale(localeIdentifier: "nb_NO"), number: owes)
+        sumLabel.text = localeStringFromNumber(NSLocale(localeIdentifier: "nb_NO"), number: paid-owes)
     }
 
     
