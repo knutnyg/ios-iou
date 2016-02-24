@@ -153,6 +153,10 @@
 		72E973C21AF39DA400ECB4CD /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */; };
 		72E973C31AF39DB600ECB4CD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7257071A1AF14EC000180A45 /* Extensions.swift */; };
 		739FEB8C2AF729924BEF0F14 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D913AEF55349AC68299015EB /* Pods.framework */; };
+		917E609A33DAB6563B4BB91E /* SnapKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6228D04289BD1E9702D8 /* SnapKitHelpers.swift */; };
+		917E65C66E0BB055A27C316D /* VerticalConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */; };
+		917E6DEBD2667F4CE00EC2B0 /* VerticalConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */; };
+		917E6E09F93F41EDF080A1CE /* SnapKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6228D04289BD1E9702D8 /* SnapKitHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +277,8 @@
 		72C1A5DC1C02586C007FFAB6 /* ImageUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		72C1A5DF1C02589E007FFAB6 /* ImageUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtilsTests.swift; sourceTree = "<group>"; };
 		72E973A31AF39B6000ECB4CD /* ExpenseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseTests.swift; sourceTree = "<group>"; };
+		917E6228D04289BD1E9702D8 /* SnapKitHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapKitHelpers.swift; sourceTree = "<group>"; };
+		917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalConstraintRules.swift; sourceTree = "<group>"; };
 		D2B058942AEB75EDD9D3A13E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D913AEF55349AC68299015EB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -544,6 +550,7 @@
 				324F4412B510A691C680B13B /* StringUtils.swift */,
 				324F4EC50D5B7E95DD6C7D0B /* IsNumericRule.swift */,
 				72C1A5DC1C02586C007FFAB6 /* ImageUtils.swift */,
+				917E6228D04289BD1E9702D8 /* SnapKitHelpers.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -562,6 +569,7 @@
 				6A6FEC181BD39C7200FE19FC /* AccessToken.swift */,
 				6AED41FE1BD3C04700053831 /* SignUpResponse.swift */,
 				72C1A5D71C023FF0007FFAB6 /* GenericResponse.swift */,
+				917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -863,6 +871,8 @@
 				324F4BB1DCCD4CC50CFBA624 /* AddParticipantsParent.swift in Sources */,
 				324F44A7D9D800A1E9CA4233 /* StringUtils.swift in Sources */,
 				324F489C7BE10B84B7BDAFA9 /* IsNumericRule.swift in Sources */,
+				917E65C66E0BB055A27C316D /* VerticalConstraintRules.swift in Sources */,
+				917E6E09F93F41EDF080A1CE /* SnapKitHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +944,8 @@
 				324F4A3748ABE99EB109DAFE /* StringUtils.swift in Sources */,
 				324F46C7C12B8DAF845D1116 /* StringUtilsTests.swift in Sources */,
 				324F4C001679544C9F174FDB /* IsNumericRule.swift in Sources */,
+				917E6DEBD2667F4CE00EC2B0 /* VerticalConstraintRules.swift in Sources */,
+				917E609A33DAB6563B4BB91E /* SnapKitHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

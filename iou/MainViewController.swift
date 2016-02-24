@@ -1,70 +1,65 @@
-
 import Foundation
 import UIKit
+import SnapKit
 
-class MainViewController : UIViewController {
-    
-    var profileView:ProfileViewController!
-    var tableHeader:GroupTableHeaderViewController!
-    var groupListTableViewController:GroupListTableViewController!
-    var delegate:UIViewController!
-    var label:UILabel!
-    var settingsButton:UIButton!
-    var settingsButtonItem:UIBarButtonItem!
+class MainViewController: UIViewController {
 
-    var addGroupButton:UIButton!
-    var addGroupButtonItem:UIBarButtonItem!
-    
-    override func viewDidLoad(){
-        
+    var profileView: ProfileViewController!
+    var tableHeader: GroupTableHeaderViewController!
+    var groupListTableViewController: GroupListTableViewController!
+    var label: UILabel!
+    var settingsButton: UIButton!
+    var settingsButtonItem: UIBarButtonItem!
+
+    var addGroupButton: UIButton!
+    var addGroupButtonItem: UIBarButtonItem!
+
+    override func viewDidLoad() {
+
         setupNavigationBar()
-    
+
         profileView = ProfileViewController()
-        profileView.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        groupListTableViewController = GroupListTableViewController()
-        groupListTableViewController.delegate = self
-        tableHeader = GroupTableHeaderViewController()
-        tableHeader.delegate = self
-        tableHeader.view.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableHeader = GroupTableHeaderViewController().withDelegate(self)
+        groupListTableViewController = GroupListTableViewController().withDelegate(self)
+
         self.addChildViewController(profileView)
         self.addChildViewController(tableHeader)
         self.addChildViewController(groupListTableViewController)
-        
+
         view.addSubview(profileView.view)
         view.addSubview(tableHeader.view)
         view.addSubview(groupListTableViewController.view)
 
-        
-        let views:[String : AnyObject] = ["profile":profileView.view,"group":groupListTableViewController.view, "tableHeader":tableHeader.view]
-        
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-64-[profile(200)]-0-[tableHeader(40)]-0-[group]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[profile]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[tableHeader]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[group]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        
+        let components: [UIView] = [profileView.view, tableHeader.view, groupListTableViewController.view]
+        let verticalRules = VerticalConstraintRules()
+                .withElements([200, 40, nil])
+                .withAir([64, 0, 0])
+                .withAfter(0)
+
+        setHorizontalConstraints(view, components: components)
+        setVerticalConstraints(view, components: components, rules: verticalRules)
+
         API.getUser()
-            .onSuccess{ user in
-                    API.currentUser = user
-                    self.profileView.refreshProfile()
-            }
+        .onSuccess {
+            user in
+            API.currentUser = user
+            self.profileView.refreshProfile()
+        }
     }
 
+    func setupNavigationBar() {
 
-    func setupNavigationBar(){
-        
-        let font = UIFont(name: "HelveticaNeue", size:28)!
+        let font = UIFont(name: "HelveticaNeue", size: 28)!
 
-        let attributes:[String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let attributes: [String:AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationItem.title = "Groups"
         navigationController?.navigationBar.titleTextAttributes = attributes
-        
+
         navigationItem.setHidesBackButton(true, animated: false)
-        
+
         let verticalOffset = 1.5 as CGFloat;
         navigationController?.navigationBar.setTitleVerticalPositionAdjustment(verticalOffset, forBarMetrics: UIBarMetrics.Default)
-        
+
         settingsButton = createfontAwesomeButton("\u{f013}")
         settingsButton.addTarget(self, action: "settings:", forControlEvents: UIControlEvents.TouchUpInside)
         settingsButtonItem = UIBarButtonItem(customView: settingsButton)
@@ -72,18 +67,18 @@ class MainViewController : UIViewController {
         addGroupButton = createfontAwesomeButton("\u{f067}")
         addGroupButton.addTarget(self, action: "addGroup:", forControlEvents: UIControlEvents.TouchUpInside)
         addGroupButtonItem = UIBarButtonItem(customView: addGroupButton)
-        
+
         navigationItem.rightBarButtonItem = settingsButtonItem
         navigationItem.leftBarButtonItem = addGroupButtonItem
     }
-    
-    func settings(sender:UIButton){
+
+    func settings(sender: UIButton) {
         let vc = SettingsViewController()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    func addGroup(sender:UIButton){
+    func addGroup(sender: UIButton) {
         let vc = AddGroup()
         navigationController?.pushViewController(vc, animated: true)
     }
