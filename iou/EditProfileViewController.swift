@@ -1,10 +1,4 @@
-//
-//  EditProfileViewController.swift
-//  iou
-//
-//  Created by Knut Nygaard on 25/11/15.
-//  Copyright © 2015 APM solutions. All rights reserved.
-//
+
 
 import Foundation
 import SnapKit
@@ -39,9 +33,8 @@ class EditProfileViewController : UIViewController, UIImagePickerControllerDeleg
         nameLabel = createLabel("Full name:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         shortNameLabel = createLabel("Short name:", font: UIFont(name: "HelveticaNeue",size: 18)!)
         emailLabel = createLabel("Email:", font: UIFont(name: "HelveticaNeue",size: 18)!)
-        
-        let image = ImageUtils.scaleImage(UIImage(named: "profile.png")!, height: 100, width: 100)
-        photoImageView = ImageUtils.createRoundImageView(image)
+
+        photoImageView = ImageUtils.createScaledRoundImageView(UIImage(named: "profile.png")!, height: 100, width: 100)
         
         let tapGestureRecognizer  = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
         photoImageView.userInteractionEnabled = true
