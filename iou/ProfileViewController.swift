@@ -3,11 +3,13 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ProfileViewController : UIViewController{
+class ProfileViewController : UIViewController {
 
     var profileImage:UIImage!
     var profileImageView:UIImageView!
     var nameLabel:UILabel!
+    var horizontalConstraints:HorizontalConstraintRules = HorizontalConstraintRules()
+    var verticalConstraints:VerticalConstraintRules = VerticalConstraintRules()
 
     override func viewDidLoad() {
 
@@ -20,8 +22,15 @@ class ProfileViewController : UIViewController{
         view.addSubview(nameLabel)
 
         let components = [profileImageView, nameLabel]
-        let verticalRules = VerticalConstraintRules().withHeight([100, nil]).withAir([30, 0])
-        let horizontalRules = HorizontalConstraintRules().withWidth([100, nil]).withCenterX([true, true])
+
+        let verticalRules = [
+                VerticalConstraintRules().withHeight(100).withMarginTop(30).withSnapTop(view.snp_top),
+                VerticalConstraintRules().withSnapTop(profileImageView.snp_bottom)
+        ]
+        let horizontalRules = [
+                HorizontalConstraintRules().withCenterX(true).withWidth(100),
+                HorizontalConstraintRules().withCenterX(true)
+        ]
 
         SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
         SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)

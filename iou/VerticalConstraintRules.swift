@@ -1,24 +1,43 @@
 
 import Foundation
+import SnapKit
 
 class VerticalConstraintRules {
 
-    var height:[Int?]?
-    var air:[Int]?
-    var after:Int?
+    var height:Int?
+    var marginTop:Int?
+    var marginBottom:Int?
+    var centerY:Bool?
+    var snapTop:ConstraintItem?
+    var snapBottom:ConstraintItem?
 
-    func withHeight(height:[Int?]) -> VerticalConstraintRules {
+    func withHeight(height:Int?) -> VerticalConstraintRules {
         self.height = height
         return self
     }
 
-    func withAir(air:[Int]) -> VerticalConstraintRules {
-        self.air = air
+    func withMarginTop(margin:Int) -> VerticalConstraintRules {
+        self.marginTop = margin
         return self
     }
 
-    func withAfter(after:Int) -> VerticalConstraintRules {
-        self.after = after
+    func withMarginBottom(margin:Int) -> VerticalConstraintRules {
+        self.marginBottom = margin
+        return self
+    }
+
+    func withCenterY(centerY:Bool) -> VerticalConstraintRules {
+        self.centerY = centerY
+        return self
+    }
+
+    func withSnapTop(view:ConstraintItem) -> VerticalConstraintRules {
+        self.snapTop = view
+        return self
+    }
+
+    func withSnapBottom(view:ConstraintItem) -> VerticalConstraintRules {
+        self.snapBottom = view
         return self
     }
 
