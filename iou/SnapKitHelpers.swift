@@ -44,6 +44,47 @@ class SnapKitHelpers {
         }
     }
 
+    static func updateVerticalConstraints(view: UIView, components: [UIView], rules:[VerticalConstraintRules]) {
+        for i in 0 ... components.count - 1 {
+            components[i].snp_updateConstraints() {
+                (comp) -> Void in
+
+                var marginTop = 0
+                var marginBottom = 0
+
+                var constraints = rules[i]
+
+                //Snap top
+                if let margin = constraints.marginTop {
+                    marginTop = margin
+                }
+
+                if let snap = constraints.snapTop {
+                    comp.top.equalTo(snap).offset(marginTop)
+                }
+
+                //Height
+                if let height = constraints.height {
+                    comp.height.equalTo(height)
+                }
+
+                //CenterY
+                if let _ = constraints.centerY {
+                    comp.centerY.equalTo(view)
+                }
+
+                //Snap bottom
+                if let margin = constraints.marginBottom {
+                    marginBottom = margin
+                }
+
+                if let snap = constraints.snapBottom {
+                    comp.bottom.equalTo(snap).offset(-marginBottom)
+                }
+            }
+        }
+    }
+
     static func setHorizontalConstraints(view: UIView, components: [UIView], rules:[HorizontalConstraintRules]) {
         for i in 0 ... components.count - 1 {
             components[i].snp_makeConstraints() {
