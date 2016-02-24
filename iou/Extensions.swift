@@ -53,12 +53,3 @@ extension NSDate {
         }
     }
 }
-
-extension UIViewController {
-    var delegate:UIViewController?
-
-    func withDelegate(delegate:UIViewcontroller) -> UIViewController{
-        self.delegate = delegate
-        return self
-    }
-}

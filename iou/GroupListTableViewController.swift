@@ -3,9 +3,9 @@ import Foundation
 import UIKit
 
 class GroupListTableViewController : UITableViewController {
-    
-    var groups:[Group] = []
+
     var delegate:MainViewController!
+    var groups:[Group] = []
     var showArchived:Bool = false
 
     override func viewDidLoad() {

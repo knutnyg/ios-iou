@@ -1,17 +1,13 @@
-//
-// Created by Knut Nygaard on 28/10/15.
-// Copyright (c) 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import UIKit
 
 class GroupTableHeaderViewController : UIViewController {
 
+    var delegate:MainViewController!
     var name:UILabel!
     var archivedLabel:UILabel!
     var archived:UISwitch!
-    var delegate:MainViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
