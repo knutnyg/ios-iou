@@ -114,7 +114,6 @@ class DefaultLoginViewController: UIViewController, ValidationDelegate{
             defaults.synchronize()
 
             let vc = MainViewController()
-            vc.delegate = self
 
             self.navigationController?.pushViewController(vc, animated: true)
         }

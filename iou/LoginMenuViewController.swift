@@ -1,10 +1,3 @@
-//
-//  LoginViewController.swift
-//  iou
-//
-//  Created by Knut Nygaard on 18/10/15.
-//  Copyright © 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import FBSDKCoreKit
@@ -28,7 +21,6 @@ class LoginMenuViewController: UIViewController, FBSDKLoginButtonDelegate {
                 //Skip login
                 API.accessToken = accessToken
                 let vc = MainViewController()
-                vc.delegate = self
                 
                 self.navigationController?.pushViewController(vc, animated: false)
                 
@@ -63,7 +55,6 @@ class LoginMenuViewController: UIViewController, FBSDKLoginButtonDelegate {
             print(FBSDKAccessToken.currentAccessToken().tokenString)
             
             let vc = MainViewController()
-            vc.delegate = self
             
             navigationController?.pushViewController(vc, animated: true)
             
