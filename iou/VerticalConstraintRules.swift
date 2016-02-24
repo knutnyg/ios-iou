@@ -3,12 +3,12 @@ import Foundation
 
 class VerticalConstraintRules {
 
-    var elements:[Int?]!
-    var air:[Int]!
-    var after:Int!
+    var height:[Int?]?
+    var air:[Int]?
+    var after:Int?
 
-    func withElements(elements:[Int?]) -> VerticalConstraintRules {
-        self.elements = elements
+    func withHeight(height:[Int?]) -> VerticalConstraintRules {
+        self.height = height
         return self
     }
 

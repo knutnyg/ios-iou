@@ -7,7 +7,7 @@ class MainViewController: UIViewController {
     var profileView: ProfileViewController!
     var tableHeader: GroupTableHeaderViewController!
     var groupListTableViewController: GroupListTableViewController!
-    var label: UILabel!
+
     var settingsButton: UIButton!
     var settingsButtonItem: UIBarButtonItem!
 
@@ -19,8 +19,11 @@ class MainViewController: UIViewController {
         setupNavigationBar()
 
         profileView = ProfileViewController()
-        tableHeader = GroupTableHeaderViewController().withDelegate(self)
-        groupListTableViewController = GroupListTableViewController().withDelegate(self)
+        tableHeader = GroupTableHeaderViewController()
+        groupListTableViewController = GroupListTableViewController()
+
+        tableHeader.delegate = self
+        groupListTableViewController.delegate = self
 
         self.addChildViewController(profileView)
         self.addChildViewController(tableHeader)
@@ -32,12 +35,13 @@ class MainViewController: UIViewController {
 
         let components: [UIView] = [profileView.view, tableHeader.view, groupListTableViewController.view]
         let verticalRules = VerticalConstraintRules()
-                .withElements([200, 40, nil])
+                .withHeight([200, 40, nil])
                 .withAir([64, 0, 0])
-                .withAfter(0)
 
-        setHorizontalConstraints(view, components: components)
-        setVerticalConstraints(view, components: components, rules: verticalRules)
+        let horizontalRules = HorizontalConstraintRules().withAnchorSides([true, true, true])
+
+        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
+        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
 
         API.getUser()
         .onSuccess {

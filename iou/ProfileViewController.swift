@@ -1,39 +1,30 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
-class ProfileViewController : UIViewController {
+class ProfileViewController : UIViewController{
 
     var profileImage:UIImage!
     var profileImageView:UIImageView!
     var nameLabel:UILabel!
 
     override func viewDidLoad() {
+
         view.backgroundColor = UIColor.whiteColor()
-        
-        profileImage = UIImage(named: "profile.png")
-        profileImageView = UIImageView(image: profileImage)
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        profileImageView.layer.borderWidth = 1.0
-        profileImageView.layer.masksToBounds = false
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
-        profileImageView.layer.cornerRadius = 100/2
-        print(profileImage.size.width)
-        profileImageView.clipsToBounds = true
-
-        nameLabel = createLabel("Welcome Knut Nygaard")
+        profileImageView = createProfileImageView()
+        nameLabel = createLabel("")
 
         view.addSubview(profileImageView)
         view.addSubview(nameLabel)
 
-        let views:[String:AnyObject] = ["profile":profileImageView, "name":nameLabel]
+        let components = [profileImageView, nameLabel]
+        let verticalRules = VerticalConstraintRules().withHeight([100, nil]).withAir([30, 0])
+        let horizontalRules = HorizontalConstraintRules().withWidth([100, nil]).withCenterX([true, true])
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[profile(100)]-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraint(NSLayoutConstraint(item: profileImageView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: profileImageView, attribute: .Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 100))
-        view.addConstraint(NSLayoutConstraint(item: nameLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-
+        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
+        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -44,9 +35,23 @@ class ProfileViewController : UIViewController {
     }
 
     func refreshProfile(){
-        print("refreshing")
+        nameLabel.text = "Welcome \(API.currentUser!.name)"
         API.getImageForUser(API.currentUser!).onSuccess{image in
             self.profileImageView.image = image
         }
+
+    }
+
+    func createProfileImageView() -> UIImageView {
+        let profileImage = UIImage(named: "profile.png")
+        let profileImageView = UIImageView(image: profileImage)
+
+        profileImageView.layer.borderWidth = 1.0
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.cornerRadius = 100/2
+        profileImageView.clipsToBounds = true
+
+        return profileImageView
     }
 }
