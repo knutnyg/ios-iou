@@ -12,7 +12,7 @@ class GroupViewController : UIViewController {
     var addMemberButton:UIButton!
 
     var verticalConstraints:[NSLayoutConstraint]?
-    var views:[String:AnyObject]!
+    var components:[UIView]!
 
     var group:Group!
     
@@ -24,11 +24,9 @@ class GroupViewController : UIViewController {
         view.backgroundColor = UIColor.whiteColor()
 
         summaryHeaderView = SummaryHeaderView()
-        summaryHeaderView.view.translatesAutoresizingMaskIntoConstraints = false
         
         summaryView = SummaryTableViewController()
         summaryView.delegate = self
-        summaryView.view.translatesAutoresizingMaskIntoConstraints = false
                 
         addExpenseButton = createButton("+Expense", font: UIFont(name: "HelveticaNeue",size: 24)!)
 
@@ -40,47 +38,57 @@ class GroupViewController : UIViewController {
         expensesTableView = ExpensesTableViewController()
         expensesTableView.delegate = self
         expensesTableView.view.translatesAutoresizingMaskIntoConstraints = false
-        
+
         addChildViewController(summaryHeaderView)
         addChildViewController(summaryView)
         addChildViewController(expensesTableView)
-        
+
         view.addSubview(summaryHeaderView.view)
         view.addSubview(summaryView.view)
         view.addSubview(addExpenseButton)
         view.addSubview(addMemberButton)
         view.addSubview(expensesTableView.view)
-        
-        views = ["summaryHeader":summaryHeaderView.view,"summary":summaryView.view, "expenses":expensesTableView.view, "addButton":addExpenseButton, "addMember":addMemberButton]
 
-        recalculateVerticalConstraint()
+        components = [summaryHeaderView.view, summaryView.view, addExpenseButton, addMemberButton, expensesTableView.view]
 
-        view.addConstraint(NSLayoutConstraint(item: addExpenseButton, attribute: .CenterY, relatedBy: .Equal, toItem: addMemberButton, attribute: .CenterY, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: addExpenseButton, attribute: .Height, relatedBy: .Equal, toItem: addMemberButton, attribute: .Height, multiplier: 1, constant: 0))
+        var summaryHeight = min(group.members.count * 50, 250)
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[summaryHeader]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[summary]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[addButton]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[addMember]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[expenses]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        let verticalRules = [
+                VerticalConstraintRules().withMarginTop(72).withHeight(30).withSnapTop(view.snp_top),
+                VerticalConstraintRules().withHeight(summaryHeight).withSnapTop(summaryHeaderView.view.snp_bottom),
+                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
+                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
+                VerticalConstraintRules().withSnapTop(addExpenseButton.snp_bottom).withSnapBottom(view.snp_bottom),
+        ]
+        let horizontalRules = [
+                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right),
+                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right),
+                HorizontalConstraintRules().withSnapLeft(view.snp_left).withMarginLeft(8),
+                HorizontalConstraintRules().withSnapRight(view.snp_right).withMarginRight(8),
+                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right)
+        ]
+
+        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
+        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
     }
 
     func GroupMembershipChanged(notification:NSNotification){
-        recalculateVerticalConstraint()
+        updateVerticalConstraints()
     }
 
-    func recalculateVerticalConstraint() {
-        if verticalConstraints != nil {
-            view.removeConstraints(verticalConstraints!)
-        }
+    func updateVerticalConstraints() {
+        var summaryHeight = min(group.members.count * 50, 250)
 
-        var summaryHeight = group.members.count * 50
-        if summaryHeight > 250 {
-            summaryHeight = 250
-        }
-        verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-72-[summaryHeader(30)]-0-[summary(\(summaryHeight))]-[addButton(38)]-[expenses]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        view.addConstraints(verticalConstraints!)
+        let verticalRules = [
+                VerticalConstraintRules().withMarginTop(72).withHeight(30).withSnapTop(view.snp_top),
+                VerticalConstraintRules().withHeight(summaryHeight).withSnapTop(summaryHeaderView.view.snp_bottom),
+                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
+                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
+                VerticalConstraintRules().withSnapTop(addExpenseButton.snp_bottom).withSnapBottom(view.snp_bottom),
+        ]
 
+        SnapKitHelpers.updateVerticalConstraints(view, components: components, rules: verticalRules)
+        super.updateViewConstraints()
     }
 
     func refreshData(){
