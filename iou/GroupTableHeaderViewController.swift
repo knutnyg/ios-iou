@@ -7,7 +7,7 @@ class GroupTableHeaderViewController : UIViewController {
     var delegate:MainViewController!
     var name:UILabel!
     var archivedLabel:UILabel!
-    var archived:UISwitch!
+    var archivedButton:UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,16 +18,20 @@ class GroupTableHeaderViewController : UIViewController {
 
         name = createLabel("Groups:")
         archivedLabel = createLabel("Show archived")
-        archived = UISwitch()
-        archived.translatesAutoresizingMaskIntoConstraints = false
-        archived.setOn(false, animated: false)
-        archived.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
+
+        archivedButton = UISwitch()
+        archivedButton.setOn(false, animated: false)
+        archivedButton.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
 
         view.addSubview(name)
         view.addSubview(archivedLabel)
-        view.addSubview(archived)
+        view.addSubview(archivedButton)
 
-        let views:[String:AnyObject] = ["name":name, "show_archived":archivedLabel, "archived":archived]
+        let components:[UIView] = [name, archivedLabel, archivedButton]
+
+        let horizontalRules = HorizontalConstraintRules().withAnchorSides()
+
+        let views:[String:AnyObject] = ["name":name, "show_archived":archivedLabel, "archived": archivedButton]
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[show_archived]-[archived]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
@@ -43,7 +47,7 @@ class GroupTableHeaderViewController : UIViewController {
 
     func setArchiveButtonValue(notification: NSNotification){
         let val = notification.object as! Bool
-        archived.setOn(val, animated: true)
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "buttonChanged", object: archived.on))
+        archivedButton.setOn(val, animated: true)
+        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "buttonChanged", object: archivedButton.on))
     }
 }

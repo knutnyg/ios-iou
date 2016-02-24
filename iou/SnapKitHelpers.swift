@@ -67,6 +67,9 @@ class SnapKitHelpers {
                 if let airs = rules.air {
                     air = airs[i]
                 }
+
+                if let anchorLeft =
+
                 if let anchorSides = rules.anchorSides{
                     if anchorSides[i] == true {
                         comp.left.equalTo(view).offset(air)
