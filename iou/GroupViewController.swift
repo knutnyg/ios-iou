@@ -53,23 +53,36 @@ class GroupViewController : UIViewController {
 
         var summaryHeight = min(group.members.count * 50, 250)
 
-        let verticalRules = [
-                VerticalConstraintRules().withMarginTop(72).withHeight(30).withSnapTop(view.snp_top),
-                VerticalConstraintRules().withHeight(summaryHeight).withSnapTop(summaryHeaderView.view.snp_bottom),
-                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
-                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
-                VerticalConstraintRules().withSnapTop(addExpenseButton.snp_bottom).withSnapBottom(view.snp_bottom),
-        ]
-        let horizontalRules = [
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right),
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right),
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withMarginLeft(8),
-                HorizontalConstraintRules().withSnapRight(view.snp_right).withMarginRight(8),
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right)
+        let rules = [
+                ConstraintRules() // Summary header
+                .withMarginTop(72)
+                .withHeight(30)
+                .withSnapTop(view.snp_top)
+                .withSnapLeft(view.snp_left)
+                .withSnapRight(view.snp_right),
+                ConstraintRules() // Summary
+                .withHeight(summaryHeight)
+                .withSnapTop(summaryHeaderView.view.snp_bottom)
+                .withSnapLeft(view.snp_left)
+                .withSnapRight(view.snp_right),
+                ConstraintRules() // Expense button
+                .withHeight(38)
+                .withSnapTop(summaryView.view.snp_bottom)
+                .withSnapLeft(view.snp_left)
+                .withMarginLeft(8),
+                ConstraintRules() // Add member button
+                .withHeight(38)
+                .withSnapTop(summaryView.view.snp_bottom)
+                .withSnapRight(view.snp_right)
+                .withMarginRight(8),
+                ConstraintRules() // Expense table
+                .withSnapTop(addExpenseButton.snp_bottom)
+                .withSnapBottom(view.snp_bottom)
+                .withSnapLeft(view.snp_left)
+                .withSnapRight(view.snp_right)
         ]
 
-        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
-        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
+        SnapKitHelpers.setConstraints(view, components: components, rules: rules)
     }
 
     func GroupMembershipChanged(notification:NSNotification){
@@ -79,15 +92,36 @@ class GroupViewController : UIViewController {
     func updateVerticalConstraints() {
         var summaryHeight = min(group.members.count * 50, 250)
 
-        let verticalRules = [
-                VerticalConstraintRules().withMarginTop(72).withHeight(30).withSnapTop(view.snp_top),
-                VerticalConstraintRules().withHeight(summaryHeight).withSnapTop(summaryHeaderView.view.snp_bottom),
-                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
-                VerticalConstraintRules().withHeight(38).withSnapTop(summaryView.view.snp_bottom),
-                VerticalConstraintRules().withSnapTop(addExpenseButton.snp_bottom).withSnapBottom(view.snp_bottom),
+        let rules = [
+                ConstraintRules() // Summary header
+                .withMarginTop(72)
+                .withHeight(30)
+                .withSnapTop(view.snp_top)
+                .withSnapLeft(view.snp_left)
+                .withSnapRight(view.snp_right),
+                ConstraintRules() // Summary
+                .withHeight(summaryHeight)
+                .withSnapTop(summaryHeaderView.view.snp_bottom)
+                .withSnapLeft(view.snp_left)
+                .withSnapRight(view.snp_right),
+                ConstraintRules() // Expense button
+                .withHeight(38)
+                .withSnapTop(summaryView.view.snp_bottom)
+                .withSnapLeft(view.snp_left)
+                .withMarginLeft(8),
+                ConstraintRules() // Add member button
+                .withHeight(38)
+                .withSnapTop(summaryView.view.snp_bottom)
+                .withSnapRight(view.snp_right)
+                .withMarginRight(8),
+                ConstraintRules() // Expense table
+                .withSnapTop(addExpenseButton.snp_bottom)
+                .withSnapBottom(view.snp_bottom)
+                .withSnapLeft(view.snp_left)
+                .withSnapRight(view.snp_right)
         ]
 
-        SnapKitHelpers.updateVerticalConstraints(view, components: components, rules: verticalRules)
+        SnapKitHelpers.updateConstraints(view, components: components, rules: rules)
         super.updateViewConstraints()
     }
 

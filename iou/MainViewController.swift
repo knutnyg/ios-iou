@@ -34,19 +34,26 @@ class MainViewController: UIViewController {
         view.addSubview(groupListTableViewController.view)
 
         let components: [UIView] = [profileView.view, tableHeader.view, groupListTableViewController.view]
-        let verticalRules = [
-                VerticalConstraintRules().withSnapTop(view.snp_top).withMarginTop(64).withHeight(200),
-                VerticalConstraintRules().withSnapTop(profileView.view.snp_bottom).withHeight(40),
-                VerticalConstraintRules().withSnapTop(tableHeader.view.snp_bottom).withSnapBottom(view.snp_bottom)
-        ]
-        let horizontalRules = [
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right),
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right),
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withSnapRight(view.snp_right)
+        let rules = [
+                ConstraintRules()
+                    .withSnapTop(view.snp_top)
+                    .withMarginTop(64)
+                    .withHeight(200)
+                    .withSnapLeft(view.snp_left)
+                    .withSnapRight(view.snp_right),
+                ConstraintRules()
+                    .withSnapTop(profileView.view.snp_bottom)
+                    .withHeight(40)
+                    .withSnapLeft(view.snp_left)
+                    .withSnapRight(view.snp_right),
+                ConstraintRules()
+                    .withSnapTop(tableHeader.view.snp_bottom)
+                    .withSnapLeft(view.snp_left)
+                    .withSnapRight(view.snp_right)
+                    .withSnapBottom(view.snp_bottom)
         ]
 
-        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
-        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
+        SnapKitHelpers.setConstraints(view, components: components, rules: rules)
 
         API.getUser()
         .onSuccess {

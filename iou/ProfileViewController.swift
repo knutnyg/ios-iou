@@ -8,8 +8,6 @@ class ProfileViewController : UIViewController {
     var profileImage:UIImage!
     var profileImageView:UIImageView!
     var nameLabel:UILabel!
-    var horizontalConstraints:HorizontalConstraintRules = HorizontalConstraintRules()
-    var verticalConstraints:VerticalConstraintRules = VerticalConstraintRules()
 
     override func viewDidLoad() {
 
@@ -23,17 +21,19 @@ class ProfileViewController : UIViewController {
 
         let components = [profileImageView, nameLabel]
 
-        let verticalRules = [
-                VerticalConstraintRules().withHeight(100).withMarginTop(30).withSnapTop(view.snp_top),
-                VerticalConstraintRules().withSnapTop(profileImageView.snp_bottom)
-        ]
-        let horizontalRules = [
-                HorizontalConstraintRules().withCenterX(true).withWidth(100),
-                HorizontalConstraintRules().withCenterX(true)
+        let rules = [
+                ConstraintRules()
+                    .withSnapTop(view.snp_top)
+                    .withMarginTop(30)
+                    .withHeight(100)
+                    .withCenterX(true)
+                    .withWidth(100),
+                ConstraintRules()
+                    .withSnapTop(profileImageView.snp_bottom)
+                    .withCenterX(true)
         ]
 
-        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
-        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
+        SnapKitHelpers.setConstraints(view, components: components, rules: rules)
     }
     
     override func viewDidAppear(animated: Bool) {

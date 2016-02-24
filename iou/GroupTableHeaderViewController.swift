@@ -29,28 +29,22 @@ class GroupTableHeaderViewController : UIViewController {
 
         let components:[UIView] = [titleLabel, archivedLabel, archivedButton]
 
-        let verticalRules = [
-                VerticalConstraintRules().withCenterY(true),
-                VerticalConstraintRules().withCenterY(true),
-                VerticalConstraintRules().withCenterY(true)
-        ]
-        let horizontalRules = [
-                HorizontalConstraintRules().withSnapLeft(view.snp_left).withMarginLeft(8),
-                HorizontalConstraintRules().withSnapRight(archivedButton.snp_left).withMarginRight(8),
-                HorizontalConstraintRules().withSnapRight(view.snp_right).withMarginRight(8)
+        let rules = [
+                ConstraintRules()
+                    .withCenterY(true)
+                    .withSnapLeft(view.snp_left)
+                    .withMarginLeft(8),
+                ConstraintRules()
+                    .withCenterY(true)
+                    .withSnapRight(archivedButton.snp_left)
+                    .withMarginRight(8),
+                ConstraintRules()
+                    .withCenterY(true)
+                    .withSnapRight(view.snp_right)
+                    .withMarginRight(8)
         ]
 
-        SnapKitHelpers.setHorizontalConstraints(view, components: components, rules: horizontalRules)
-        SnapKitHelpers.setVerticalConstraints(view, components: components, rules: verticalRules)
-//
-//        let views:[String:AnyObject] = ["name": titleLabel, "show_archived":archivedLabel, "archived": archivedButton]
-//
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[show_archived]-[archived]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[name]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[archived]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[show_archived]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-
+        SnapKitHelpers.setConstraints(view, components: components, rules: rules)
     }
 
     func buttonPressed(sender:UISwitch){

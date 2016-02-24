@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		324F4043C0BD4852EA7800F2 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F41D1D21E1DD27959DE66 /* icon57.png */; };
+		324F40E6AAF09C9D38C3C263 /* ConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ED563268C0FF7515CE3 /* ConstraintRules.swift */; };
 		324F411763E5A5E92E6FB5B4 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F466C05BDC74BB23E7847 /* icon58.png */; };
 		324F41340151F6D0EFD62A01 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4C96DE6156289F30895D /* SignUpViewController.swift */; };
 		324F417E22143F3FDFA61BBA /* LocaleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4A14B6AF6B803D8428CA /* LocaleUtils.swift */; };
 		324F42300EB4BE2B20C67D48 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F41AE2FAA4993C006BFD4 /* profile.png */; };
 		324F42476448A7D2DD191DA3 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F49628FF839A4846854F0 /* ExpensesTableViewController.swift */; };
 		324F426015631B5CA6A00FD1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 324F44568EF1AF88A44A8F29 /* config.plist */; };
+		324F427124A5FA34B87396BA /* ConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ED563268C0FF7515CE3 /* ConstraintRules.swift */; };
 		324F4274D329909A8F666D2A /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4A4862246ED76A6D78D8 /* icon72.png */; };
 		324F432C816D95EC653F0B6F /* SignUpHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47D84118411CA3182352 /* SignUpHandlerTests.swift */; };
 		324F4333581ED909FF013921 /* icon87.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4C8832D25802B855AF14 /* icon87.png */; };
@@ -150,12 +152,8 @@
 		917E6103A0A01C267EFC125D /* GroupTableHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6C05853F6AB1C1248AC4 /* GroupTableHeaderViewController.swift */; };
 		917E6117206E5FE986D93FDC /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E62232BF54B00F0F5C524 /* GroupListTableViewController.swift */; };
 		917E61B12656A6D5078D1C86 /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E62232BF54B00F0F5C524 /* GroupListTableViewController.swift */; };
-		917E65C66E0BB055A27C316D /* VerticalConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */; };
-		917E67EDBE2C996885DE5C83 /* HorizontalConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E604A814F90BB44F24EEB /* HorizontalConstraintRules.swift */; };
-		917E680607979FAA3199E6EE /* HorizontalConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E604A814F90BB44F24EEB /* HorizontalConstraintRules.swift */; };
 		917E680DC8A5CD5EC01C7D0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6548D6911C7F33528669 /* ProfileViewController.swift */; };
 		917E6D1475936BC0F8DCFD82 /* GroupTableHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6C05853F6AB1C1248AC4 /* GroupTableHeaderViewController.swift */; };
-		917E6DEBD2667F4CE00EC2B0 /* VerticalConstraintRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */; };
 		917E6E09F93F41EDF080A1CE /* SnapKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E6228D04289BD1E9702D8 /* SnapKitHelpers.swift */; };
 		917E6E2F8BFB7D7E9B3C3F37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E671993C5A2BB9D30DA44 /* MainViewController.swift */; };
 		917E6E47F95E38E7B7A0E1F5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E671993C5A2BB9D30DA44 /* MainViewController.swift */; };
@@ -215,6 +213,7 @@
 		324F4CC971F7C76DFB2C777F /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
 		324F4CE45F7979A3870BF70C /* StringUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilsTests.swift; sourceTree = "<group>"; };
 		324F4EC50D5B7E95DD6C7D0B /* IsNumericRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsNumericRule.swift; sourceTree = "<group>"; };
+		324F4ED563268C0FF7515CE3 /* ConstraintRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintRules.swift; sourceTree = "<group>"; };
 		324F4EE5A9964F19916B6FE7 /* icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon76.png; sourceTree = "<group>"; };
 		6A6FEC0E1BD24C8E00FE19FC /* DateUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtilTests.swift; path = ../DateUtilTests.swift; sourceTree = "<group>"; };
 		6A6FEC111BD25C4500FE19FC /* GroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
@@ -275,13 +274,11 @@
 		72C1A5DC1C02586C007FFAB6 /* ImageUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		72C1A5DF1C02589E007FFAB6 /* ImageUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtilsTests.swift; sourceTree = "<group>"; };
 		72E973A31AF39B6000ECB4CD /* ExpenseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseTests.swift; sourceTree = "<group>"; };
-		917E604A814F90BB44F24EEB /* HorizontalConstraintRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalConstraintRules.swift; sourceTree = "<group>"; };
 		917E62232BF54B00F0F5C524 /* GroupListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListTableViewController.swift; sourceTree = "<group>"; };
 		917E6228D04289BD1E9702D8 /* SnapKitHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapKitHelpers.swift; sourceTree = "<group>"; };
 		917E6548D6911C7F33528669 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		917E671993C5A2BB9D30DA44 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		917E6C05853F6AB1C1248AC4 /* GroupTableHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableHeaderViewController.swift; sourceTree = "<group>"; };
-		917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalConstraintRules.swift; sourceTree = "<group>"; };
 		D2B058942AEB75EDD9D3A13E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D913AEF55349AC68299015EB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -562,8 +559,7 @@
 				6A6FEC181BD39C7200FE19FC /* AccessToken.swift */,
 				6AED41FE1BD3C04700053831 /* SignUpResponse.swift */,
 				72C1A5D71C023FF0007FFAB6 /* GenericResponse.swift */,
-				917E6D73AA5A01172440C141 /* VerticalConstraintRules.swift */,
-				917E604A814F90BB44F24EEB /* HorizontalConstraintRules.swift */,
+				324F4ED563268C0FF7515CE3 /* ConstraintRules.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -871,13 +867,12 @@
 				324F4BB1DCCD4CC50CFBA624 /* AddParticipantsParent.swift in Sources */,
 				324F44A7D9D800A1E9CA4233 /* StringUtils.swift in Sources */,
 				324F489C7BE10B84B7BDAFA9 /* IsNumericRule.swift in Sources */,
-				917E65C66E0BB055A27C316D /* VerticalConstraintRules.swift in Sources */,
 				917E6E09F93F41EDF080A1CE /* SnapKitHelpers.swift in Sources */,
 				917E6E2F8BFB7D7E9B3C3F37 /* MainViewController.swift in Sources */,
 				917E680DC8A5CD5EC01C7D0E /* ProfileViewController.swift in Sources */,
 				917E6103A0A01C267EFC125D /* GroupTableHeaderViewController.swift in Sources */,
 				917E61B12656A6D5078D1C86 /* GroupListTableViewController.swift in Sources */,
-				917E67EDBE2C996885DE5C83 /* HorizontalConstraintRules.swift in Sources */,
+				324F40E6AAF09C9D38C3C263 /* ConstraintRules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,13 +940,12 @@
 				324F4A3748ABE99EB109DAFE /* StringUtils.swift in Sources */,
 				324F46C7C12B8DAF845D1116 /* StringUtilsTests.swift in Sources */,
 				324F4C001679544C9F174FDB /* IsNumericRule.swift in Sources */,
-				917E6DEBD2667F4CE00EC2B0 /* VerticalConstraintRules.swift in Sources */,
 				917E609A33DAB6563B4BB91E /* SnapKitHelpers.swift in Sources */,
 				917E6E47F95E38E7B7A0E1F5 /* MainViewController.swift in Sources */,
 				917E60DB29DFB4F6A169E53C /* ProfileViewController.swift in Sources */,
 				917E6D1475936BC0F8DCFD82 /* GroupTableHeaderViewController.swift in Sources */,
 				917E6117206E5FE986D93FDC /* GroupListTableViewController.swift in Sources */,
-				917E680607979FAA3199E6EE /* HorizontalConstraintRules.swift in Sources */,
+				324F427124A5FA34B87396BA /* ConstraintRules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
