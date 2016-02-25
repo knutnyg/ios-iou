@@ -31,17 +31,17 @@ class GroupTableHeaderViewController : UIViewController {
 
         let rules = [
                 ConstraintRules()
-                    .withCenterY(true)
-                    .withSnapLeft(view.snp_left)
-                    .withMarginLeft(8),
+                    .centerY()
+                    .snapLeft(view.snp_left)
+                    .marginLeft(8),
                 ConstraintRules()
-                    .withCenterY(true)
-                    .withSnapRight(archivedButton.snp_left)
-                    .withMarginRight(8),
+                    .centerY()
+                    .snapRight(archivedButton.snp_left)
+                    .marginRight(8),
                 ConstraintRules()
-                    .withCenterY(true)
-                    .withSnapRight(view.snp_right)
-                    .withMarginRight(8)
+                    .centerY()
+                    .snapRight(view.snp_right)
+                    .marginRight(8)
         ]
 
         SnapKitHelpers.setConstraints(view, components: components, rules: rules)

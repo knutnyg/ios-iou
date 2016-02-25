@@ -16,58 +16,58 @@ class SnapKitHelpers {
                 var constraints = rules[i]
 
                 //Snap top
-                if let margin = constraints.marginTop {
+                if let margin = constraints.i_marginTop {
                     marginTop = margin
                 }
 
-                if let snap = constraints.snapTop {
+                if let snap = constraints.i_snapTop {
                     comp.top.equalTo(snap).offset(marginTop)
                 }
 
                 //Height
-                if let height = constraints.height {
+                if let height = constraints.i_height {
                     comp.height.equalTo(height)
                 }
 
                 //CenterY
-                if let _ = constraints.centerY {
+                if let _ = constraints.i_centerY {
                     comp.centerY.equalTo(view)
                 }
 
                 //Snap bottom
-                if let margin = constraints.marginBottom {
+                if let margin = constraints.i_marginBottom {
                     marginBottom = margin
                 }
 
-                if let snap = constraints.snapBottom {
+                if let snap = constraints.i_snapBottom {
                     comp.bottom.equalTo(snap).offset(-marginBottom)
                 }
 
                 //Snap Left
-                if let margin = constraints.marginLeft {
+                if let margin = constraints.i_marginLeft {
                     marginLeft = margin
                 }
 
-                if let snap = constraints.snapLeft {
+                if let snap = constraints.i_snapLeft {
                     comp.left.equalTo(snap).offset(marginLeft)
                 }
 
                 //Snap Right
-                if let margin = constraints.marginRight {
+                if let margin = constraints.i_marginRight {
                     marginRight = margin
                 }
 
-                if let snap = constraints.snapRight {
+                if let snap = constraints.i_snapRight {
                     comp.right.equalTo(snap).offset(-marginRight)
                 }
 
                 //Width
-                if let width = constraints.width {
+                if let width = constraints.i_width {
                     comp.width.equalTo(width)
                 }
 
                 //CenterY
-                if let centerX = constraints.centerX {
+                if let centerX = constraints.i_centerX {
                     comp.centerX.equalTo(view.snp_centerX)
                 }
             }
@@ -87,58 +87,58 @@ class SnapKitHelpers {
                 var constraints = rules[i]
 
                 //Snap top
-                if let margin = constraints.marginTop {
+                if let margin = constraints.i_marginTop {
                     marginTop = margin
                 }
 
-                if let snap = constraints.snapTop {
+                if let snap = constraints.i_snapTop {
                     comp.top.equalTo(snap).offset(marginTop)
                 }
 
                 //Height
-                if let height = constraints.height {
+                if let height = constraints.i_height {
                     comp.height.equalTo(height)
                 }
 
                 //CenterY
-                if let _ = constraints.centerY {
+                if let _ = constraints.i_centerY {
                     comp.centerY.equalTo(view)
                 }
 
                 //Snap bottom
-                if let margin = constraints.marginBottom {
+                if let margin = constraints.i_marginBottom {
                     marginBottom = margin
                 }
 
-                if let snap = constraints.snapBottom {
+                if let snap = constraints.i_snapBottom {
                     comp.bottom.equalTo(snap).offset(-marginBottom)
                 }
 
                 //Snap Left
-                if let margin = constraints.marginLeft {
+                if let margin = constraints.i_marginLeft {
                     marginLeft = margin
                 }
 
-                if let snap = constraints.snapLeft {
+                if let snap = constraints.i_snapLeft {
                     comp.left.equalTo(snap).offset(marginLeft)
                 }
 
                 //Snap Right
-                if let margin = constraints.marginRight {
+                if let margin = constraints.i_marginRight {
                     marginRight = margin
                 }
 
-                if let snap = constraints.snapRight {
+                if let snap = constraints.i_snapRight {
                     comp.right.equalTo(snap).offset(-marginRight)
                 }
 
                 //Width
-                if let width = constraints.width {
+                if let width = constraints.i_width {
                     comp.width.equalTo(width)
                 }
 
                 //CenterY
-                if let centerX = constraints.centerX {
+                if let centerX = constraints.i_centerX {
                     comp.centerX.equalTo(view.snp_centerX)
                 }
             }

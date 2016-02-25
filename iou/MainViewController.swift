@@ -36,21 +36,21 @@ class MainViewController: UIViewController {
         let components: [UIView] = [profileView.view, tableHeader.view, groupListTableViewController.view]
         let rules = [
                 ConstraintRules()
-                    .withSnapTop(view.snp_top)
-                    .withMarginTop(64)
-                    .withHeight(200)
-                    .withSnapLeft(view.snp_left)
-                    .withSnapRight(view.snp_right),
+                    .snapTop(view.snp_top)
+                    .marginTop(64)
+                    .height(200)
+                    .snapLeft(view.snp_left)
+                    .snapRight(view.snp_right),
                 ConstraintRules()
-                    .withSnapTop(profileView.view.snp_bottom)
-                    .withHeight(40)
-                    .withSnapLeft(view.snp_left)
-                    .withSnapRight(view.snp_right),
+                    .snapTop(profileView.view.snp_bottom)
+                    .height(40)
+                    .snapLeft(view.snp_left)
+                    .snapRight(view.snp_right),
                 ConstraintRules()
-                    .withSnapTop(tableHeader.view.snp_bottom)
-                    .withSnapLeft(view.snp_left)
-                    .withSnapRight(view.snp_right)
-                    .withSnapBottom(view.snp_bottom)
+                    .snapTop(tableHeader.view.snp_bottom)
+                    .snapLeft(view.snp_left)
+                    .snapRight(view.snp_right)
+                    .snapBottom(view.snp_bottom)
         ]
 
         SnapKitHelpers.setConstraints(view, components: components, rules: rules)

@@ -23,14 +23,14 @@ class ProfileViewController : UIViewController {
 
         let rules = [
                 ConstraintRules()
-                    .withSnapTop(view.snp_top)
-                    .withMarginTop(30)
-                    .withHeight(100)
-                    .withCenterX(true)
-                    .withWidth(100),
+                    .snapTop(view.snp_top)
+                    .marginTop(30)
+                    .height(100)
+                    .centerX()
+                    .width(100),
                 ConstraintRules()
-                    .withSnapTop(profileImageView.snp_bottom)
-                    .withCenterX(true)
+                    .snapTop(profileImageView.snp_bottom)
+                    .centerX()
         ]
 
         SnapKitHelpers.setConstraints(view, components: components, rules: rules)
