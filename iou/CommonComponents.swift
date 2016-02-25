@@ -50,3 +50,11 @@ func createLabel(text:String, font:UIFont) -> UILabel{
     label.font = font
     return label
 }
+
+func createRefreshController() -> UIRefreshControl {
+    let rc = UIRefreshControl()
+    rc.backgroundColor = UIColor.purpleColor()
+    rc.tintColor = UIColor.whiteColor()
+
+    return rc
+}

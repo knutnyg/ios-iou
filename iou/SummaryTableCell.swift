@@ -32,10 +32,31 @@ class SummaryTableViewCell : UITableViewCell {
         contentView.addSubview(owesLabel)
         contentView.addSubview(sumLabel)
 
-        let rules = [ConstraintRules().snapLeft(contentView.snp_left).marginLeft(8).snapTop(contentView.snp_top).marginTop(8),
-                     ConstraintRules().snapLeft(nameLabel.snp_right).marginLeft(8).width(100).snapTop(contentView.snp_top),
-                     ConstraintRules().snapLeft(nameLabel.snp_right).marginLeft(8).width(100).snapTop(paidLabel.snp_bottom).marginTop(2),
-                     ConstraintRules().snapLeft(paidLabel.snp_right).marginLeft(8).width(100).snapTop(contentView.snp_top).marginTop(2).snapRight(contentView.snp_right).marginRight(8)
+        let rules = [
+            ConstraintRules()
+                .snapLeft(contentView.snp_left)
+                .marginLeft(8)
+                .snapTop(contentView.snp_top)
+                .marginTop(8),
+            ConstraintRules()
+                .snapLeft(nameLabel.snp_right)
+                .marginLeft(8)
+                .width(100)
+                .snapTop(contentView.snp_top),
+            ConstraintRules()
+                .snapLeft(nameLabel.snp_right)
+                .marginLeft(8)
+                .width(100)
+                .snapTop(paidLabel.snp_bottom)
+                .marginTop(2),
+            ConstraintRules()
+                .snapLeft(paidLabel.snp_right)
+                .marginLeft(8)
+                .width(100)
+                .snapTop(contentView.snp_top)
+                .marginTop(2)
+                .snapRight(contentView.snp_right)
+                .marginRight(8)
         ]
 
         let components:[UIView] = [nameLabel, paidLabel, owesLabel, sumLabel]

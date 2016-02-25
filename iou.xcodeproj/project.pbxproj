@@ -127,7 +127,6 @@
 		72A622921ACAA9BD007D1F93 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622911ACAA9BD007D1F93 /* User.swift */; };
 		72A622941ACAAD3F007D1F93 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622931ACAAD3F007D1F93 /* Expense.swift */; };
 		72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622951ACB1521007D1F93 /* ExpenseCell.swift */; };
-		72A6229C1ACC05EF007D1F93 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */; };
 		72A6229F1ACC3BD2007D1F93 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */; };
 		72C1A5D51C023E9C007FFAB6 /* meg.png in Resources */ = {isa = PBXBuildFile; fileRef = 72C1A5D41C023E9C007FFAB6 /* meg.png */; };
 		72C1A5D61C023E9C007FFAB6 /* meg.png in Resources */ = {isa = PBXBuildFile; fileRef = 72C1A5D41C023E9C007FFAB6 /* meg.png */; };
@@ -146,7 +145,6 @@
 		72E973A91AF39C5C00ECB4CD /* GroupPanelConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723836AA1AB0D3C6007EC1FC /* GroupPanelConstraints.swift */; };
 		72E973B21AF39CA300ECB4CD /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72289D1A1ACFD4DB0073C60C /* SummaryTableViewController.swift */; };
 		72E973B41AF39CA300ECB4CD /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A622951ACB1521007D1F93 /* ExpenseCell.swift */; };
-		72E973B51AF39CA300ECB4CD /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */; };
 		72E973B81AF39CAC00ECB4CD /* GroupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CA7B51AAF828C00EC7DFA /* GroupHandler.swift */; };
 		72E973B91AF39CAC00ECB4CD /* ExpensesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6228D1ACAA8CD007D1F93 /* ExpensesHandler.swift */; };
 		72E973C11AF39D8900ECB4CD /* SummaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7237DC3F1AD2CB9C00A29256 /* SummaryItem.swift */; };
@@ -269,7 +267,6 @@
 		72A622911ACAA9BD007D1F93 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		72A622931ACAAD3F007D1F93 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		72A622951ACB1521007D1F93 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
-		72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		72A6229E1ACC3BD2007D1F93 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		72C1A5D41C023E9C007FFAB6 /* meg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meg.png; sourceTree = "<group>"; };
 		72C1A5D71C023FF0007FFAB6 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
@@ -427,7 +424,6 @@
 		7224B9BC1BD5781B00414CF5 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
-				72A6229B1ACC05EF007D1F93 /* TableViewHeader.swift */,
 				72A622951ACB1521007D1F93 /* ExpenseCell.swift */,
 				324F49628FF839A4846854F0 /* ExpensesTableViewController.swift */,
 			);
@@ -818,7 +814,6 @@
 				7224B9C71BD6AF1700414CF5 /* AddParticipantsToExpenseTableViewController.swift in Sources */,
 				6AED42111BD4071A00053831 /* CommonComponents.swift in Sources */,
 				72A6229F1ACC3BD2007D1F93 /* DateUtils.swift in Sources */,
-				72A6229C1ACC05EF007D1F93 /* TableViewHeader.swift in Sources */,
 				6AED420E1BD3EC9600053831 /* ForgotPasswordViewController.swift in Sources */,
 				7224B9BE1BD5787B00414CF5 /* SummaryHeaderView.swift in Sources */,
 				72A622961ACB1521007D1F93 /* ExpenseCell.swift in Sources */,
@@ -908,7 +903,6 @@
 				7208835E1BD01E2C001A716A /* GroupHandlerTests.swift in Sources */,
 				7224B9CA1BD6BA3400414CF5 /* AddParticipantsToExpenseTableViewController.swift in Sources */,
 				7224B9CB1BD6BA3600414CF5 /* EditExpense.swift in Sources */,
-				72E973B51AF39CA300ECB4CD /* TableViewHeader.swift in Sources */,
 				6AED41FD1BD3B8B600053831 /* ResetPasswordHandler.swift in Sources */,
 				72DBBD1C1BDBD91C00DCCF88 /* ExpensesTableViewController.swift in Sources */,
 				72E973B91AF39CAC00ECB4CD /* ExpensesHandler.swift in Sources */,

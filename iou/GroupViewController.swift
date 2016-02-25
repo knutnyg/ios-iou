@@ -94,31 +94,31 @@ class GroupViewController : UIViewController {
 
         let rules = [
                 ConstraintRules() // Summary header
-                .marginTop(72)
-                .height(30)
-                .snapTop(view.snp_top)
-                .snapLeft(view.snp_left)
-                .snapRight(view.snp_right),
+                    .marginTop(72)
+                    .height(30)
+                    .snapTop(view.snp_top)
+                    .snapLeft(view.snp_left)
+                    .snapRight(view.snp_right),
                 ConstraintRules() // Summary
-                .height(summaryHeight)
-                .snapTop(summaryHeaderView.view.snp_bottom)
-                .snapLeft(view.snp_left)
-                .snapRight(view.snp_right),
+                    .height(summaryHeight)
+                    .snapTop(summaryHeaderView.view.snp_bottom)
+                    .snapLeft(view.snp_left)
+                    .snapRight(view.snp_right),
                 ConstraintRules() // Expense button
-                .height(38)
-                .snapTop(summaryView.view.snp_bottom)
-                .snapLeft(view.snp_left)
-                .marginLeft(8),
+                    .height(38)
+                    .snapTop(summaryView.view.snp_bottom)
+                    .snapLeft(view.snp_left)
+                    .marginLeft(8),
                 ConstraintRules() // Add member button
-                .height(38)
-                .snapTop(summaryView.view.snp_bottom)
-                .snapRight(view.snp_right)
-                .marginRight(8),
+                    .height(38)
+                    .snapTop(summaryView.view.snp_bottom)
+                    .snapRight(view.snp_right)
+                    .marginRight(8),
                 ConstraintRules() // Expense table
-                .snapTop(addExpenseButton.snp_bottom)
-                .snapBottom(view.snp_bottom)
-                .snapLeft(view.snp_left)
-                .snapRight(view.snp_right)
+                    .snapTop(addExpenseButton.snp_bottom)
+                    .snapBottom(view.snp_bottom)
+                    .snapLeft(view.snp_left)
+                    .snapRight(view.snp_right)
         ]
 
         SnapKitHelpers.updateConstraints(view, components: components, rules: rules)
@@ -131,6 +131,7 @@ class GroupViewController : UIViewController {
             self.group = group
             self.summaryView.tableView.reloadData()
             self.expensesTableView.tableView.reloadData()
+            self.expensesTableView.refreshSpinner.endRefreshing()
         }
     }
 

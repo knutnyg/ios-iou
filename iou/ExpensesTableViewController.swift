@@ -1,5 +1,4 @@
 
-
 import Foundation
 import UIKit
 
@@ -7,17 +6,15 @@ class ExpensesTableViewController:UITableViewController {
     
     var activity:UIActivityIndicatorView!
     var delegate:GroupViewController!
-    
+    var refreshSpinner:UIRefreshControl!
+
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.activity = UIActivityIndicatorView()
+        view.backgroundColor = UIColor.whiteColor()
 
-        let refreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = UIColor.purpleColor()
-        refreshControl.tintColor = UIColor.whiteColor()
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        refreshSpinner = createRefreshController()
+        refreshSpinner.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
 
-        tableView.addSubview(refreshControl)
+        tableView.addSubview(refreshSpinner)
         
         self.tableView.registerClass(ExpenseCell.self, forCellReuseIdentifier: "expenseCell")
     }
@@ -48,7 +45,6 @@ class ExpensesTableViewController:UITableViewController {
         return "Expense list:"
     }
 
-
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60
     }
@@ -65,19 +61,10 @@ class ExpensesTableViewController:UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedExpenses().count
     }
-    
-    override func viewDidLayoutSubviews() {
-        positionSpinnerInMiddle()
-    }
-    
-    func positionSpinnerInMiddle() {
-        let x = view.bounds.width / 2
-        let y = view.bounds.height / 2
-        activity.center = CGPoint(x: x, y: y)
-    }
 
     func refresh(refreshControl: UIRefreshControl){
         delegate.refreshData()
+
     }
 
     func sortedMembers() -> [User]{

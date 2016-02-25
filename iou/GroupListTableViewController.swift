@@ -16,18 +16,9 @@ class GroupListTableViewController : UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "buttonChanged:", name: "buttonChanged", object: nil)
 
         let refreshSpinner = createRefreshController()
-
         refreshSpinner.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
 
         tableView.addSubview(refreshSpinner)
-    }
-
-    func createRefreshController() -> UIRefreshControl {
-        let rc = UIRefreshControl()
-        rc.backgroundColor = UIColor.purpleColor()
-        rc.tintColor = UIColor.whiteColor()
-
-        return rc
     }
 
     func archivedPressed(notification: NSNotification){
