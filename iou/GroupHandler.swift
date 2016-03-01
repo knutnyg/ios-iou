@@ -12,7 +12,7 @@ class GroupHandler {
 
         let promiseGroupsForUser = Promise<[Group], NSError>()
 
-        let url: String = "\(API.url_root)/api/spreadsheets"
+        let url: String = "\(API.baseUrl)/api/spreadsheets"
         do {
             let request = try HTTP.GET(url, headers: ["AccessToken": token], requestSerializer: JSONParameterSerializer())
 
@@ -50,7 +50,7 @@ class GroupHandler {
     static func createGroup(token: String, name: String, creator: User) -> Future<Group, NSError> {
         let promiseCreateGroup = Promise<Group, NSError>()
 
-        let url: String = "\(API.url_root)/api/spreadsheets"
+        let url: String = "\(API.baseUrl)/api/spreadsheets"
         let payload: [String:AnyObject] = ["description": name, "creator": creator.toJSONParseableDictionary()]
 
         do {
@@ -83,7 +83,7 @@ class GroupHandler {
     static func putGroup(token: String, group: Group) -> Future<Group, NSError> {
         let promiseEditGroup = Promise<Group, NSError>()
 
-        let url: String = "\(API.url_root)/api/spreadsheets/\(group.id)"
+        let url: String = "\(API.baseUrl)/api/spreadsheets/\(group.id)"
         let payload: [String:AnyObject] = group.toJSONparsableDicitonary()
 
         do {
@@ -118,7 +118,7 @@ class GroupHandler {
     static func getGroup(token: String, group: Group) -> Future<Group, NSError> {
         let promiseGetGroup = Promise<Group, NSError>()
 
-        let url: String = "\(API.url_root)/api/spreadsheets/\(group.id)"
+        let url: String = "\(API.baseUrl)/api/spreadsheets/\(group.id)"
         let payload: [String:AnyObject] = group.toJSONparsableDicitonary()
 
         do {

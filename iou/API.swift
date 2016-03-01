@@ -4,7 +4,7 @@ import BrightFutures
 
 class API {
     static var accessToken:String?
-    static var url_root = "https://dev.logisk.org"
+    static var baseUrl:String!
     static var currentUser:User?
     static var currentLocale:NSLocale?
     

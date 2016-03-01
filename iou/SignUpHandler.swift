@@ -10,7 +10,7 @@ class SignUpHandler {
     static func signUp(name:String, email:String, password: String, confirm_password:String) -> Future<String,NSError>{
         let signUpPromise = Promise<String,NSError>()
         
-        let url:String = "\(API.url_root)/api/register"
+        let url:String = "\(API.baseUrl)/api/register"
         let payload = ["name":name, "email":email, "password":password, "confirm_password":confirm_password]
         
         do {

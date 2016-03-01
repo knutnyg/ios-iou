@@ -11,7 +11,7 @@ class ExpensesHandler {
         
         let promise = Promise<[Expense], NSError>()
         
-        let url:String = "\(API.url_root)/api/spreadsheets/\(group.id)/receipts"
+        let url:String = "\(API.baseUrl)/api/spreadsheets/\(group.id)/receipts"
         do {
             let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
             
@@ -44,7 +44,7 @@ class ExpensesHandler {
         
         let updatePromise = Promise<Expense,NSError>()
         
-        let urlString = "\(API.url_root)/api/spreadsheets/\(expense.groupId)/receipts/\(expense.id)"
+        let urlString = "\(API.baseUrl)/api/spreadsheets/\(expense.groupId)/receipts/\(expense.id)"
         
         let payload:[String:AnyObject] = expense.toJSONparsableDicitonary() as! [String : AnyObject]
         do {
@@ -79,7 +79,7 @@ class ExpensesHandler {
             return Future(error: NSError(domain: "Participants cannot be 0", code: 500, userInfo: nil))
         }
         
-        let urlString = "\(API.url_root)/api/spreadsheets/\(expense.groupId)/receipts"
+        let urlString = "\(API.baseUrl)/api/spreadsheets/\(expense.groupId)/receipts"
         
         let payload:[String:AnyObject] = expense.toJSONCreate() as! [String : AnyObject]
         do {
@@ -110,7 +110,7 @@ class ExpensesHandler {
 
         let deletePromise = Promise<Expense,NSError>()
 
-        let urlString = "\(API.url_root)/api/spreadsheets/\(expense.groupId)/receipts/\(expense.id)"
+        let urlString = "\(API.baseUrl)/api/spreadsheets/\(expense.groupId)/receipts/\(expense.id)"
         print(urlString)
 
         do {

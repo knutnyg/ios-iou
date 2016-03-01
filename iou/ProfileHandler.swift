@@ -13,7 +13,7 @@ class ProfileHandler {
         }
         
         if !user.photoURL.containsString("http") {
-            photoUrl = "\(API.url_root)\(photoUrl)"
+            photoUrl = "\(API.baseUrl)\(photoUrl)"
         }
 
         let promise = Promise<UIImage, NSError>()

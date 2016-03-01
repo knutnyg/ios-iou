@@ -15,7 +15,7 @@ class LogInHandler {
     func logInWithDefault(username:String, password:String) -> Future<String,NSError> {
         let logInPromise = Promise<String,NSError>()
         
-        let url = "\(API.url_root)/api/login"
+        let url = "\(API.baseUrl)/api/login"
         let payload = ["username":username, "password":password]
         do {
             let request = try HTTP.POST(url, parameters: payload, requestSerializer:JSONParameterSerializer())

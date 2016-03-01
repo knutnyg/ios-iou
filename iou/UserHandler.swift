@@ -11,7 +11,7 @@ class UserHandler {
         
         let promiseUser = Promise<User, NSError>()
         
-        let url:String = "\(API.url_root)/api/user"
+        let url:String = "\(API.baseUrl)/api/user"
         do {
             let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
             
@@ -39,7 +39,7 @@ class UserHandler {
         let encodedString = query.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         print(encodedString)
         
-        let url:String = "\(API.url_root)/api/users/search/\(encodedString!)"
+        let url:String = "\(API.baseUrl)/api/users/search/\(encodedString!)"
         
         do {
             let request = try HTTP.GET(url, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
@@ -70,7 +70,7 @@ class UserHandler {
     static func uploadImage(token:String, image:UIImage) -> Future<GenericResponse,NSError> {
         let imagePromise = Promise<GenericResponse, NSError>()
         
-        let url:String = "\(API.url_root)/api/user/photo"
+        let url:String = "\(API.baseUrl)/api/user/photo"
 
         let imageData = UIImagePNGRepresentation(image)!
         let base64String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
@@ -126,7 +126,7 @@ class UserHandler {
         let promiseUser = Promise<User, NSError>()
         let payload = user.toJSONParseableDictionary()
         
-        let url:String = "\(API.url_root)/api/user/edit"
+        let url:String = "\(API.baseUrl)/api/user/edit"
         do {
             let request = try HTTP.PUT(url, parameters: payload, headers: ["AccessToken":token], requestSerializer:JSONParameterSerializer())
             

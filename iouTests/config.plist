@@ -2,7 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>api_root</key>
-	<string>https://dev.logisk.org/</string>
+	<key>baseURL</key>
+	<string>https://dev.logisk.org</string>
+	<key>username</key>
+	<string>knutnyg+test@gmail.com</string>
+	<key>password</key>
+	<string>Test1234</string>
 </dict>
 </plist>
