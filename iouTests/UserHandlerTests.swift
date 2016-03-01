@@ -5,15 +5,13 @@ import XCTest
 
 class UserHandlerTests : TestBase {
     
-
-    
     func testFetchUser(){
         
         let expectation = expectationWithDescription("promise")
         
-        API.getUser()
+        UserHandler.getUser(token)
             .onSuccess { user in
-                XCTAssertTrue(user.id == user.id)
+                XCTAssertTrue(self.user.id == user.id)
                 expectation.fulfill()
             }
             .onFailure { error in
@@ -29,7 +27,7 @@ class UserHandlerTests : TestBase {
     func testSearchUser(){
         let expectation = expectationWithDescription("promise")
 
-        API.searchUsers("Knut")
+        UserHandler.searchUser(token, query: "Knut")
         .onSuccess { users in
             XCTAssertTrue(users[0].id != nil)
             expectation.fulfill()
