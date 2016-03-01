@@ -18,7 +18,11 @@ class Group : JSONJoy{
     var lastUpdated:NSDate!
     var creator:User!
     var expenses:[Expense] = []
-    
+
+    init(){
+
+    }
+
     init(members:[User], id:String, archived:Bool, created:NSDate, description:String, lastUpdated:NSDate, creator:User, expenses:[Expense]){
         self.members = members
         self.id = id
