@@ -97,59 +97,22 @@ class EditExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, U
         let verticalSpacing = 45
         let edgeMargin = 20
         let fieldHeight = 50
-        
-        let elements:[UIView] = [paidByTextField, dateTextField, commentTextField, amountTextField]
-        let labels:[UIView] = [paidByLabel, dateLabel, commentLabel, amountLabel]
-        let errorLabels:[UIView?] = [nil, nil, commentErrorLabel, amountErrorLabel]
-        
-        for i in 0...elements.count - 1 {
-            
-            //First element
-            if i == 0 {
-                elements[i].snp_makeConstraints {
-                    (field) -> Void in
-                    field.topMargin.equalTo(self.view.snp_top).offset(130)
-                    field.leftMargin.equalTo(edgeMargin)
-                    field.rightMargin.equalTo(-edgeMargin)
-                    field.height.equalTo(fieldHeight)
-                }
-                
-                labels[i].snp_makeConstraints {
-                    (label) -> Void in
-                    label.bottom.equalTo(elements[i].snp_top).offset(-5)
-                    label.leftMargin.equalTo(edgeMargin)
-                }
-            } else {
-                //Following elements
-                elements[i].snp_makeConstraints {
-                    (field) -> Void in
-                    field.top.equalTo(elements[i-1].snp_bottom).offset(verticalSpacing)
-                    field.leftMargin.equalTo(edgeMargin)
-                    field.rightMargin.equalTo(-edgeMargin)
-                    field.height.equalTo(fieldHeight)
-                }
-                
-                labels[i].snp_makeConstraints {
-                    (label) -> Void in
-                    label.bottom.equalTo(elements[i].snp_top).offset(-5)
-                    label.leftMargin.equalTo(edgeMargin)
-                }
-                
-                if let errorLabel = errorLabels[i] {
-                    errorLabel.snp_makeConstraints {
-                        (label) -> Void in
-                        label.bottom.equalTo(elements[i].snp_top).offset(-3)
-                        label.right.equalTo(elements[i].snp_right)
-                    }
-                }
-            }
-        }
-        
-        addParticipantsButton.snp_makeConstraints {
-            (button) -> Void in
-            button.topMargin.equalTo(amountTextField.snp_bottom).offset(verticalSpacing)
-            button.right.equalTo(self.view.snp_right).offset(-verticalSpacing)
-        }
+
+        let comp: [ComponentWrapper] = [
+                ComponentWrapper(view: paidByLabel, rules: ConstraintRules().snapBottom(paidByTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: commentLabel, rules: ConstraintRules().snapBottom(commentTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: dateLabel, rules: ConstraintRules().snapBottom(dateTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: amountLabel, rules: ConstraintRules().snapBottom(amountTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: paidByTextField, rules: ConstraintRules().snapTop(view.snp_top).marginTop(130).horizontalFullWithMargin(view, margin: edgeMargin).height(fieldHeight)),
+                ComponentWrapper(view: commentTextField, rules: ConstraintRules().snapTop(paidByTextField.snp_bottom).marginTop(verticalSpacing).horizontalFullWithMargin(view, margin: edgeMargin).height(fieldHeight)),
+                ComponentWrapper(view: dateTextField, rules: ConstraintRules().snapTop(commentTextField.snp_bottom).marginTop(verticalSpacing).horizontalFullWithMargin(view, margin: edgeMargin).height(fieldHeight)),
+                ComponentWrapper(view: amountTextField, rules: ConstraintRules().snapTop(dateTextField.snp_bottom).marginTop(verticalSpacing).horizontalFullWithMargin(view, margin: edgeMargin).height(fieldHeight)),
+                ComponentWrapper(view: commentErrorLabel, rules: ConstraintRules().snapBottom(commentTextField.snp_top).marginBottom(5).snapRight(view.snp_right).marginRight(edgeMargin)),
+                ComponentWrapper(view: amountErrorLabel, rules: ConstraintRules().snapBottom(amountTextField.snp_top).marginBottom(5).snapRight(view.snp_right).marginRight(edgeMargin)),
+                ComponentWrapper(view: addParticipantsButton, rules: ConstraintRules().snapTop(amountTextField.snp_bottom).marginTop(verticalSpacing).snapRight(view.snp_right).marginRight(edgeMargin)),
+        ]
+
+        SnapKitHelpers.setConstraints(view, components: comp)
     }
     
     override func viewDidAppear(animated: Bool) {

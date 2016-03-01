@@ -25,6 +25,7 @@
 		324F452EFD8AE00AD0A62D27 /* AddParticipantsParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47B329DD5498FE62DAA7 /* AddParticipantsParent.swift */; };
 		324F45537F53F575E89941E7 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F47E696165C4C590D7E7A /* icon144.png */; };
 		324F45D52440B66D251C1FEE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F4CC971F7C76DFB2C777F /* icon40.png */; };
+		324F45E46EAC3D9374E96466 /* ComponentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4394B4CD1430161233C7 /* ComponentWrapper.swift */; };
 		324F462B0A7875043ED5B3D3 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F41AE2FAA4993C006BFD4 /* profile.png */; };
 		324F46C7C12B8DAF845D1116 /* StringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4CE45F7979A3870BF70C /* StringUtilsTests.swift */; };
 		324F47469759DED5B1A2FFE2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4C96DE6156289F30895D /* SignUpViewController.swift */; };
@@ -41,6 +42,7 @@
 		324F4ADC5688AF8580985862 /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 324F483FA4ACA79CFAE72B5D /* icon29.png */; };
 		324F4BB1DCCD4CC50CFBA624 /* AddParticipantsParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F47B329DD5498FE62DAA7 /* AddParticipantsParent.swift */; };
 		324F4BDC00C7FBABBBA143BE /* GroupTableHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F410090D5F8B633571D26 /* GroupTableHeaderViewController.swift */; };
+		324F4BF42B56BFC60130114B /* ComponentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4394B4CD1430161233C7 /* ComponentWrapper.swift */; };
 		324F4C001679544C9F174FDB /* IsNumericRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4EC50D5B7E95DD6C7D0B /* IsNumericRule.swift */; };
 		324F4C14C941A26838597120 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F417CB1CB38EAED807944 /* ProfileViewController.swift */; };
 		324F4C15F35F940D8D242F29 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 324F45C3CB9C1AC8FAC88B93 /* config.plist */; };
@@ -189,6 +191,7 @@
 		324F41AE2FAA4993C006BFD4 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		324F41B27DF10F6EC06EF722 /* ProfileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHandler.swift; sourceTree = "<group>"; };
 		324F41D1D21E1DD27959DE66 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		324F4394B4CD1430161233C7 /* ComponentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentWrapper.swift; sourceTree = "<group>"; };
 		324F4412B510A691C680B13B /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		324F44568EF1AF88A44A8F29 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = config.plist; sourceTree = "<group>"; };
 		324F4490846D30F2B786284B /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
@@ -558,6 +561,7 @@
 				6AED41FE1BD3C04700053831 /* SignUpResponse.swift */,
 				72C1A5D71C023FF0007FFAB6 /* GenericResponse.swift */,
 				324F4ED563268C0FF7515CE3 /* ConstraintRules.swift */,
+				324F4394B4CD1430161233C7 /* ComponentWrapper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -860,6 +864,7 @@
 				324F439D81E95D26FDAFD326 /* GroupTableHeaderViewController.swift in Sources */,
 				324F48DF2290EE68470419C0 /* GroupListTableViewController.swift in Sources */,
 				324F4F1E8D3953D4FD0EBF4E /* AddGroupViewController.swift in Sources */,
+				324F4BF42B56BFC60130114B /* ComponentWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,6 +937,7 @@
 				324F4BDC00C7FBABBBA143BE /* GroupTableHeaderViewController.swift in Sources */,
 				324F49DC791F503075F901B0 /* GroupListTableViewController.swift in Sources */,
 				324F4CA4952837EF101DC4EE /* AddGroupViewController.swift in Sources */,
+				324F45E46EAC3D9374E96466 /* ComponentWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

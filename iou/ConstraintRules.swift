@@ -81,4 +81,12 @@ class ConstraintRules {
         i_snapRight = view
         return self
     }
+
+    func horizontalFullWithMargin(view:UIView, margin: Int) -> ConstraintRules{
+        i_snapLeft = view.snp_left
+        i_snapRight = view.snp_right
+        i_marginLeft = margin
+        i_marginRight = margin
+        return self
+    }
 }

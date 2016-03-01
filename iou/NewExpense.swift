@@ -1,31 +1,30 @@
-
 import Foundation
 import UIKit
 import SnapKit
 import SwiftValidator
 
-class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class NewExpense: UIViewController, UITextFieldDelegate, ValidationDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    var delegate:GroupViewController!
+    var delegate: GroupViewController!
 
-    var paidByLabel:UILabel!
-    var paidByTextField:UITextField!
-    var commentLabel:UILabel!
-    var commentTextField:UITextField!
-    var dateLabel:UILabel!
-    var dateTextField:UITextField!
-    var datePicker:UIDatePicker!
-    var amountLabel:UILabel!
-    var amountTextField:UITextField!
-    var commentErrorLabel:UILabel!
-    var amountErrorLabel:UILabel!
+    var paidByLabel: UILabel!
+    var paidByTextField: UITextField!
+    var commentLabel: UILabel!
+    var commentTextField: UITextField!
+    var dateLabel: UILabel!
+    var dateTextField: UITextField!
+    var datePicker: UIDatePicker!
+    var amountLabel: UILabel!
+    var amountTextField: UITextField!
+    var commentErrorLabel: UILabel!
+    var amountErrorLabel: UILabel!
 
-    var addParticipantsButton:UIButton!
-    var groupMembers:[User]!
+    var addParticipantsButton: UIButton!
+    var groupMembers: [User]!
 
     var memberPickerView: UIPickerView!
 
-    var selectedDate:NSDate!
+    var selectedDate: NSDate!
 
     var validator: Validator!
 
@@ -38,29 +37,29 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         memberPickerView = UIPickerView()
         memberPickerView.delegate = self
         memberPickerView.dataSource = self
-        if let index = groupMembers.indexOf({$0.id == API.currentUser!.id}) {
-            memberPickerView.selectRow(index,inComponent: 0,animated:false)
-        }
 
-        paidByLabel = createLabel("Paid by:", font: UIFont(name: "HelveticaNeue",size: 18)!)
+        setPaidBy()
+
+        paidByLabel = createLabel("Paid by:", font: UIFont(name: "HelveticaNeue", size: 18)!)
+        commentLabel = createLabel("Comment:", font: UIFont(name: "HelveticaNeue", size: 18)!)
+        dateLabel = createLabel("Date:", font: UIFont(name: "HelveticaNeue", size: 18)!)
+        amountLabel = createLabel("Amount:", font: UIFont(name: "HelveticaNeue", size: 18)!)
+
         paidByTextField = createTextField("")
         paidByTextField.text = API.currentUser!.name
         paidByTextField.inputView = memberPickerView
 
-        commentLabel = createLabel("Comment:", font: UIFont(name: "HelveticaNeue",size: 18)!)
-        commentTextField = createTextField("Enter a describing comment")
-        commentTextField.delegate = self
-
-        dateLabel = createLabel("Date:", font: UIFont(name: "HelveticaNeue",size: 18)!)
-        datePicker = UIDatePicker()
-        datePicker.datePickerMode = UIDatePickerMode.Date
-
         dateTextField = createTextField("")
         dateTextField.text = NSDate().shortPrintable()
         dateTextField.inputView = datePicker
-        datePicker.addTarget(self, action: "dateSelected:", forControlEvents: .ValueChanged)
 
-        amountLabel = createLabel("Amount:", font: UIFont(name: "HelveticaNeue",size: 18)!)
+        datePicker = UIDatePicker()
+        datePicker.addTarget(self, action: "dateSelected:", forControlEvents: .ValueChanged)
+        datePicker.datePickerMode = UIDatePickerMode.Date
+
+        commentTextField = createTextField("Enter a describing comment")
+        commentTextField.delegate = self
+
         amountTextField = createTextField("$$")
         amountTextField.keyboardType = .DecimalPad
         amountTextField.delegate = self
@@ -71,7 +70,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         commentErrorLabel.hidden = true
         amountErrorLabel.hidden = true
 
-        addParticipantsButton = createButton("Add participants >", font: UIFont(name: "HelveticaNeue",size: 20)!)
+        addParticipantsButton = createButton("Add participants >", font: UIFont(name: "HelveticaNeue", size: 20)!)
         addParticipantsButton.addTarget(self, action: "addParticipantsPressed:", forControlEvents: .TouchUpInside)
 
         validator.registerField(commentTextField, errorLabel: commentErrorLabel, rules: [RequiredRule()])
@@ -89,64 +88,24 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         view.addSubview(commentErrorLabel)
         view.addSubview(amountErrorLabel)
 
-        //Constraints:
-
-        let verticalSpacing = 45
         let edgeMargin = 20
-        let fieldHeight = 50
+        let verticalSpacing = 45
 
-        let elements:[UIView] = [paidByTextField, dateTextField, commentTextField, amountTextField]
-        let labels:[UIView] = [paidByLabel, dateLabel, commentLabel, amountLabel]
-        let errorLabels:[UIView?] = [nil, nil, commentErrorLabel, amountErrorLabel]
+        let comp: [ComponentWrapper] = [
+                ComponentWrapper(view: paidByLabel, rules: ConstraintRules().snapBottom(paidByTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: commentLabel, rules: ConstraintRules().snapBottom(commentTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: dateLabel, rules: ConstraintRules().snapBottom(dateTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: amountLabel, rules: ConstraintRules().snapBottom(amountTextField.snp_top).marginBottom(5).snapLeft(view.snp_left).marginLeft(edgeMargin)),
+                ComponentWrapper(view: paidByTextField, rules: ConstraintRules().snapTop(view.snp_top).marginTop(130).horizontalFullWithMargin(view, margin: edgeMargin).height(50)),
+                ComponentWrapper(view: commentTextField, rules: ConstraintRules().snapTop(paidByTextField.snp_bottom).marginTop(verticalSpacing).horizontalFullWithMargin(view, margin: edgeMargin).height(50)),
+                ComponentWrapper(view: dateTextField, rules: ConstraintRules().snapTop(commentTextField.snp_bottom).marginTop(verticalSpacing).horizontalFullWithMargin(view, margin: edgeMargin).height(50)),
+                ComponentWrapper(view: amountTextField, rules: ConstraintRules().snapTop(dateTextField.snp_bottom).marginTop(verticalSpacing).horizontalFullWithMargin(view, margin: edgeMargin).height(50)),
+                ComponentWrapper(view: commentErrorLabel, rules: ConstraintRules().snapBottom(commentTextField.snp_top).marginBottom(5).snapRight(view.snp_right).marginRight(edgeMargin)),
+                ComponentWrapper(view: amountErrorLabel, rules: ConstraintRules().snapBottom(amountTextField.snp_top).marginBottom(5).snapRight(view.snp_right).marginRight(edgeMargin)),
+                ComponentWrapper(view: addParticipantsButton, rules: ConstraintRules().snapTop(amountTextField.snp_bottom).marginTop(verticalSpacing).snapRight(view.snp_right).marginRight(edgeMargin)),
+        ]
 
-        for i in 0...elements.count - 1 {
-
-            //First element
-            if i == 0 {
-                elements[i].snp_makeConstraints {
-                    (field) -> Void in
-                    field.topMargin.equalTo(self.view.snp_top).offset(130)
-                    field.leftMargin.equalTo(edgeMargin)
-                    field.rightMargin.equalTo(-edgeMargin)
-                    field.height.equalTo(fieldHeight)
-                }
-
-                labels[i].snp_makeConstraints {
-                    (label) -> Void in
-                    label.bottom.equalTo(elements[i].snp_top).offset(-5)
-                    label.leftMargin.equalTo(edgeMargin)
-                }
-            } else {
-                //Following elements
-                elements[i].snp_makeConstraints {
-                    (field) -> Void in
-                    field.top.equalTo(elements[i-1].snp_bottom).offset(verticalSpacing)
-                    field.leftMargin.equalTo(edgeMargin)
-                    field.rightMargin.equalTo(-edgeMargin)
-                    field.height.equalTo(fieldHeight)
-                }
-
-                labels[i].snp_makeConstraints {
-                    (label) -> Void in
-                    label.bottom.equalTo(elements[i].snp_top).offset(-5)
-                    label.leftMargin.equalTo(edgeMargin)
-                }
-
-                if let errorLabel = errorLabels[i] {
-                    errorLabel.snp_makeConstraints {
-                        (label) -> Void in
-                        label.bottom.equalTo(elements[i].snp_top).offset(-3)
-                        label.right.equalTo(elements[i].snp_right)
-                    }
-                }
-            }
-        }
-
-        addParticipantsButton.snp_makeConstraints {
-            (button) -> Void in
-            button.topMargin.equalTo(amountTextField.snp_bottom).offset(verticalSpacing)
-            button.right.equalTo(self.view.snp_right).offset(-verticalSpacing)
-        }
+        SnapKitHelpers.setConstraints(view, components: comp)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -155,11 +114,17 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
     }
 
 
-    func dateSelected(sender:UIDatePicker){
+    func setPaidBy() {
+        if let index = groupMembers.indexOf({ $0.id == API.currentUser!.id }) {
+            memberPickerView.selectRow(index, inComponent: 0, animated: false)
+        }
+    }
+
+    func dateSelected(sender: UIDatePicker) {
         dateTextField.text = sender.date.shortPrintable()
     }
 
-    func addParticipantsPressed(sender:UIButton){
+    func addParticipantsPressed(sender: UIButton) {
         clearValidationErrors()
         validator.validate(self)
     }
@@ -173,7 +138,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         self.view.endEditing(true)
     }
 
-    func setupNavigationBar(){
+    func setupNavigationBar() {
         navigationItem.title = "Add Expense"
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
@@ -184,9 +149,9 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         })
     }
 
-    func moveKeyboardDown(){
+    func moveKeyboardDown() {
         UIView.animateWithDuration(0.25, animations: {
-            self.view.frame = CGRectMake(0 , 0, self.view.frame.width, self.view.frame.height + 150)
+            self.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height + 150)
             self.view.frame.origin.y -= 150
         })
     }
@@ -196,7 +161,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
             moveKeyboardDown()
         }
     }
-    
+
     func textFieldDidEndEditing(textField: UITextField) {
         if textField == commentTextField || textField == amountTextField {
             moveKeyboardUp()
@@ -211,7 +176,7 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         vc.delegate = delegate
         vc.expense = Expense(participants: [], amount: amount, date: date, groupId: delegate.group.id, created: NSDate(), updated: NSDate(), comment: commentTextField.text!, creator: groupMembers[memberPickerView.selectedRowInComponent(0)])
         vc.type = Type.NEW
-        navigationController?.pushViewController(vc,animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     func validationFailed(errors: [UITextField:ValidationError]) {
@@ -232,24 +197,24 @@ class NewExpense : UIViewController, UITextFieldDelegate, ValidationDelegate, UI
         amountErrorLabel.hidden = true
     }
 
-    func resetView(){
+    func resetView() {
         commentTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
     }
-    
-    
+
+
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         paidByTextField.text = groupMembers[row].name
     }
-    
+
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return groupMembers[row].name
     }
-    
+
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return groupMembers.count
     }
-    
+
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
