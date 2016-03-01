@@ -28,9 +28,14 @@ class ProfileHandler {
                     return
                 }
                 print("Debug: PromiseHandler got response")
-                let image = UIImage(data: response.data)
+                if let image = UIImage(data: response.data) {
+                    promise.success(image)
+                } else {
+                    promise.failure(NSError(domain: "Image not found", code: 404, userInfo: nil))
+                }
 
-                promise.success(image!)
+
+
             }
         } catch {
             print("PromiseHandler: got error in getImageForUser")
