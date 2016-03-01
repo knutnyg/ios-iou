@@ -1,23 +1,16 @@
-//
-//  ProfileHandlerTests.swift
-//  iou
-//
-//  Created by Knut Nygaard on 22/11/15.
-//  Copyright © 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import XCTest
 
 class ProfileHandlerTests : TestBase {
 
-
+    let runIntegrationTests = false
 
     func testGetImage(){
 
         let expectation = expectationWithDescription("promise")
         
-        API.getImageForUser(user).onSuccess{image in
+        ProfileHandler.getImageForUser(user).onSuccess{image in
             XCTAssert(true)
             expectation.fulfill()
         }.onFailure{error in
@@ -31,6 +24,11 @@ class ProfileHandlerTests : TestBase {
     }
 
     func testUploadImage(){
+
+        if runIntegrationTests == false {
+            return
+        }
+
         //The Bundle for your current class
         var bundle = NSBundle(forClass: self.dynamicType)
         var path = bundle.pathForResource("dog", ofType: "jpeg")!
