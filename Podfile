@@ -1,23 +1,23 @@
-pod 'BrightFutures', '3.1.2'
+pod 'BrightFutures', '3.3.0'
 link_with 'iou', 'iouTests'
 use_frameworks!
 
-pod 'SwiftyJSON', '2.3.1'
+pod 'SwiftyJSON', '2.3.2'
 link_with 'iou', 'iouTests'
 
-pod 'SwiftHTTP', '1.0.2'
+pod 'SwiftHTTP', '1.0.4'
 link_with 'iou', 'iouTests'
 
-pod 'JSONJoy-Swift', '1.0.0'
+pod 'JSONJoy-Swift', '2.0.0'
 link_with 'iou', 'iouTests'
 
-pod 'FBSDKLoginKit', '4.7.1'
+pod 'FBSDKLoginKit', '4.10.0'
 link_with 'iou', 'iouTests'
 
-pod 'SwiftValidator', '3.0.1'
+pod 'SwiftValidator', '3.0.3'
 link_with 'iou', 'iouTests'
 
-pod 'SnapKit', '0.17.0'
+pod 'SnapKit', '0.19.1'
 link_with 'iou', 'iouTests'
 
 post_install do |installer|
