@@ -1,12 +1,8 @@
-//
-// Created by Knut Nygaard on 15/11/15.
-// Copyright (c) 2015 APM solutions. All rights reserved.
-//
 
 import Foundation
 import XCTest
 
-class SignUpHandlerTests: XCTestCase {
+class SignUpHandlerTests: TestBase {
 
     var runIntegrationTests = false
 
@@ -18,12 +14,11 @@ class SignUpHandlerTests: XCTestCase {
 
         let expectation = expectationWithDescription("promise")
 
-        let name = "Knut_test"
-        let email = "knutnyg+test@gmail.com"
-        let password = "Test1234"
-        let confirm_password = "Test1234"
+        let name = "Knut_auto_test"
+        let email = "knutnyg+testauto@gmail.com"
+        let password = config.valueForKey("password") as! String
 
-        SignUpHandler.signUp(name,email:email,password:password,confirm_password: confirm_password)
+        SignUpHandler.signUp(name,email:email,password:password,confirm_password: password)
         .onSuccess{ id in
             XCTAssert(true)
             expectation.fulfill()
@@ -44,10 +39,9 @@ class SignUpHandlerTests: XCTestCase {
 
         let name = "Knut_test"
         let email = "knutnyg+testgmail.com"
-        let password = "Test1234"
-        let confirm_password = "Test1234"
+        let password = "awd"
 
-        SignUpHandler.signUp(name,email:email,password:password,confirm_password: confirm_password)
+        SignUpHandler.signUp(name,email:email,password:password,confirm_password: password)
         .onSuccess{ id in
             XCTAssert(false)
             expectation.fulfill()

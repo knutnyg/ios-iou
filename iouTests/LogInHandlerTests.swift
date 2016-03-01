@@ -9,19 +9,18 @@
 import Foundation
 import XCTest
 
-class LogInHandlerTests : XCTestCase {
+class LogInHandlerTests : TestBase {
     
     override func setUp() {
         super.setUp()
     }
     
     func testLogInDefault(){
-        let username = "knutnyg+test@gmail.com"
-        let password = "Test1234"
+        let username = config.valueForKey("username") as! String
+        let password = config.valueForKey("password") as! String
         
         let expectation = expectationWithDescription("promise")
-        
-        
+
         LogInHandler().logInWithDefault(username, password: password)
             .onSuccess{ token in
                 

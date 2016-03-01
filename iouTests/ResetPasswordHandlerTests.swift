@@ -1,43 +1,34 @@
-//
-//  ResetPasswordHandlerTests.swift
-//  iou
-//
-//  Created by Knut Nygaard on 18/10/15.
-//  Copyright © 2015 APM solutions. All rights reserved.
-//
-
 import Foundation
 import XCTest
 
-class ResetPasswordHandlerTests : XCTestCase {
+class ResetPasswordHandlerTests: TestBase {
 
     let runIntegrationTests = false
 
-    override func setUp() {
-        super.setUp()
-    }
-    
-    func testResetPassword(){
+    func testResetPassword() {
 
         if runIntegrationTests == false {
             return
         }
 
         let expectation = expectationWithDescription("promise")
-        
-        let email = "knutnyg+test@gmail.com"
-        
+
+        let email = config.valueForKey("username") as! String
+
         ResetPasswordHandler().resetPassword(email)
-            .onSuccess{ result in
-                XCTAssert(true)
-                expectation.fulfill()
-            }
-            .onFailure{ error in
-                XCTAssert(false)
-                expectation.fulfill()
+        .onSuccess {
+            result in
+            XCTAssert(true)
+            expectation.fulfill()
         }
-        
-        waitForExpectationsWithTimeout(5, handler: {error in
+        .onFailure {
+            error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: {
+            error in
             XCTAssertNil(error, "Error")
         })
     }

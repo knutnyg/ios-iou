@@ -34,7 +34,7 @@ class UserHandler {
         return promiseUser.future
     }
     
-    func searchUser(token:String, query:String) -> Future<[User],NSError> {
+    static func searchUser(token:String, query:String) -> Future<[User],NSError> {
         let searchPromise = Promise<[User], NSError>()
         let encodedString = query.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         print(encodedString)

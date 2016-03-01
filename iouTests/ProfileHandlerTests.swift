@@ -9,15 +9,13 @@
 import Foundation
 import XCTest
 
-class ProfileHandlerTests : XCTestCase {
-    
-    
+class ProfileHandlerTests : TestBase {
+
+
+
     func testGetImage(){
-        
-        
+
         let expectation = expectationWithDescription("promise")
-        
-        let user = User(name: "Knut Test", shortName: "Knut", id: "1af102d9-c224-451b-b793-7a239af09807", photoUrl: "https://www.logisk.org/api/users/photo/1af102d9-c224-451b-b793-7a239af09807", email: "knutnyg+test@gmail.com")
         
         API.getImageForUser(user).onSuccess{image in
             XCTAssert(true)
@@ -27,6 +25,28 @@ class ProfileHandlerTests : XCTestCase {
             expectation.fulfill()
         }
         
+        waitForExpectationsWithTimeout(5, handler: {error in
+            XCTAssertNil(error, "Error")
+        })
+    }
+
+    func testUploadImage(){
+        //The Bundle for your current class
+        var bundle = NSBundle(forClass: self.dynamicType)
+        var path = bundle.pathForResource("dog", ofType: "jpeg")!
+
+        let expectation = expectationWithDescription("promise")
+
+        var image : UIImage = UIImage(imageLiteral: path)
+
+        UserHandler.uploadImage(token, image: image).onSuccess{response in
+            XCTAssert(true)
+            expectation.fulfill()
+        }.onFailure{error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
         waitForExpectationsWithTimeout(5, handler: {error in
             XCTAssertNil(error, "Error")
         })

@@ -6,14 +6,20 @@ import SwiftHTTP
 
 class ProfileHandler {
 
-    func getImageForUser(user:User) -> Future<UIImage,NSError> {
+    static func getImageForUser(user:User) -> Future<UIImage,NSError> {
 
         guard var photoUrl = user.photoURL else {
             return Future(error: NSError(domain: "NO IMAGE URL", code: 500, userInfo: nil))
         }
-        
+
+        //Denne burde kunne fjernes
         if !user.photoURL.containsString("http") {
             photoUrl = "\(API.baseUrl)\(photoUrl)"
+        }
+
+        if API.baseUrl.containsString("dev"){
+            let index = photoUrl.rangeOfString("/api/")!.startIndex
+            photoUrl = API.baseUrl + photoUrl.substringFromIndex(index)
         }
 
         let promise = Promise<UIImage, NSError>()

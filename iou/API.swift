@@ -23,7 +23,7 @@ class API {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return UserHandler().searchUser(token, query: query)
+        return UserHandler.searchUser(token, query: query)
     }
     
     static func getGroupsForUser() -> Future<[Group],NSError> {
@@ -84,7 +84,7 @@ class API {
     }
 
     static func getImageForUser(user:User) -> Future<UIImage, NSError> {
-        return ProfileHandler().getImageForUser(user)
+        return ProfileHandler.getImageForUser(user)
     }
 
     static func signUp(name:String, email:String, password:String, confirm_password:String) -> Future<String, NSError> {
