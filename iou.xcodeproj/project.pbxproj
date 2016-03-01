@@ -97,7 +97,6 @@
 		7208E0461BD6BEB800D1A248 /* UserHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208E0441BD6BEB800D1A248 /* UserHandlerTests.swift */; };
 		7208E0481BD6C80700D1A248 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208E0471BD6C80700D1A248 /* API.swift */; };
 		7208E0491BD6C80700D1A248 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208E0471BD6C80700D1A248 /* API.swift */; };
-		7208E04B1BD6CFCB00D1A248 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7208E04A1BD6CFCB00D1A248 /* APITests.swift */; };
 		7224B9BE1BD5787B00414CF5 /* SummaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224B9BD1BD5787B00414CF5 /* SummaryHeaderView.swift */; };
 		7224B9C01BD5788700414CF5 /* SummaryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224B9BF1BD5788700414CF5 /* SummaryTableCell.swift */; };
 		7224B9C31BD6AE0500414CF5 /* EditGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224B9C21BD6AE0500414CF5 /* EditGroup.swift */; };
@@ -245,7 +244,6 @@
 		7208E0411BD6BDBE00D1A248 /* UserHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHandler.swift; sourceTree = "<group>"; };
 		7208E0441BD6BEB800D1A248 /* UserHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHandlerTests.swift; sourceTree = "<group>"; };
 		7208E0471BD6C80700D1A248 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		7208E04A1BD6CFCB00D1A248 /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		7224B9BD1BD5787B00414CF5 /* SummaryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryHeaderView.swift; sourceTree = "<group>"; };
 		7224B9BF1BD5788700414CF5 /* SummaryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryTableCell.swift; sourceTree = "<group>"; };
 		7224B9C21BD6AE0500414CF5 /* EditGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroup.swift; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 				6A6FEC1C1BD39EDD00FE19FC /* LogInHandlerTests.swift */,
 				6AED42041BD3D04E00053831 /* ResetPasswordHandlerTests.swift */,
 				7208E0441BD6BEB800D1A248 /* UserHandlerTests.swift */,
-				7208E04A1BD6CFCB00D1A248 /* APITests.swift */,
 				324F47D84118411CA3182352 /* SignUpHandlerTests.swift */,
 				72C1A5DA1C024F84007FFAB6 /* ProfileHandlerTests.swift */,
 				324F45435B91E41706BE95FF /* TestBase.swift */,
@@ -931,7 +928,6 @@
 				7224B9C91BD6BA2C00414CF5 /* SummaryHeaderView.swift in Sources */,
 				6AED41F31BD3A0F900053831 /* LogInHandler.swift in Sources */,
 				72DBBD1D1BDBD92900DCCF88 /* NewExpense.swift in Sources */,
-				7208E04B1BD6CFCB00D1A248 /* APITests.swift in Sources */,
 				7208835F1BD01F86001A716A /* GroupList.swift in Sources */,
 				7208E0491BD6C80700D1A248 /* API.swift in Sources */,
 				324F4C75CD7F8FCF7FACC4CC /* GroupViewController.swift in Sources */,
