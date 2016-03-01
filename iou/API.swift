@@ -59,28 +59,28 @@ class API {
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return ExpensesHandler().getExpensesForGroup(token, group: group)
+        return ExpensesHandler.getExpensesForGroup(token, group: group)
     }
     
     static func putExpense(expense:Expense) -> Future<Expense,NSError>{
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return ExpensesHandler().updateExpense(token, expense: expense)
+        return ExpensesHandler.updateExpense(token, expense: expense)
     }
     
     static func newExpense(expense:Expense) -> Future<Expense,NSError>{
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return ExpensesHandler().newExpense(token, expense: expense)
+        return ExpensesHandler.newExpense(token, expense: expense)
     }
 
     static func deleteExpense(expense:Expense) -> Future<Expense,NSError>{
         guard let token = accessToken else {
             return Future(error: NSError(domain: "NOT_AUTHENTICATED", code: 403, userInfo: nil))
         }
-        return ExpensesHandler().deleteExpense(token, expense: expense)
+        return ExpensesHandler.deleteExpense(token, expense: expense)
     }
 
     static func getImageForUser(user:User) -> Future<UIImage, NSError> {

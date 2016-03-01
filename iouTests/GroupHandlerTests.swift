@@ -23,7 +23,7 @@ class GroupListFetcherTests : XCTestCase {
         user = User(name: "Knut Nygaard", shortName: "Knut", id: "1af102d9-c224-451b-b793-7a239af09807", photoUrl: "https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50", email:"knutnyg@gmail.com")
         users = [user]
         group = Group(members: users, id: "dc0d4b89-4cfb-4c99-8a25-3ac39e6ff559", archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user, expenses: [])
-        token = "eyJpZCI6IjFhZjEwMmQ5LWMyMjQtNDUxYi1iNzkzLTdhMjM5YWYwOTgwNyIsInRva2VuX2lkIjoiIiwiZW1haWwiOiJrbnV0bnlnK3Rlc3RAZ21haWwuY29tIiwibmFtZSI6IktudXRfdGVzdCIsInNob3J0bmFtZSI6IiIsInBob3RvdXJsIjoiIiwic2VjcmV0IjoiMDIwZjQ0MGNmZmVlYmZmMGFjMzRkZmJmMWRiNDgzZjAyN2ExMjlmNTE5NGZlMzEwNWViM2JjMmQ2ZmQ4OGRhYiIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTE3VDE5OjM5OjUxLjg2NDQzNzUyNloifQ=="
+        token = APITests.token
     }
     
     func testFetchGroups(){
@@ -93,6 +93,62 @@ class GroupListFetcherTests : XCTestCase {
         }
         waitForExpectationsWithTimeout(5, handler: { error in
             XCTAssertNil(error, "Error")})
+    }
+
+    func testCreateEditAndArchiveGroup(){
+        //Create
+        var expectation = expectationWithDescription("create")
+
+        var createdGroup = Group()
+
+        GroupHandler.createGroup(APITests.token, name: "Test Group", creator: APITests.user)
+        .onSuccess { group in
+            XCTAssertTrue(group.id != nil)
+            createdGroup = group
+            expectation.fulfill()
+        }
+        .onFailure { error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")})
+
+        //Edit
+        expectation = expectationWithDescription("edit")
+
+        createdGroup.description = "Test Group edited!"
+
+        GroupHandler.putGroup(APITests.token, group: createdGroup)
+        .onSuccess { group in
+            XCTAssertTrue(group.description == createdGroup.description)
+            expectation.fulfill()
+        }.onFailure { error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")})
+
+        //Archive
+        expectation = expectationWithDescription("archive")
+
+        createdGroup.description = "Test-group-archived \(NSDate().shortPrintable())"
+        createdGroup.archived = true
+
+        GroupHandler.putGroup(APITests.token, group: createdGroup)
+        .onSuccess { group in
+            XCTAssertTrue(group.description == createdGroup.description)
+            XCTAssertTrue(group.archived == true)
+            expectation.fulfill()
+        }.onFailure { error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")})
+
+
     }
 
 

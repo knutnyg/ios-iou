@@ -20,9 +20,6 @@ class ExpenseTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        user = User(name: "Knut Nygaard", shortName: "Knut", id: "1af102d9-c224-451b-b793-7a239af09807", photoUrl: "https://lh3.googleusercontent.com/-f-ipeFeTcOo/AAAAAAAAAAI/AAAAAAAAAEw/C_qopDlJom4/photo.jpg?sz=50", email: "knutnyg@gmail.com")
-        group = Group(members: [user], id: "dc0d4b89-4cfb-4c99-8a25-3ac39e6ff559", archived: false, created: NSDate(), description: "IOS", lastUpdated: NSDate(), creator: user, expenses: [])
-        token = "eyJpZCI6IjFhZjEwMmQ5LWMyMjQtNDUxYi1iNzkzLTdhMjM5YWYwOTgwNyIsInRva2VuX2lkIjoiIiwiZW1haWwiOiJrbnV0bnlnK3Rlc3RAZ21haWwuY29tIiwibmFtZSI6IktudXRfdGVzdCIsInNob3J0bmFtZSI6IiIsInBob3RvdXJsIjoiIiwic2VjcmV0IjoiMDIwZjQ0MGNmZmVlYmZmMGFjMzRkZmJmMWRiNDgzZjAyN2ExMjlmNTE5NGZlMzEwNWViM2JjMmQ2ZmQ4OGRhYiIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTE3VDE5OjM5OjUxLjg2NDQzNzUyNloifQ=="
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -30,7 +27,7 @@ class ExpenseTests: XCTestCase {
 
         let expectation = expectationWithDescription("promise")
 
-        GroupHandler.getGroup(token, group: group)
+        GroupHandler.getGroup(APITests.token, group: group)
         .onSuccess {
             group in
             XCTAssert(true)
@@ -52,7 +49,6 @@ class ExpenseTests: XCTestCase {
         if runIntegrationTests == false {
             return
         }
-        let expensesHandler: ExpensesHandler = ExpensesHandler()
 
         let expectation = expectationWithDescription("promise")
 
@@ -60,7 +56,7 @@ class ExpenseTests: XCTestCase {
 
         let expense = Expense(participants: [user], amount: expenseAmount, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Updated from test", creator: user, id: "1257f0ef-fc80-486b-901a-9fe609271fa1")
 
-        expensesHandler.updateExpense(token, expense: expense)
+        ExpensesHandler.updateExpense(APITests.token, expense: expense)
         .onSuccess {
             expense in
             XCTAssertTrue(expense.amount == expenseAmount)
@@ -85,9 +81,75 @@ class ExpenseTests: XCTestCase {
 
         let expectation = expectationWithDescription("promise")
 
-        let expense = Expense(participants: [user], amount: 0, date: NSDate(), groupId: group.id, created: NSDate(), updated: nil, comment: "Deleted from test", creator: user, id: "95c26862-97a0-42d6-877b-0535e62cc2a1")
+        let expense = Expense(participants: [user], amount: 512, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Edited from test", creator: user, id: user.id)
 
-        ExpensesHandler().deleteExpense(token, expense: expense)
+        ExpensesHandler.deleteExpense(APITests.token, expense: expense)
+        .onSuccess {
+            success in
+            XCTAssert(true)
+            expectation.fulfill()
+        }
+        .onFailure {
+            error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: {
+            error in
+            XCTAssertNil(error, "Error")
+        })
+    }
+
+    func testCreateUpdateAndDeleteExpense(){
+
+        var expectation = expectationWithDescription("new")
+        let newExpense = Expense(participants: [user], amount: 1337, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Receipe from test", creator: user)
+        let editedExpense = Expense(participants: [user], amount: 512, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Edited from test", creator: user)
+
+        //Create expense
+        ExpensesHandler.newExpense(APITests.token, expense: newExpense)
+        .onSuccess {
+            expense in
+            editedExpense.id = expense.id
+            XCTAssert(true)
+            expectation.fulfill()
+        }
+        .onFailure {
+            error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: {
+            error in
+            XCTAssertNil(error, "Error")
+        })
+
+        //Update expense
+        expectation = expectationWithDescription("edit")
+
+        ExpensesHandler.updateExpense(APITests.token, expense: editedExpense)
+        .onSuccess {
+            expense in
+            XCTAssertTrue(expense.amount == 512)
+            expectation.fulfill()
+        }
+        .onFailure {
+            error in
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: {
+            error in
+            XCTAssertNil(error, "Error")
+        })
+
+        //Delete expense
+        expectation = expectationWithDescription("delete")
+
+        ExpensesHandler.deleteExpense(APITests.token, expense: editedExpense)
         .onSuccess {
             success in
             XCTAssert(true)
@@ -115,7 +177,7 @@ class ExpenseTests: XCTestCase {
 
         let expense = Expense(participants: [user], amount: 0, date: NSDate(), groupId: group.id, created: NSDate(), updated: NSDate(), comment: "Receipe from test", creator: user, id: "1af102d9-c224-451b-b793-7a239af09807")
 
-        ExpensesHandler().newExpense(token, expense: expense)
+        ExpensesHandler.newExpense(APITests.token, expense: expense)
         .onSuccess {
             success in
             XCTAssert(true)
